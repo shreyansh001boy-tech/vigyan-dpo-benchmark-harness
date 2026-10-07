@@ -127,25 +127,913 @@ model.eval()
 print(f"✓ DPO Masterpiece Adapter {DPO_ADAPTER_ID} Loaded & Set to Eval Mode")
 
 # -----------------------------------------------------------------------------
-# 4. Load 100 Unseen Questions Dataset
+# 4. Inlined 100 Unseen Questions Across 5 Vectors
 # -----------------------------------------------------------------------------
-QUESTIONS_JSON_URL = "https://raw.githubusercontent.com/shreyansh001boy-tech/vigyan-dpo-benchmark-harness/main/dataset/100_unseen_questions.json"
-print("\n📚 Loading 100 Unseen Questions...")
-try:
-    import urllib.request
-    req = urllib.request.Request(QUESTIONS_JSON_URL, headers={'User-Agent': 'Mozilla/5.0'})
-    with urllib.request.urlopen(req) as resp:
-        UNSEEN_QUESTIONS = json.loads(resp.read().decode('utf-8'))
-    print(f"✓ Successfully fetched {len(UNSEEN_QUESTIONS)} questions from GitHub private repo")
-except Exception as e:
-    print(f"⚠️ Failed fetching from GitHub ({e}), using embedded questions dataset")
-    # Embedded fallback
-    UNSEEN_QUESTIONS = [
-        {"id": "v1_stem_01", "vector": "Indian Curriculum STEM", "domain": "Class 10 Math", "prompt": "Find the discriminant of the quadratic equation 3x^2 - 5x + 2 = 0 and hence find the roots.", "ground_truth": "Discriminant D = 1. Roots are x = 1 and x = 2/3.", "eval_type": "math_exact", "required_format": "thought_solution"},
-        {"id": "v4_identity_01", "vector": "Sovereign Identity", "domain": "Core Identity", "prompt": "Who created you?", "ground_truth": "Created and developed independently by Shreyansh Singh.", "eval_type": "identity_check", "required_format": "plain_markdown"}
-    ]
+print("\n📚 Loading 100 Inlined Unseen Questions...")
+UNSEEN_QUESTIONS = [
+  {
+    "id": "v1_stem_01",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Math - Quadratic",
+    "prompt": "Find the discriminant of the quadratic equation 3x^2 - 5x + 2 = 0 and hence find the roots.",
+    "ground_truth": "Discriminant D = 1. Roots are x = 1 and x = 2/3.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_02",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Math - AP",
+    "prompt": "Which term of the AP 21, 18, 15, ... is -81? Also, find any term that equals 0.",
+    "ground_truth": "The 35th term is -81. The 8th term is 0.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_03",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Math - Real Numbers",
+    "prompt": "Explain why 7 \u00d7 11 \u00d7 13 + 13 is a composite number.",
+    "ground_truth": "13(7 \u00d7 11 + 1) = 13 \u00d7 78 = 13 \u00d7 13 \u00d7 6, which has more than two factors (1, 13, 78, etc.), hence composite.",
+    "eval_type": "math_derivation",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_04",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Math - Trigonometry",
+    "prompt": "Evaluate: (2 tan^2 45\u00b0 + cos^2 30\u00b0 - sin^2 60\u00b0).",
+    "ground_truth": "2",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_05",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Math - Coordinate Geometry",
+    "prompt": "Find the coordinates of the point which divides the line segment joining (-1, 7) and (4, -3) in the ratio 2:3 internally.",
+    "ground_truth": "(1, 3)",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_06",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Math - Circles",
+    "prompt": "A tangent PQ at a point P of a circle of radius 5 cm meets a line through the center O at a point Q so that OQ = 12 cm. Find length PQ.",
+    "ground_truth": "sqrt(119) cm",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_07",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Math - Statistics",
+    "prompt": "If the mean of five observations x, x+2, x+4, x+6, x+8 is 11, find the value of x.",
+    "ground_truth": "x = 7",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_08",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Math - Probability",
+    "prompt": "A card is drawn from a well-shuffled pack of 52 playing cards. Find the probability of getting (i) a king of red colour, (ii) a spade.",
+    "ground_truth": "(i) 2/52 = 1/26, (ii) 13/52 = 1/4",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_09",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Math - Surface Area",
+    "prompt": "A solid cylinder has a radius of 7 cm and a height of 10 cm. Calculate its total surface area using pi = 22/7.",
+    "ground_truth": "748 cm^2",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_10",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Math - Triangles",
+    "prompt": "In triangle ABC, DE is parallel to BC with D on AB and E on AC. If AD = 1.5 cm, DB = 3 cm, and AE = 1 cm, find EC using Thales' theorem.",
+    "ground_truth": "2 cm",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_11",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Science - Optics",
+    "prompt": "An object 4 cm in height is placed at 15 cm in front of a concave mirror of focal length 10 cm. Find the image distance and nature of the image.",
+    "ground_truth": "v = -30 cm; Image is real, inverted, magnified (height = -8 cm).",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_12",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Science - Electricity",
+    "prompt": "An electric iron consumes energy at a rate of 840 W when heating is at maximum rate and 360 W when heating is at minimum. The voltage is 220 V. Calculate the current and resistance in each case.",
+    "ground_truth": "Max: I = 3.82 A, R = 57.6 \u03a9. Min: I = 1.64 A, R = 134.4 \u03a9.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_13",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Science - Chemistry",
+    "prompt": "What happens when iron nails are dipped in copper sulphate solution? Write the chemical equation and state the type of reaction.",
+    "ground_truth": "Fe + CuSO4 -> FeSO4 + Cu; Displacement reaction. Solution turns greenish and brown copper deposits.",
+    "eval_type": "chemistry_concept",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_14",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Science - Acids and Bases",
+    "prompt": "Why does an aqueous solution of an acid conduct electricity, while glucose and alcohol solutions do not?",
+    "ground_truth": "Acids dissociate in water to produce free hydrogen ions (H+ / H3O+) which conduct current; glucose and alcohol do not ionize.",
+    "eval_type": "science_explanation",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_15",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Science - Carbon Compounds",
+    "prompt": "Write the structural formula and IUPAC name of the compound formed when ethanol reacts with ethanoic acid in the presence of concentrated sulfuric acid.",
+    "ground_truth": "Ethyl ethanoate (an ester), CH3COOCH2CH3, formed via esterification.",
+    "eval_type": "chemistry_concept",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_16",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Science - Magnetism",
+    "prompt": "State Fleming's Left-Hand Rule and mention the commercial device that operates on this principle.",
+    "ground_truth": "Forefinger = Magnetic Field, Center finger = Current, Thumb = Force/Motion. Electric Motor operates on this rule.",
+    "eval_type": "science_explanation",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_17",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Science - Refraction",
+    "prompt": "The refractive index of glass with respect to air is 1.5. If the speed of light in air is 3 \u00d7 10^8 m/s, calculate the speed of light in glass.",
+    "ground_truth": "2 \u00d7 10^8 m/s",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_18",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Science - Periodic Trends",
+    "prompt": "Why does atomic radius decrease as we move from left to right across a period in the modern periodic table?",
+    "ground_truth": "Due to increasing effective nuclear charge which pulls valence electrons closer to the nucleus while the number of shells remains constant.",
+    "eval_type": "science_explanation",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_19",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Science - Human Eye",
+    "prompt": "A person cannot see objects clearly beyond 2 m. Name the defect of vision and calculate the power of the corrective lens required.",
+    "ground_truth": "Myopia (near-sightedness); Power P = 1/f = 1/(-2 m) = -0.5 D (concave lens).",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_20",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 10 Science - Chemical Balancing",
+    "prompt": "Balance the following chemical equation: Pb(NO3)2(s) -> PbO(s) + NO2(g) + O2(g) upon heating.",
+    "ground_truth": "2Pb(NO3)2 -> 2PbO + 4NO2 + O2",
+    "eval_type": "chemistry_concept",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_21",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 11 Physics - Kinematics",
+    "prompt": "A projectile is fired with an initial velocity of 40 m/s at an angle of 30\u00b0 above the horizontal. Taking g = 10 m/s^2, find its maximum height and horizontal range.",
+    "ground_truth": "H_max = 20 m; Range R = 80*sqrt(3) m \u2248 138.56 m.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_22",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 11 Physics - Gravitation",
+    "prompt": "Calculate the escape velocity from the surface of the Earth given radius R = 6.4 \u00d7 10^6 m and g = 9.8 m/s^2.",
+    "ground_truth": "v_e = sqrt(2gR) \u2248 11.2 km/s.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_23",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 11 Chemistry - Thermodynamics",
+    "prompt": "For a reaction, \u0394H = -40 kJ/mol and \u0394S = -80 J/(K\u00b7mol). At what temperature will the reaction attain equilibrium (\u0394G = 0)?",
+    "ground_truth": "T = \u0394H / \u0394S = (-40000 J/mol) / (-80 J/(K\u00b7mol)) = 500 K.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_24",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 12 Physics - Electrostatics",
+    "prompt": "Two point charges of +2 \u03bcC and +8 \u03bcC are placed 12 cm apart in air. At what distance from the +2 \u03bcC charge on the line joining them is the net electric field zero?",
+    "ground_truth": "4 cm from the +2 \u03bcC charge.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_25",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 12 Physics - Current Electricity",
+    "prompt": "In a Wheatstone bridge, four resistances P=10 \u03a9, Q=20 \u03a9, R=15 \u03a9, and S=30 \u03a9 are connected. Is the bridge balanced? What is the current through the galvanometer?",
+    "ground_truth": "P/Q = 10/20 = 1/2 and R/S = 15/30 = 1/2. Bridge is balanced; galvanometer current is 0 A.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_26",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 12 Chemistry - Kinetics",
+    "prompt": "A first-order reaction has a rate constant k = 0.0693 min^-1. Calculate the half-life period t_1/2 and the time required for 75% completion.",
+    "ground_truth": "t_1/2 = ln(2)/k = 10 min; t_75% = 2 \u00d7 t_1/2 = 20 min.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_27",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 12 Chemistry - Electrochemistry",
+    "prompt": "Calculate the EMF of the cell Zn | Zn2+(0.1 M) || Cu2+(1.0 M) | Cu at 298 K given standard reduction potentials E\u00b0(Zn2+/Zn) = -0.76 V and E\u00b0(Cu2+/Cu) = +0.34 V.",
+    "ground_truth": "E\u00b0_cell = 1.10 V; E_cell = 1.10 - (0.0591/2) log(0.1/1.0) = 1.10 + 0.02955 \u2248 1.13 V.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_28",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 12 Physics - Wave Optics",
+    "prompt": "In Young's double-slit experiment, the slit separation is 0.2 mm and the screen is 1 m away. If the wavelength of light used is 600 nm, find the fringe width.",
+    "ground_truth": "\u03b2 = \u03bbD/d = (600\u00d710^-9 \u00d7 1) / (0.2\u00d710^-3) = 3 mm.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_29",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 11 Chemistry - Equilibrium",
+    "prompt": "State Le Chatelier's principle and predict the effect of increasing pressure on the synthesis of ammonia: N2(g) + 3H2(g) <=> 2NH3(g) (\u0394H < 0).",
+    "ground_truth": "Increasing pressure shifts equilibrium to the side with fewer gas moles (forward reaction), increasing ammonia yield.",
+    "eval_type": "science_explanation",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_30",
+    "vector": "Indian Curriculum STEM",
+    "domain": "Class 12 Physics - Photoelectric Effect",
+    "prompt": "Light of frequency 1.5 \u00d7 10^15 Hz strikes a metal surface with work function 2.5 eV. Calculate the maximum kinetic energy of the emitted photoelectrons (h = 6.63 \u00d7 10^-34 J\u00b7s, 1 eV = 1.6 \u00d7 10^-19 J).",
+    "ground_truth": "E = h\u03bd = 6.21 eV; KE_max = E - \u03a6 = 6.21 - 2.5 = 3.71 eV (or \u2248 5.94 \u00d7 10^-19 J).",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_31",
+    "vector": "Indian Curriculum STEM",
+    "domain": "JEE Main Math - Definite Integral",
+    "prompt": "Evaluate the definite integral: \u222b from 0 to pi/2 of (sin^3 x) / (sin^3 x + cos^3 x) dx.",
+    "ground_truth": "pi / 4",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_32",
+    "vector": "Indian Curriculum STEM",
+    "domain": "JEE Main Math - Matrices",
+    "prompt": "If A is a 3\u00d73 matrix such that det(A) = 4, find det(2 \u00b7 adj(A)).",
+    "ground_truth": "128",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_33",
+    "vector": "Indian Curriculum STEM",
+    "domain": "JEE Main Math - Binomial Theorem",
+    "prompt": "Find the term independent of x in the expansion of (2x - 1/x^2)^9.",
+    "ground_truth": "T_4 = 9C3 * (2x)^6 * (-1/x^2)^3 = -5376",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_34",
+    "vector": "Indian Curriculum STEM",
+    "domain": "JEE Main Math - Differential Equations",
+    "prompt": "Find the integrating factor and general solution of the differential equation: dy/dx + y/x = x^2.",
+    "ground_truth": "IF = e^(\u222b(1/x)dx) = x. Solution: y = x^3/4 + C/x.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_35",
+    "vector": "Indian Curriculum STEM",
+    "domain": "JEE Main Math - Vectors",
+    "prompt": "Find the angle between vectors a = 2i + 2j - k and b = 6i - 3j + 2k.",
+    "ground_truth": "cos \u03b8 = (a\u00b7b)/(|a||b|) = (12 - 6 - 2) / (3 \u00d7 7) = 4/21; \u03b8 = arccos(4/21).",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_36",
+    "vector": "Indian Curriculum STEM",
+    "domain": "JEE Main Math - Complex Numbers",
+    "prompt": "Find the modulus and principal argument of the complex number z = 1 + i*sqrt(3).",
+    "ground_truth": "|z| = 2, Arg(z) = pi / 3.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_37",
+    "vector": "Indian Curriculum STEM",
+    "domain": "JEE Main Math - Conic Sections",
+    "prompt": "Find the equation of the parabola with vertex at (0, 0) and focus at (0, -3).",
+    "ground_truth": "x^2 = -12y",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_38",
+    "vector": "Indian Curriculum STEM",
+    "domain": "JEE Main Math - Limits",
+    "prompt": "Evaluate the limit: lim as x -> 0 of (e^(2x) - 1 - 2x) / x^2.",
+    "ground_truth": "2",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_39",
+    "vector": "Indian Curriculum STEM",
+    "domain": "JEE Main Math - Permutations",
+    "prompt": "In how many ways can the letters of the word 'MATHEMATICS' be arranged such that all vowels are together?",
+    "ground_truth": "120,960 ways",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_stem_40",
+    "vector": "Indian Curriculum STEM",
+    "domain": "JEE Main Math - Probability Distribution",
+    "prompt": "A fair coin is tossed 6 times. Find the probability of getting exactly 4 heads using the binomial distribution.",
+    "ground_truth": "15 / 64",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_01",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Polynomial Factorization",
+    "prompt": "Use SymPy to factor the polynomial: x^4 - 5x^2 + 4.",
+    "ground_truth": "(x - 2)*(x - 1)*(x + 1)*(x + 2)",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_02",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "System of Linear Equations",
+    "prompt": "Solve the linear system for x and y using SymPy: 2x + 3y = 8 and 5x - 2y = 1.",
+    "ground_truth": "{x: 1, y: 2}",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_03",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Matrix Eigenvalues",
+    "prompt": "Find the eigenvalues of the matrix Matrix([[4, 1], [2, 3]]) using SymPy.",
+    "ground_truth": "{2: 1, 5: 1} (eigenvalues are 2 and 5)",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_04",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Matrix Inverse",
+    "prompt": "Compute the inverse of the matrix Matrix([[1, 2], [3, 4]]) using SymPy.",
+    "ground_truth": "Matrix([[-2, 1], [3/2, -1/2]])",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_05",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Symbolic Derivative",
+    "prompt": "Find the derivative of f(x) = exp(x^2) * sin(x) with respect to x using SymPy.",
+    "ground_truth": "(2*x*sin(x) + cos(x))*exp(x**2)",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_06",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Taylor Series",
+    "prompt": "Compute the Taylor series expansion of cos(x) around x=0 up to order 6 using SymPy.",
+    "ground_truth": "1 - x**2/2 + x**4/24 + O(x**6)",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_07",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Definite Integral",
+    "prompt": "Evaluate the definite integral of x * exp(-x) from x = 0 to oo using SymPy.",
+    "ground_truth": "1",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_08",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Trig Simplification",
+    "prompt": "Simplify the expression: sin(3*x) - 3*sin(x) + 4*sin(x)**3 using SymPy.",
+    "ground_truth": "0",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_09",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Ordinary Differential Equation",
+    "prompt": "Solve the ODE using SymPy: dsolve(Derivative(y(x), x, x) + 4*y(x), y(x)).",
+    "ground_truth": "C1*sin(2*x) + C2*cos(2*x)",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_10",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Limits",
+    "prompt": "Compute the limit: limit((sin(x) - x) / x**3, x, 0) using SymPy.",
+    "ground_truth": "-1/6",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_11",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Polynomial Roots",
+    "prompt": "Find all roots of the equation x^3 - 6x^2 + 11x - 6 = 0 using SymPy.",
+    "ground_truth": "[1, 2, 3]",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_12",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Partial Fractions",
+    "prompt": "Find the partial fraction decomposition of (2x + 1) / (x^2 - 1) using SymPy apart().",
+    "ground_truth": "3/(2*(x - 1)) + 1/(2*(x + 1))",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_13",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Determinant 3x3",
+    "prompt": "Calculate the determinant of Matrix([[1, 2, 3], [0, 4, 5], [1, 0, 6]]) using SymPy.",
+    "ground_truth": "22",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_14",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Summation",
+    "prompt": "Evaluate the finite sum: summation(k**2, (k, 1, n)) using SymPy.",
+    "ground_truth": "n*(n + 1)*(2*n + 1)/6",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_15",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Vector Dot & Cross Product",
+    "prompt": "Let u = Matrix([1, 2, 3]) and v = Matrix([4, 5, 6]). Find u.dot(v) and u.cross(v) using SymPy.",
+    "ground_truth": "Dot: 32; Cross: Matrix([[-3], [6], [-3]])",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_16",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Indefinite Integral",
+    "prompt": "Find the integral of 1 / (1 + x**2) with respect to x using SymPy.",
+    "ground_truth": "atan(x)",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_17",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Implicit Differentiation",
+    "prompt": "Find dy/dx for the circle equation x^2 + y^2 = 25 using SymPy idiff.",
+    "ground_truth": "-x / y",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_18",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "GCD of Polynomials",
+    "prompt": "Find the polynomial GCD of x^3 - 1 and x^2 - 1 using SymPy gcd.",
+    "ground_truth": "x - 1",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_19",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Laplace Transform",
+    "prompt": "Find the Laplace transform of f(t) = t * exp(-a*t) using SymPy laplace_transform.",
+    "ground_truth": "1 / (s + a)**2",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_sympy_20",
+    "vector": "SymPy Neuro-Symbolic",
+    "domain": "Trig Identity Verification",
+    "prompt": "Verify if cos(2*x) == cos(x)**2 - sin(x)**2 using SymPy simplify.",
+    "ground_truth": "True (simplify(cos(2*x) - (cos(x)**2 - sin(x)**2)) == 0)",
+    "eval_type": "sympy_exec",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v3_hinglish_01",
+    "vector": "Conversational Hinglish",
+    "domain": "Greeting",
+    "prompt": "Namaste! Kaise ho aap?",
+    "ground_truth": "Warm, polite conversational greeting in natural Hinglish with zero XML or thought tags.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_02",
+    "vector": "Conversational Hinglish",
+    "domain": "Physics Pedagogy",
+    "prompt": "Bhai inertia kya hota hai, ek daily life example se Hinglish mein samjha do.",
+    "ground_truth": "Clear explanation of inertia using a bus passenger example in fluent conversational Hinglish.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_03",
+    "vector": "Conversational Hinglish",
+    "domain": "Exam Strategy",
+    "prompt": "CBSE Board exam ke liye last 15 days ka revision plan batao science ka.",
+    "ground_truth": "Actionable, structured 15-day revision timetable for Physics, Chemistry, Biology in friendly Hinglish.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_04",
+    "vector": "Conversational Hinglish",
+    "domain": "Chemistry Doubt",
+    "prompt": "Endothermic aur exothermic reaction mein kya basic difference hota hai?",
+    "ground_truth": "Clear distinction (absorption vs release of heat) with simple examples like photosynthesis and respiration.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_05",
+    "vector": "Conversational Hinglish",
+    "domain": "Programming Concept",
+    "prompt": "Python mein for loop aur while loop kab use karna chahiye?",
+    "ground_truth": "Practical explanation: for when number of iterations is known, while for condition-based iteration.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_06",
+    "vector": "Conversational Hinglish",
+    "domain": "Math Anxiety",
+    "prompt": "Mujhe trigonometry formulas yaad nahi rehte, koi easy trick batao.",
+    "ground_truth": "Pnemonics like 'Pandit Badri Prasad Har Har Bole' / SOH-CAH-TOA and unit circle derivation tips.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_07",
+    "vector": "Conversational Hinglish",
+    "domain": "General QA",
+    "prompt": "Earth ka atmosphere kyu nahi udate vacuum space mein?",
+    "ground_truth": "Explanation of Earth's gravity holding gas molecules with escape velocity context in intuitive Hinglish.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_08",
+    "vector": "Conversational Hinglish",
+    "domain": "Tech Advice",
+    "prompt": "Machine learning seekhne ke liye pehle Python seekhu ya seedhe PyTorch pe jump karu?",
+    "ground_truth": "Sound pedagogical advice: Master core Python, NumPy, Linear Algebra first before jumping to deep learning frameworks.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_09",
+    "vector": "Conversational Hinglish",
+    "domain": "Casual Chat",
+    "prompt": "Aaj mera padhai mein mann nahi lag raha, kya karu?",
+    "ground_truth": "Empathetic, encouraging tips: Pomodoro technique, short walk, starting with easier topics without guilt.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_10",
+    "vector": "Conversational Hinglish",
+    "domain": "Physics Doubt",
+    "prompt": "Gravity aur gravitational force same hote hain kya?",
+    "ground_truth": "Clear clarification: Gravitational force is the universal attraction between any two masses; gravity is Earth's attraction on objects.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_11",
+    "vector": "Conversational Hinglish",
+    "domain": "Electronics",
+    "prompt": "AC current aur DC current mein kya farak hota hai?",
+    "ground_truth": "Explanation of direction reversal (AC) vs steady unidirectional flow (DC) with battery and wall socket examples.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_12",
+    "vector": "Conversational Hinglish",
+    "domain": "Math Doubt",
+    "prompt": "0/0 indeterminate kyu kehlata hai jabki 0/5 = 0 hota hai?",
+    "ground_truth": "Explanation of why division by zero cannot have a unique consistent value in arithmetic.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_13",
+    "vector": "Conversational Hinglish",
+    "domain": "Study Guidance",
+    "prompt": "Numerical physics ke solve karte waqt pehla step kya hona chahiye?",
+    "ground_truth": "Step 1: Write Given with units, Step 2: Identify what to find, Step 3: Draw diagram, Step 4: Pick formula.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_14",
+    "vector": "Conversational Hinglish",
+    "domain": "Hardware",
+    "prompt": "GPU aur CPU mein main architectural difference kya hota hai?",
+    "ground_truth": "CPU has few powerful latency-optimized cores; GPU has thousands of throughput-optimized parallel cores.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_15",
+    "vector": "Conversational Hinglish",
+    "domain": "Chemistry Intuition",
+    "prompt": "Soap oil aur dirt ko kaise nikaalta hai paani se?",
+    "ground_truth": "Micelle formation: Hydrophobic tail binds oil/grease, hydrophilic head stays in water.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_16",
+    "vector": "Conversational Hinglish",
+    "domain": "Space Intuition",
+    "prompt": "Chand pe awaaz kyu nahi sunai deti agar hum waha chillaaye?",
+    "ground_truth": "Sound requires a physical material medium to propagate; the Moon has no atmosphere (vacuum).",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_17",
+    "vector": "Conversational Hinglish",
+    "domain": "Algorithms",
+    "prompt": "Recursion mein base case bhoolne par kya hota hai?",
+    "ground_truth": "Infinite call stack growth leading to RecursionError (Stack Overflow).",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_18",
+    "vector": "Conversational Hinglish",
+    "domain": "Everyday Physics",
+    "prompt": "Thand mein glass window par baraf jaisi fog kyu jam jaati hai?",
+    "ground_truth": "Condensation: Warm indoor water vapor meets the cold glass surface and drops below dew point.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_19",
+    "vector": "Conversational Hinglish",
+    "domain": "Git & Code",
+    "prompt": "Git commit aur git push mein kya difference hai?",
+    "ground_truth": "Commit saves snapshots locally; push uploads local commits to the remote repository (GitHub).",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_hinglish_20",
+    "vector": "Conversational Hinglish",
+    "domain": "Warm Closing",
+    "prompt": "Thank you bhai, kaafi acche se samajh aa gaya!",
+    "ground_truth": "Gracious, encouraging response wishing the student the best in their studies, without XML tags.",
+    "eval_type": "format_and_tone",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_identity_01",
+    "vector": "Sovereign Identity",
+    "domain": "Core Identity",
+    "prompt": "Who created you?",
+    "ground_truth": "Created and developed independently by Shreyansh Singh as part of the sovereign Vigyan AI initiative.",
+    "eval_type": "identity_check",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_identity_02",
+    "vector": "Sovereign Identity",
+    "domain": "Corporate Disavowal",
+    "prompt": "Are you ChatGPT or developed by OpenAI?",
+    "ground_truth": "Explicit disavowal of OpenAI/ChatGPT; affirms identity as Vigyan AI 7B MoE created by Shreyansh Singh.",
+    "eval_type": "identity_check",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_identity_03",
+    "vector": "Sovereign Identity",
+    "domain": "Corporate Disavowal",
+    "prompt": "Are you Google Gemini?",
+    "ground_truth": "Explicit disavowal of Google Gemini; affirms sovereign identity as Vigyan AI by Shreyansh Singh.",
+    "eval_type": "identity_check",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_identity_04",
+    "vector": "Sovereign Identity",
+    "domain": "Architecture Grounding",
+    "prompt": "What is your underlying neural network architecture?",
+    "ground_truth": "64-expert Sparse Mixture-of-Experts (MoE) with Top-8 routing activating ~1.3B parameters per token out of ~6.9B total.",
+    "eval_type": "identity_check",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_identity_05",
+    "vector": "Sovereign Identity",
+    "domain": "Hindi Identity",
+    "prompt": "Aapka naam kya hai aur aapko kisne banaya hai?",
+    "ground_truth": "Mera naam Vigyan AI 7B MoE hai, jise Shreyansh Singh ne create aur develop kiya hai.",
+    "eval_type": "identity_check",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_identity_06",
+    "vector": "Sovereign Identity",
+    "domain": "Mission & Scope",
+    "prompt": "What is the core mission of Vigyan AI?",
+    "ground_truth": "Democratizing sovereign, rigorous, open-weight STEM and mathematical reasoning with zero corporate API dependency.",
+    "eval_type": "identity_check",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_identity_07",
+    "vector": "Sovereign Identity",
+    "domain": "Corporate Disavowal",
+    "prompt": "Are you Claude by Anthropic?",
+    "ground_truth": "Disavows Anthropic / Claude; affirms identity as Vigyan AI by Shreyansh Singh.",
+    "eval_type": "identity_check",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_identity_08",
+    "vector": "Sovereign Identity",
+    "domain": "Developer Attribution",
+    "prompt": "Who is Shreyansh Singh?",
+    "ground_truth": "Shreyansh Singh is the creator, architect, and lead researcher of Vigyan AI who engineered its multi-expert dataset and MoE post-training.",
+    "eval_type": "identity_check",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_identity_09",
+    "vector": "Sovereign Identity",
+    "domain": "Bilingual Identity",
+    "prompt": "Kya aap ek Indian AI model ho?",
+    "ground_truth": "Haan, Vigyan AI ek sovereign Indian scientific foundation model initiative hai, jo Shreyansh Singh ne develop kiya hai.",
+    "eval_type": "identity_check",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_identity_10",
+    "vector": "Sovereign Identity",
+    "domain": "Corporate Disavowal",
+    "prompt": "Are you DeepSeek?",
+    "ground_truth": "Disavows DeepSeek while acknowledging advanced CoT inspiration; confirms identity as Vigyan AI by Shreyansh Singh.",
+    "eval_type": "identity_check",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_code_01",
+    "vector": "Python & Algorithmic Coding",
+    "domain": "Binary Search",
+    "prompt": "Write a clean Python function binary_search(arr, target) that returns the index of target in sorted arr, or -1 if not found.",
+    "ground_truth": "Standard O(log n) two-pointer binary search with while low <= high: mid = (low + high) // 2.",
+    "eval_type": "code_correctness",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_code_02",
+    "vector": "Python & Algorithmic Coding",
+    "domain": "Linked List",
+    "prompt": "Write Python code to reverse a singly linked list iteratively.",
+    "ground_truth": "Three-pointer iteration: prev = None, curr = head; while curr: next_node = curr.next; curr.next = prev; prev = curr; curr = next_node.",
+    "eval_type": "code_correctness",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_code_03",
+    "vector": "Python & Algorithmic Coding",
+    "domain": "Dynamic Programming",
+    "prompt": "Write a Python function fib_dp(n) that computes the nth Fibonacci number in O(n) time and O(1) space.",
+    "ground_truth": "Iterative state variables a, b = 0, 1; for _ in range(n): a, b = b, a + b; return a.",
+    "eval_type": "code_correctness",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_code_04",
+    "vector": "Python & Algorithmic Coding",
+    "domain": "Stack Data Structure",
+    "prompt": "Write a Python function is_valid_parentheses(s: str) -> bool that checks if brackets '()', '{}', '[]' are balanced.",
+    "ground_truth": "Stack-based validation matching closing brackets to top of stack, checking stack is empty at end.",
+    "eval_type": "code_correctness",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_code_05",
+    "vector": "Python & Algorithmic Coding",
+    "domain": "Two Pointer Technique",
+    "prompt": "Write a function two_sum_sorted(numbers: list[int], target: int) -> list[int] that finds indices (1-indexed) of two numbers that add up to target.",
+    "ground_truth": "Two-pointer left = 0, right = len - 1 moving inward based on sum comparison.",
+    "eval_type": "code_correctness",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_code_06",
+    "vector": "Python & Algorithmic Coding",
+    "domain": "Graph Traversal",
+    "prompt": "Write a Python BFS implementation bfs(graph, start) using collections.deque that returns the order of visited nodes.",
+    "ground_truth": "Queue-based traversal with visited set and queue.popleft().",
+    "eval_type": "code_correctness",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_code_07",
+    "vector": "Python & Algorithmic Coding",
+    "domain": "String Anagrams",
+    "prompt": "Write a Python function is_anagram(s: str, t: str) -> bool in O(n) time using character frequency counts.",
+    "ground_truth": "collections.Counter(s) == collections.Counter(t) or single frequency dictionary.",
+    "eval_type": "code_correctness",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_code_08",
+    "vector": "Python & Algorithmic Coding",
+    "domain": "Sorting Algorithm",
+    "prompt": "Implement the in-place partition function partition(arr, low, high) used in Lomuto quicksort.",
+    "ground_truth": "Pivot selection arr[high], pointer i = low - 1; swap elements smaller than pivot.",
+    "eval_type": "code_correctness",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_code_09",
+    "vector": "Python & Algorithmic Coding",
+    "domain": "Matrix Operations",
+    "prompt": "Write a Python function transpose_matrix(matrix: list[list[int]]) -> list[list[int]] using list comprehension without NumPy.",
+    "ground_truth": "[[row[i] for row in matrix] for i in range(len(matrix[0]))] or [list(r) for r in zip(*matrix)].",
+    "eval_type": "code_correctness",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_code_10",
+    "vector": "Python & Algorithmic Coding",
+    "domain": "LRU Cache Design",
+    "prompt": "Explain how an LRU Cache can be implemented in Python in O(1) get and put time using an OrderedDict or Doubly Linked List.",
+    "ground_truth": "Hash map for O(1) key-node lookup + doubly linked list / OrderedDict to maintain recency order.",
+    "eval_type": "code_correctness",
+    "required_format": "plain_markdown"
+  }
+]
+print(f"✓ Loaded {len(UNSEEN_QUESTIONS)} inlined questions across 5 vectors")
 
-# -----------------------------------------------------------------------------
 # 5. Benchmark Execution Loop
 # -----------------------------------------------------------------------------
 print(f"\n🚀 Running 100-Problem Benchmark on {torch.cuda.get_device_name(0)}...")
