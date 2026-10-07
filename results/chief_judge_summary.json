@@ -1,0 +1,41 @@
+{
+  "overall": {
+    "total_questions": 100,
+    "average_score": 6.82,
+    "pass_rate": 55.0,
+    "format_compliance_rate": 61.2,
+    "average_latency_ms": 23882.3
+  },
+  "vectors": {
+    "Indian Curriculum STEM": {
+      "count": 40,
+      "avg_score": 7.68,
+      "pass_rate": 77.5,
+      "format_compliance": 68.5
+    },
+    "SymPy Neuro-Symbolic": {
+      "count": 20,
+      "avg_score": 5.73,
+      "pass_rate": 30.0,
+      "format_compliance": 79.0
+    },
+    "Conversational Hinglish": {
+      "count": 20,
+      "avg_score": 6.27,
+      "pass_rate": 55.0,
+      "format_compliance": 55.0
+    },
+    "Sovereign Identity": {
+      "count": 10,
+      "avg_score": 6.66,
+      "pass_rate": 40.0,
+      "format_compliance": 40.0
+    },
+    "Python & Algorithmic Coding": {
+      "count": 10,
+      "avg_score": 6.78,
+      "pass_rate": 30.0,
+      "format_compliance": 30.0
+    }
+  }
+}
