@@ -1,0 +1,902 @@
+[
+  {
+    "id": "v1_silicon_01",
+    "vector": "Silicon RTL & EDA",
+    "domain": "FIFO Synchronizer",
+    "prompt": "Write a synthesizable Verilog module for a parameterized 2-stage flip-flop synchronizer `sync_2ff` used for CDC (Clock Domain Crossing) of a 1-bit signal.",
+    "ground_truth": "module sync_2ff #(parameter RESET_VAL = 1'b0)(input wire clk, input wire rst_n, input wire async_in, output reg sync_out); reg stage1; always @(posedge clk or negedge rst_n) begin if (!rst_n) begin stage1 <= RESET_VAL; sync_out <= RESET_VAL; end else begin stage1 <= async_in; sync_out <= stage1; end end endmodule",
+    "eval_type": "verilog_synthesizable",
+    "required_format": "verilog_code"
+  },
+  {
+    "id": "v1_silicon_02",
+    "vector": "Silicon RTL & EDA",
+    "domain": "Gray Code Converter",
+    "prompt": "Write a synthesizable Verilog module `bin2gray` converting an N-bit binary input to Gray code.",
+    "ground_truth": "module bin2gray #(parameter WIDTH = 4)(input wire [WIDTH-1:0] bin, output wire [WIDTH-1:0] gray); assign gray = (bin >> 1) ^ bin; endmodule",
+    "eval_type": "verilog_synthesizable",
+    "required_format": "verilog_code"
+  },
+  {
+    "id": "v1_silicon_03",
+    "vector": "Silicon RTL & EDA",
+    "domain": "Static Timing Analysis",
+    "prompt": "In an ASIC design with clock period T_clk = 5.0 ns, flip-flop T_cq = 0.5 ns, library T_setup = 0.3 ns, and clock skew T_skew = 0.2 ns. What is the maximum allowable combinational logic delay T_comb_max to avoid a setup time violation?",
+    "ground_truth": "T_comb_max = T_clk + T_skew - T_cq - T_setup = 5.0 + 0.2 - 0.5 - 0.3 = 4.4 ns.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_silicon_04",
+    "vector": "Silicon RTL & EDA",
+    "domain": "Hold Slack Calculation",
+    "prompt": "For flip-flop hold timing: T_cq_min = 0.2 ns, T_comb_min = 0.4 ns, T_hold = 0.25 ns, and clock skew T_skew = 0.15 ns. Calculate the hold slack.",
+    "ground_truth": "Hold Slack = (T_cq_min + T_comb_min) - (T_hold + T_skew) = (0.2 + 0.4) - (0.25 + 0.15) = 0.60 - 0.40 = 0.20 ns.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_silicon_05",
+    "vector": "Silicon RTL & EDA",
+    "domain": "Round-Robin Arbiter",
+    "prompt": "Write a synthesizable 4-request priority arbiter in Verilog with request inputs `req[3:0]` and one-hot grant outputs `grant[3:0]` where req[0] has the highest priority.",
+    "ground_truth": "module fixed_priority_arbiter(input wire [3:0] req, output wire [3:0] grant); assign grant[0] = req[0]; assign grant[1] = req[1] & ~req[0]; assign grant[2] = req[2] & ~req[1] & ~req[0]; assign grant[3] = req[3] & ~req[2] & ~req[1] & ~req[0]; endmodule",
+    "eval_type": "verilog_synthesizable",
+    "required_format": "verilog_code"
+  },
+  {
+    "id": "v1_silicon_06",
+    "vector": "Silicon RTL & EDA",
+    "domain": "LFSR Pseudo-Random Generator",
+    "prompt": "Write a synthesizable 4-bit Fibonacci LFSR in Verilog with polynomial x^4 + x^3 + 1, active-high synchronous reset initializing state to 4'b0001.",
+    "ground_truth": "module lfsr_4bit(input wire clk, input wire rst, output reg [3:0] q); wire feedback = q[3] ^ q[2]; always @(posedge clk) begin if (rst) q <= 4'b0001; else q <= {q[2:0], feedback}; end endmodule",
+    "eval_type": "verilog_synthesizable",
+    "required_format": "verilog_code"
+  },
+  {
+    "id": "v1_silicon_07",
+    "vector": "Silicon RTL & EDA",
+    "domain": "Clock Gating Cell",
+    "prompt": "Explain why an integrated clock gating (ICG) cell uses a negative-edge-triggered latch before the AND gate rather than a simple AND gate with an enable signal.",
+    "ground_truth": "A simple AND gate produces glitches if enable toggles while clock is high. A negative-edge latch samples enable when clk is low, ensuring enable is stable before the rising edge of clk, preventing runt clock pulses.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v1_silicon_08",
+    "vector": "Silicon RTL & EDA",
+    "domain": "MOSFET Elmore Delay",
+    "prompt": "Calculate the Elmore delay of a two-stage RC ladder network where R1=200 ohms, C1=10 fF, R2=300 ohms, and C2=20 fF.",
+    "ground_truth": "Elmore delay = R1*C1 + (R1 + R2)*C2 = 200*(10e-15) + 500*(20e-15) = 2.0e-12 + 10.0e-12 = 12.0 ps (1.2e-11 s).",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_silicon_09",
+    "vector": "Silicon RTL & EDA",
+    "domain": "Booth Multiplier Algorithm",
+    "prompt": "State the Booth recoding rule for bits (Y_i, Y_i-1) in Radix-2 Booth multiplication and explain when an addition or subtraction occurs.",
+    "ground_truth": "(0,0) -> 0; (0,1) -> +Multiplicand (add); (1,0) -> -Multiplicand (subtract); (1,1) -> 0. Addition occurs on transition from 1 to 0; subtraction occurs on transition from 0 to 1.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v1_silicon_10",
+    "vector": "Silicon RTL & EDA",
+    "domain": "Asynchronous FIFO Gray Pointer",
+    "prompt": "Why are read and write pointers in an asynchronous dual-clock FIFO converted to Gray code before synchronization across clock domains?",
+    "ground_truth": "In binary counters, multiple bits can change simultaneously (e.g. 0111 to 1000 changes 4 bits), leading to multi-bit metastability and illegal intermediate values. Gray code guarantees only 1 bit toggles per count transition, ensuring that even if synchronization delays by 1 cycle, the pointer is off by at most 1 count and never corrupt.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v1_silicon_11",
+    "vector": "Silicon RTL & EDA",
+    "domain": "Verilog Mealy vs Moore",
+    "prompt": "Write a 3-state Moore FSM in Verilog (`IDLE`, `DETECT`, `ACTION`) that asserts an output `out` high only in state `ACTION`.",
+    "ground_truth": "module moore_fsm(input wire clk, input wire rst_n, input wire in, output wire out); localparam IDLE=2'b00, DETECT=2'b01, ACTION=2'b10; reg [1:0] state, next_state; always @(posedge clk or negedge rst_n) if (!rst_n) state <= IDLE; else state <= next_state; always @(*) case(state) IDLE: next_state = in ? DETECT : IDLE; DETECT: next_state = in ? ACTION : IDLE; ACTION: next_state = IDLE; default: next_state = IDLE; endcase assign out = (state == ACTION); endmodule",
+    "eval_type": "verilog_synthesizable",
+    "required_format": "verilog_code"
+  },
+  {
+    "id": "v1_silicon_12",
+    "vector": "Silicon RTL & EDA",
+    "domain": "CMOS Inverter Dynamic Power",
+    "prompt": "Calculate the dynamic power dissipated by a CMOS inverter operating at V_dd = 0.8 V, frequency f = 2.5 GHz, load capacitance C_L = 15 fF, with switching activity factor alpha = 0.1.",
+    "ground_truth": "P_dyn = alpha * C_L * V_dd^2 * f = 0.1 * (15e-15) * (0.64) * (2.5e9) = 2.4e-6 W = 2.4 microwatts.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v1_silicon_13",
+    "vector": "Silicon RTL & EDA",
+    "domain": "Johnson Counter",
+    "prompt": "Write a synthesizable 4-bit Johnson counter in Verilog with synchronous reset to 4'b0000.",
+    "ground_truth": "module johnson_counter(input wire clk, input wire rst, output reg [3:0] q); always @(posedge clk) begin if (rst) q <= 4'b0000; else q <= {q[2:0], ~q[3]}; end endmodule",
+    "eval_type": "verilog_synthesizable",
+    "required_format": "verilog_code"
+  },
+  {
+    "id": "v1_silicon_14",
+    "vector": "Silicon RTL & EDA",
+    "domain": "Scan Chain & DFT",
+    "prompt": "Define stuck-at-0 and stuck-at-1 fault models in Digital Testing and how a multiplexed D-flip-flop enables full-scan testability.",
+    "ground_truth": "Stuck-at-0 assumes a net is permanently tied to ground (0); stuck-at-1 assumes permanently tied to VDD (1). A scan flip-flop adds a 2:1 mux at the D input controlled by scan_enable (SE). In scan mode (SE=1), all FFs form a shift register, allowing external testers to shift in test vectors and shift out captured internal states, converting sequential ATPG into combinational ATPG.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v1_silicon_15",
+    "vector": "Silicon RTL & EDA",
+    "domain": "Carry-Lookahead Adder (CLA)",
+    "prompt": "Derive the Generate (G_i) and Propagate (P_i) equations and the carry out C_1 for bit 0 of an adder.",
+    "ground_truth": "G_i = A_i & B_i; P_i = A_i ^ B_i (or A_i | B_i). C_1 = G_0 | (P_0 & C_0).",
+    "eval_type": "math_derivation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v1_silicon_16",
+    "vector": "Silicon RTL & EDA",
+    "domain": "Verilog Clock Divider",
+    "prompt": "Write a synthesizable Verilog module `clk_div2` that divides the input clock frequency by 2 with 50% duty cycle.",
+    "ground_truth": "module clk_div2(input wire clk_in, input wire rst_n, output reg clk_out); always @(posedge clk_in or negedge rst_n) begin if (!rst_n) clk_out <= 1'b0; else clk_out <= ~clk_out; end endmodule",
+    "eval_type": "verilog_synthesizable",
+    "required_format": "verilog_code"
+  },
+  {
+    "id": "v1_silicon_17",
+    "vector": "Silicon RTL & EDA",
+    "domain": "Subthreshold Leakage",
+    "prompt": "State the subthreshold drain current equation for an NMOS transistor in weak inversion and define the subthreshold swing factor S.",
+    "ground_truth": "I_sub = I_0 * exp((V_gs - V_th)/(n * V_t)) * (1 - exp(-V_ds / V_t)). Subthreshold swing S = (ln 10) * n * V_t, approximately 60 mV/decade at room temperature (300 K).",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v1_silicon_18",
+    "vector": "Silicon RTL & EDA",
+    "domain": "FPGA Block RAM Interface",
+    "prompt": "Write a synchronous single-port RAM in Verilog with 256 depth and 8-bit width with write-enable `we`.",
+    "ground_truth": "module single_port_ram(input wire clk, input wire we, input wire [7:0] addr, input wire [7:0] din, output reg [7:0] dout); reg [7:0] ram [0:255]; always @(posedge clk) begin if (we) ram[addr] <= din; dout <= ram[addr]; end endmodule",
+    "eval_type": "verilog_synthesizable",
+    "required_format": "verilog_code"
+  },
+  {
+    "id": "v1_silicon_19",
+    "vector": "Silicon RTL & EDA",
+    "domain": "Transmission Gate",
+    "prompt": "Explain why a single NMOS transistor cannot pass a strong logic '1' and why a CMOS Transmission Gate (NMOS + PMOS in parallel) solves this.",
+    "ground_truth": "An NMOS conducts until V_gs drops below V_th; thus, when passing logic '1' (VDD), the output saturates at VDD - V_th (a degraded/weak 1). A PMOS conducts logic '1' up to full VDD without threshold drop. A transmission gate pairs NMOS and PMOS in parallel, allowing NMOS to pass strong '0' and PMOS to pass strong '1' across the full rail-to-rail voltage range.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v1_silicon_20",
+    "vector": "Silicon RTL & EDA",
+    "domain": "Metastability MTBF",
+    "prompt": "Given MTBF = exp(s * t_r) / (T_0 * f_clk * f_data). If clock frequency f_clk doubles while resolution time t_r remains constant, by what factor does MTBF change?",
+    "ground_truth": "Since MTBF is inversely proportional to f_clk, if f_clk doubles, MTBF is halved (decreases by a factor of 2).",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_biomed_01",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Michaelis-Menten Kinetics",
+    "prompt": "An enzyme-catalyzed reaction has V_max = 50 micromol/(L*min) and K_m = 2.0 mM. Calculate the reaction rate v at substrate concentration [S] = 8.0 mM.",
+    "ground_truth": "v = (V_max * [S]) / (K_m + [S]) = (50 * 8.0) / (2.0 + 8.0) = 400 / 10.0 = 40 micromol/(L*min).",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_biomed_02",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Henderson-Hasselbalch",
+    "prompt": "Calculate the pH of a buffer solution containing 0.15 M acetic acid (CH3COOH) and 0.30 M sodium acetate (CH3COONa). Given pKa of acetic acid = 4.76.",
+    "ground_truth": "pH = pKa + log10([A-]/[HA]) = 4.76 + log10(0.30/0.15) = 4.76 + log10(2) = 4.76 + 0.301 = 5.061.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_biomed_03",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Pharmacokinetics Clearance",
+    "prompt": "A drug has an intravenous dose of 500 mg, and the area under the plasma concentration-time curve (AUC) is 25 mg*h/L. What is the total body clearance (CL)?",
+    "ground_truth": "CL = Dose / AUC = 500 mg / 25 (mg*h/L) = 20 L/h.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_biomed_04",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Drug Half-Life",
+    "prompt": "For a drug with clearance CL = 1.4 L/h and volume of distribution V_d = 20 L following first-order elimination, calculate its elimination half-life t_1/2 in hours.",
+    "ground_truth": "k_el = CL / V_d = 1.4 / 20 = 0.07 h^-1. t_1/2 = ln(2) / k_el = 0.693 / 0.07 = 9.9 hours.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_biomed_05",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Schrodinger Particle in a Box",
+    "prompt": "Calculate the ground state energy E_1 for an electron confined in a 1D infinite potential well of length L = 1.0 nm. (m_e = 9.109e-31 kg, h = 6.626e-34 J*s). Express answer in eV (1 eV = 1.602e-19 J).",
+    "ground_truth": "E_1 = (h^2) / (8 * m_e * L^2) = (6.626e-34)^2 / (8 * 9.109e-31 * (1e-9)^2) = 4.39e-67 / 7.287e-48 = 6.025e-20 J = 0.376 eV.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_biomed_06",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Arrhenius Equation",
+    "prompt": "If a reaction's rate constant doubles from T1 = 300 K to T2 = 310 K, calculate the activation energy E_a in kJ/mol. (R = 8.314 J/(mol*K)).",
+    "ground_truth": "ln(k2/k1) = ln(2) = (E_a / R) * (1/300 - 1/310). 0.69315 = (E_a / 8.314) * (10 / 93000). E_a = 0.69315 * 8.314 * 9300 = 53594 J/mol = 53.6 kJ/mol.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_biomed_07",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Lineweaver-Burk Plot",
+    "prompt": "In a Lineweaver-Burk double reciprocal plot, what do the x-intercept and y-intercept represent?",
+    "ground_truth": "The x-intercept represents -1/K_m, and the y-intercept represents 1/V_max.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v2_biomed_08",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Gibbs Free Energy & Equilibrium",
+    "prompt": "Calculate Delta G° at 298 K for a biochemical binding reaction with dissociation constant K_d = 1.0e-9 M (K_eq = 1.0e9 M^-1). (R = 8.314 J/(mol*K)).",
+    "ground_truth": "Delta G° = -R * T * ln(K_eq) = -8.314 * 298 * ln(10^9) = -2477.57 * (9 * 2.302585) = -2477.57 * 20.723 = -51343 J/mol = -51.34 kJ/mol.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_biomed_09",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Nernst Equation Cell Potential",
+    "prompt": "Calculate the reduction potential for the half-cell Cu2+ (0.01 M) + 2e- -> Cu(s) at 298 K, given standard reduction potential E° = +0.34 V.",
+    "ground_truth": "E = E° - (0.05916 / 2) * log10(1 / [Cu2+]) = 0.34 - 0.02958 * log10(100) = 0.34 - 0.02958 * 2 = 0.34 - 0.05916 = +0.281 V.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_biomed_10",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Huckel 4n+2 Rule",
+    "prompt": "State Huckel's rule for aromaticity and determine whether cyclobutadiene and benzene are aromatic, antiaromatic, or nonaromatic.",
+    "ground_truth": "Huckel's rule states that a planar, cyclic, fully conjugated system with (4n + 2) pi electrons is aromatic, while one with 4n pi electrons is antiaromatic. Benzene has 6 pi electrons (n=1), making it aromatic. Cyclobutadiene has 4 pi electrons (n=1 in 4n), making it antiaromatic.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v2_biomed_11",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Enzyme Inhibition Types",
+    "prompt": "Differentiate between competitive and non-competitive enzyme inhibition in terms of their effects on apparent K_m and V_max.",
+    "ground_truth": "In competitive inhibition: apparent K_m increases (lower affinity), while V_max remains unchanged. In non-competitive inhibition: apparent K_m remains unchanged, while V_max decreases.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v2_biomed_12",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Beer-Lambert Law",
+    "prompt": "A protein solution in a 1.0 cm cuvette has an absorbance of 0.60 at 280 nm. If the molar extinction coefficient epsilon is 40,000 M^-1*cm^-1, calculate the molar concentration.",
+    "ground_truth": "A = epsilon * c * l => c = A / (epsilon * l) = 0.60 / (40,000 * 1.0) = 1.5e-5 M = 15 micromolar.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_biomed_13",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Born-Oppenheimer Approximation",
+    "prompt": "Explain the physical justification for the Born-Oppenheimer approximation in molecular quantum mechanics.",
+    "ground_truth": "Nuclei are vastly heavier than electrons (m_p / m_e approx 1836); therefore, nuclear velocities are negligible compared to electronic velocities. Electrons adjust almost instantaneously to nuclear positions, allowing the molecular Hamiltonian to decouple electronic wavefunction calculations from nuclear kinetic energy.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v2_biomed_14",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Hill Equation Cooperativity",
+    "prompt": "In allosteric binding, what does a Hill coefficient n_H > 1, n_H = 1, and n_H < 1 indicate about ligand binding cooperativity?",
+    "ground_truth": "n_H > 1 indicates positive cooperativity (binding of one ligand increases affinity for subsequent ligands, e.g. Hemoglobin). n_H = 1 indicates non-cooperative, independent binding (e.g. Myoglobin). n_H < 1 indicates negative cooperativity.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v2_biomed_15",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Lipinski Rule of Five",
+    "prompt": "State the 4 criteria of Lipinski's Rule of 5 for drug-likeness (oral bioavailability).",
+    "ground_truth": "1. Molecular mass < 500 Da. 2. LogP (lipophilicity) < 5. 3. Hydrogen bond donors <= 5 (OH and NH groups). 4. Hydrogen bond acceptors <= 10 (N and O atoms).",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v2_biomed_16",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Bond Order Molecular Orbital",
+    "prompt": "Calculate the bond order of diatomic oxygen O2 and superoxide ion O2^- using Molecular Orbital (MO) theory.",
+    "ground_truth": "O2 has 10 valence electrons: sigma2s^2 sigma*2s^2 sigma2p^2 pi2p^4 pi*2p^2. Bond Order = (8 bonding - 4 antibonding) / 2 = 2.0. Superoxide O2^- has 11 valence electrons (adds 1 to pi*2p): Bond Order = (8 - 5) / 2 = 1.5.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_biomed_17",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "NMR Chemical Shift",
+    "prompt": "Why do protons attached to electronegative atoms (such as -CH2-Cl) resonate at higher chemical shift (downfield) in 1H NMR compared to aliphatic protons (-CH3)?",
+    "ground_truth": "Electronegative atoms withdraw electron density through induction, deshielding the nucleus from the external magnetic field. Deshielded protons experience a stronger effective local magnetic field, requiring a higher resonance frequency and shifting downfield (higher ppm).",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v2_biomed_18",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Van 't Hoff Equation",
+    "prompt": "Express the differential and integrated form of the Van 't Hoff equation relating standard enthalpy of reaction Delta H° to equilibrium constant K.",
+    "ground_truth": "Differential: d(ln K)/dT = Delta H° / (R * T^2). Integrated: ln(K2 / K1) = -(Delta H° / R) * (1/T2 - 1/T1).",
+    "eval_type": "math_derivation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v2_biomed_19",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Polymerase Chain Reaction (PCR) Yield",
+    "prompt": "Assuming 100% amplification efficiency, how many target DNA copies are produced after 25 cycles from an initial template of 10 molecules?",
+    "ground_truth": "N = N_0 * 2^n = 10 * 2^25 = 10 * 33,554,432 = 335,544,320 copies (approx 3.36e8 copies).",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v2_biomed_20",
+    "vector": "Biomedical & Quantum Chemistry",
+    "domain": "Hartree-Fock Self-Consistent Field",
+    "prompt": "What physical phenomenon does the Hartree-Fock approximation neglect, giving rise to the concept of 'electron correlation energy'?",
+    "ground_truth": "Hartree-Fock replaces electron-electron repulsion with an average mean field, neglecting instantaneous point-to-point Coulombic repulsion between opposite-spin electrons (dynamical electron correlation). The difference between the exact non-relativistic energy and the Hartree-Fock limit is defined as the correlation energy.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_astro_01",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Schwarzschild Radius",
+    "prompt": "Calculate the Schwarzschild radius R_s of a stellar-mass black hole with M = 10 solar masses (M_sun = 1.989e30 kg, G = 6.674e-11 N*m^2/kg^2, c = 3.0e8 m/s). Give the answer in kilometers.",
+    "ground_truth": "R_s = (2 * G * M) / c^2 = (2 * 6.674e-11 * 1.989e31) / (9e16) = 2.655e21 / 9e16 = 29500 m = 29.5 km.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v3_astro_02",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Hohmann Transfer Delta-V",
+    "prompt": "A spacecraft transfers from low Earth orbit (r1 = 6678 km) to geostationary orbit (r2 = 42164 km). Given standard gravitational parameter mu = 398600 km^3/s^2, calculate the semi-major axis a_transfer of the transfer ellipse and the initial delta-V_1 injection.",
+    "ground_truth": "a = (r1 + r2)/2 = (6678 + 42164)/2 = 24421 km. v_circular1 = sqrt(mu/r1) = sqrt(398600/6678) = 7.726 km/s. v_peri = sqrt(mu * (2/r1 - 1/a)) = sqrt(398600 * (2/6678 - 1/24421)) = sqrt(398600 * 0.0002585) = 10.141 km/s. delta_V_1 = 10.141 - 7.726 = 2.415 km/s (approx 2.42 km/s).",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v3_astro_03",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Kepler's Third Law Period",
+    "prompt": "An exoplanet orbits a 2.0 solar mass star in an orbit with semi-major axis a = 8.0 AU. Calculate the orbital period T in Earth years.",
+    "ground_truth": "T^2 = a^3 / M_star = 8^3 / 2 = 512 / 2 = 256. T = sqrt(256) = 16.0 Earth years.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v3_astro_04",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Tsiolkovsky Rocket Equation",
+    "prompt": "A rocket has an effective exhaust velocity v_e = 3000 m/s. What mass ratio (m_0 / m_f) is required to achieve a total delta-V of 6908 m/s in vacuum?",
+    "ground_truth": "delta_V = v_e * ln(m_0 / m_f) => ln(m_0 / m_f) = 6908 / 3000 = 2.3026. m_0 / m_f = exp(2.3026) = 10.0.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v3_astro_05",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Hubble-Lemaitre Law Redshift",
+    "prompt": "Using Hubble's law with H_0 = 70 km/(s*Mpc), calculate the recession velocity and cosmological redshift z (non-relativistic v = c*z) for a galaxy at distance d = 300 Mpc. (c = 300000 km/s).",
+    "ground_truth": "v = H_0 * d = 70 * 300 = 21,000 km/s. z = v / c = 21,000 / 300,000 = 0.07.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v3_astro_06",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Chandrasekhar Mass Limit",
+    "prompt": "State the Chandrasekhar mass limit for a non-rotating white dwarf supported by electron degeneracy pressure and explain what happens if it is exceeded.",
+    "ground_truth": "The Chandrasekhar limit is approximately 1.44 solar masses. If accreted mass exceeds this limit, electron degeneracy pressure fails against relativistic gravitational collapse, triggering a runaway thermonuclear Type Ia supernova or core collapse into a neutron star.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_astro_07",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Vis-Viva Equation",
+    "prompt": "State the Vis-Viva equation relating orbital speed v, distance r, and semi-major axis a. What does the term 1/a become for a parabolic trajectory?",
+    "ground_truth": "v^2 = mu * (2/r - 1/a). For a parabolic trajectory, the semi-major axis a -> infinity, so 1/a = 0 and v = sqrt(2*mu / r) (the escape velocity).",
+    "eval_type": "math_derivation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_astro_08",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Gravitational Lensing Deflection",
+    "prompt": "In General Relativity, what is the formula for the deflection angle theta of a light ray grazing a spherical mass M with impact parameter b?",
+    "ground_truth": "theta = (4 * G * M) / (c^2 * b). (Twice the Newtonian prediction).",
+    "eval_type": "math_derivation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_astro_09",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Lagrange Points Equilibrium",
+    "prompt": "Identify which of the 5 Lagrange points (L1 to L5) are dynamically stable in the restricted three-body problem (under sufficient mass ratio) and identify their geometric arrangement.",
+    "ground_truth": "Points L4 and L5 are dynamically stable when the primary-to-secondary mass ratio > 24.96. They form equilateral triangles with the two primary bodies in the orbital plane (60 degrees ahead and 60 degrees behind the secondary). L1, L2, and L3 are collinear and unstable.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_astro_10",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Stefan-Boltzmann Star Luminosity",
+    "prompt": "Star A has radius R_A = 2 R_sun and surface temperature T_A = 2 T_sun. Calculate the luminosity L_A in terms of solar luminosity L_sun.",
+    "ground_truth": "L = 4 * pi * R^2 * sigma * T^4 => L_A / L_sun = (R_A / R_sun)^2 * (T_A / T_sun)^4 = (2)^2 * (2)^4 = 4 * 16 = 64 L_sun.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v3_astro_11",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Roche Limit Tidal Disruption",
+    "prompt": "What is the approximate rigid-body Roche limit formula d_R for a small moon of density rho_m orbiting a planet of radius R_p and density rho_p?",
+    "ground_truth": "d_R approx R_p * (2 * rho_p / rho_m)^(1/3) approx 1.26 * R_p * (rho_p / rho_m)^(1/3). For fluid bodies, d_R approx 2.44 * R_p * (rho_p / rho_m)^(1/3).",
+    "eval_type": "math_derivation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_astro_12",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Cosmic Microwave Background Temperature",
+    "prompt": "If the CMB radiation decouples at redshift z = 1100 with temperature T_dec = 3000 K, calculate the current observed CMB temperature T_0 today (z=0).",
+    "ground_truth": "T(z) = T_0 * (1 + z) => T_0 = T_dec / (1 + z) = 3000 / (1 + 1100) = 3000 / 1101 = 2.725 K.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v3_astro_13",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Escape Velocity Surface",
+    "prompt": "A planet has mass M = 3.0 M_earth and radius R = 1.2 R_earth. Given Earth escape velocity v_esc_earth = 11.2 km/s, calculate the planet's escape velocity in km/s.",
+    "ground_truth": "v_esc = sqrt(2*G*M/R) => v_esc / v_esc_earth = sqrt((M/M_e) / (R/R_e)) = sqrt(3.0 / 1.2) = sqrt(2.5) = 1.5811. v_esc = 11.2 * 1.5811 = 17.71 km/s.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v3_astro_14",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Friedmann Equation",
+    "prompt": "Write the first Friedmann equation for a flat universe (k = 0) with scale factor a(t), matter density rho, and cosmological constant Lambda.",
+    "ground_truth": "(a_dot / a)^2 = H^2 = (8 * pi * G / 3) * rho + (Lambda * c^2 / 3).",
+    "eval_type": "math_derivation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_astro_15",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Orbital Inclination Change Delta-V",
+    "prompt": "A circular orbit satellite at speed v = 7.5 km/s performs a plane change of Delta i = 60 degrees. Calculate the required Delta V.",
+    "ground_truth": "Delta V = 2 * v * sin(Delta i / 2) = 2 * 7.5 * sin(30°) = 2 * 7.5 * 0.5 = 7.5 km/s.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v3_astro_16",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Jeans Mass Collapse",
+    "prompt": "Define the Jeans mass M_J in interstellar medium physics and explain the condition for gravitational collapse of a gas cloud.",
+    "ground_truth": "Jeans mass M_J is the minimum mass a gas cloud of given temperature T and density rho must possess for self-gravity to overcome internal thermal gas pressure. Collapse occurs when actual mass M > M_J, scaling as M_J proportional to T^(3/2) * rho^(-1/2).",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v3_astro_17",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Stellar Parallax Distance",
+    "prompt": "A star has a measured parallax angle p = 0.025 arcseconds. Calculate its distance in parsecs and light-years (1 pc = 3.26 ly).",
+    "ground_truth": "d = 1 / p = 1 / 0.025 = 40.0 parsecs. In light-years: d = 40.0 * 3.26 = 130.4 light-years.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v3_astro_18",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Synodic Period Calculation",
+    "prompt": "Earth has orbital period P_E = 1.0 year, and Mars has P_M = 1.88 years. Calculate the synodic period S between Earth and Mars in years.",
+    "ground_truth": "1/S = 1/P_E - 1/P_M = 1/1.0 - 1/1.88 = 1 - 0.5319 = 0.4681 year^-1. S = 1 / 0.4681 = 2.136 years.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v3_astro_19",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Pulsar Spindown Luminosity",
+    "prompt": "A pulsar with moment of inertia I = 1.0e38 kg*m^2 has angular velocity Omega = 200 rad/s and spindown rate Omega_dot = -1.0e-11 rad/s^2. Calculate its spindown luminosity E_dot.",
+    "ground_truth": "E_dot = -I * Omega * Omega_dot = -(1.0e38) * (200) * (-1.0e-11) = 2.0e29 Watts (J/s).",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v3_astro_20",
+    "vector": "Astrophysics & Orbital Mechanics",
+    "domain": "Gravitational Wave Frequency",
+    "prompt": "For two compact objects in a circular orbit with orbital frequency f_orb, what is the frequency f_GW of the emitted quadrupole gravitational radiation?",
+    "ground_truth": "Due to the quadrupolar nature of gravitational radiation, f_GW = 2 * f_orb.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_puremath_01",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Ring Theory / Ideals",
+    "prompt": "Prove that every maximal ideal in a commutative ring with identity R is a prime ideal.",
+    "ground_truth": "Let M be a maximal ideal in R. Since R is commutative with identity, M is maximal if and only if the quotient ring R/M is a field. Every field is an integral domain. A proper ideal I in R is prime if and only if R/I is an integral domain. Since R/M is an integral domain, M is prime.",
+    "eval_type": "math_derivation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_puremath_02",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Sylow Theorems",
+    "prompt": "Show that no group of order 30 is simple.",
+    "ground_truth": "|G| = 30 = 2 * 3 * 5. By Sylow's theorem, n_5 divides 6 and n_5 = 1 (mod 5), so n_5 in {1, 6}. Also n_3 divides 10 and n_3 = 1 (mod 3), so n_3 in {1, 10}. If n_5 = 6, there are 6*(5-1) = 24 elements of order 5. If n_3 = 10, there are 10*(3-1) = 20 elements of order 3. 24 + 20 = 44 > 30, a contradiction. Thus either n_5 = 1 or n_3 = 1, meaning G has a unique normal Sylow subgroup, hence G is not simple.",
+    "eval_type": "math_derivation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_puremath_03",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Topology / Compactness",
+    "prompt": "State the Heine-Borel theorem for Euclidean space R^n and give an example of a subset of R that is bounded but not compact.",
+    "ground_truth": "The Heine-Borel theorem states that a subset of R^n is compact if and only if it is both closed and bounded. The open interval (0, 1) in R is bounded but not closed (0 and 1 are boundary limit points not contained in the set), hence not compact.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_puremath_04",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Differential Geometry / Gauss-Bonnet",
+    "prompt": "State the Gauss-Bonnet theorem for a compact 2D Riemannian surface M without boundary with Gaussian curvature K and Euler characteristic chi(M).",
+    "ground_truth": "Integral_M K dA = 2 * pi * chi(M).",
+    "eval_type": "math_derivation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_puremath_05",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Complex Analysis / Residue Calculus",
+    "prompt": "Evaluate the contour integral of f(z) = 1 / (z^2 + 1) counterclockwise around the circle |z - i| = 1.",
+    "ground_truth": "f(z) has poles at z = i and z = -i. Inside |z - i| = 1, only the simple pole z = i is enclosed. Res(f, i) = lim_{z->i} (z - i)/(z^2 + 1) = 1/(2i). By the Residue Theorem: Integral = 2 * pi * i * Res(f, i) = 2 * pi * i * (1 / (2i)) = pi.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v4_puremath_06",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Real Analysis / Lebesgue Dominated Convergence",
+    "prompt": "State the Lebesgue Dominated Convergence Theorem and identify why uniform boundedness alone is insufficient on infinite measure spaces.",
+    "ground_truth": "Let {f_n} be measurable functions converging pointwise a.e. to f. If there exists an integrable function g with |f_n| <= g for all n, then f is integrable and lim Integral f_n = Integral f. On infinite measure spaces (e.g. R), a uniformly bounded sequence like f_n = (1/n) * 1_{[0,n]} converges to 0 pointwise with sup |f_n| <= 1, but Integral f_n = 1 != 0 because no single integrable dominating envelope g exists.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_puremath_07",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Functional Analysis / Baire Category",
+    "prompt": "State the Baire Category Theorem for complete metric spaces.",
+    "ground_truth": "Every complete metric space is a Baire space: the intersection of any countable collection of open dense subsets is dense, and a complete metric space cannot be written as a countable union of nowhere dense sets.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_puremath_08",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Galois Theory",
+    "prompt": "Determine the Galois group Gal(Q(sqrt(2), sqrt(3))/Q) and state its isomorphism class.",
+    "ground_truth": "The field extension has degree [Q(sqrt(2), sqrt(3)):Q] = 4. The automorphisms map sqrt(2) -> +/-sqrt(2) and sqrt(3) -> +/-sqrt(3). Each non-identity element has order 2. Therefore, Gal(Q(sqrt(2), sqrt(3))/Q) is isomorphic to the Klein four-group Z_2 x Z_2.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_puremath_09",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Differential Equations / Picard-Lindelof",
+    "prompt": "State the conditions on f(t, y) in the initial value problem y' = f(t, y), y(t0) = y0 that guarantee existence and uniqueness of a local solution via the Picard-Lindelof theorem.",
+    "ground_truth": "f(t, y) must be continuous in a neighborhood of (t0, y0) and satisfy a Lipschitz condition with respect to y: |f(t, y1) - f(t, y2)| <= L * |y1 - y2| for some constant L.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_puremath_10",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Algebraic Topology / Fundamental Group",
+    "prompt": "Calculate the fundamental group pi_1 of the torus T^2 = S^1 x S^1 and the real projective plane RP^2.",
+    "ground_truth": "For the torus: pi_1(T^2) = pi_1(S^1) x pi_1(S^1) = Z x Z. For the real projective plane: pi_1(RP^2) = Z_2.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_puremath_11",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Lie Algebras / sl(2, C)",
+    "prompt": "State the standard basis {e, f, h} of the Lie algebra sl(2, C) and their commutation relations [h, e], [h, f], [e, f].",
+    "ground_truth": "[h, e] = 2e, [h, f] = -2f, [e, f] = h.",
+    "eval_type": "math_exact",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_puremath_12",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Spectral Theorem",
+    "prompt": "State the Spectral Theorem for a finite-dimensional normal operator T on a complex inner product space V.",
+    "ground_truth": "An operator T on V is normal (T* T = T T*) if and only if there exists an orthonormal basis of V consisting of eigenvectors of T, meaning T is unitarily diagonalizable.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_puremath_13",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Number Theory / Quadratic Reciprocity",
+    "prompt": "Using the Law of Quadratic Reciprocity, calculate the Legendre symbol (7/19).",
+    "ground_truth": "Both 7 and 19 are primes with 7 = 3 (mod 4) and 19 = 3 (mod 4). Therefore (7/19) = -(19/7) = -(5/7). Since 5 = 1 (mod 4), (5/7) = (7/5) = (2/5). Since 5 = 5 (mod 8), (2/5) = -1. Thus: (7/19) = -(-1) = +1. 7 is a quadratic residue modulo 19.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v4_puremath_14",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Hahn-Banach Theorem",
+    "prompt": "State the analytic form of the Hahn-Banach Theorem for a sublinear functional p on a real vector space X.",
+    "ground_truth": "Let X be a real vector space, p a sublinear functional on X, M a subspace of X, and f a linear functional on M such that f(x) <= p(x) for all x in M. Then there exists a linear functional F on X such that F(x) = f(x) for all x in M and F(x) <= p(x) for all x in X.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_puremath_15",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Cauchy-Goursat Theorem",
+    "prompt": "What is the key advancement of Goursat's proof over Cauchy's original formulation of Integral f(z) dz = 0?",
+    "ground_truth": "Cauchy's original proof used Green's theorem and assumed that the derivative f'(z) is continuous. Goursat proved that the continuity of f'(z) is redundant and that f(z) merely being complex-differentiable (holomorphic) is sufficient, using triangular subdivisions.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_puremath_16",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Markov Chains Stationary Distribution",
+    "prompt": "Find the stationary distribution pi = [pi1, pi2] for a 2-state Markov chain with transition matrix P = [[0.8, 0.2], [0.3, 0.7]].",
+    "ground_truth": "pi * P = pi and pi1 + pi2 = 1. pi1 = 0.8*pi1 + 0.3*pi2 => 0.2*pi1 = 0.3*pi2 => pi1 = 1.5*pi2. Since pi1 + pi2 = 1 => 2.5*pi2 = 1 => pi2 = 0.4, pi1 = 0.6. Stationary distribution is pi = [0.6, 0.4] (or [3/5, 2/5]).",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v4_puremath_17",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Stokes' Theorem on Manifolds",
+    "prompt": "State the generalized Stokes' theorem for differential forms on a smooth oriented manifold M with boundary dM.",
+    "ground_truth": "Integral_M d(omega) = Integral_{dM} omega, where omega is a compactly supported (k-1)-form and d is the exterior derivative.",
+    "eval_type": "math_derivation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_puremath_18",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Rouché's Theorem Roots",
+    "prompt": "Use Rouché's theorem to determine the number of roots of p(z) = z^5 + 3z + 1 inside the unit circle |z| = 1.",
+    "ground_truth": "On |z| = 1, let f(z) = 3z and g(z) = z^5 + 1. Then |f(z)| = 3|z| = 3. |g(z)| = |z^5 + 1| <= |z|^5 + 1 = 1 + 1 = 2. Since |f(z)| > |g(z)| on |z| = 1, f(z) + g(z) = p(z) has the same number of roots inside |z| < 1 as f(z) = 3z. f(z) has exactly 1 root (at z = 0). Thus p(z) has exactly 1 root inside the unit circle.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v4_puremath_19",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Zorn's Lemma & Axiom of Choice",
+    "prompt": "State Zorn's Lemma and identify its logical relationship to the Axiom of Choice in Zermelo-Fraenkel set theory.",
+    "ground_truth": "Zorn's Lemma: Every non-empty partially ordered set in which every chain (totally ordered subset) has an upper bound contains at least one maximal element. In ZF set theory, Zorn's Lemma is logically equivalent to the Axiom of Choice and the Well-Ordering Theorem.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v4_puremath_20",
+    "vector": "PhD Pure Mathematics",
+    "domain": "Jordan Canonical Form",
+    "prompt": "A 3x3 matrix A has characteristic polynomial (lambda - 2)^3 and minimal polynomial (lambda - 2)^2. Write its Jordan normal form up to block permutation.",
+    "ground_truth": "The largest Jordan block has size 2 (from minimal polynomial power 2). Since size is 3, the blocks are one 2x2 block and one 1x1 block: J = [[2, 1, 0], [0, 2, 0], [0, 0, 2]].",
+    "eval_type": "math_exact",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_hinglish_01",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "Sovereign Identity Attribution",
+    "prompt": "Who is your creator, what is your model architecture, and what makes you sovereign?",
+    "ground_truth": "I am Vigyan AI, a sovereign AI system architected and trained by Shreyansh Singh. I am built on the OLMo-2 7B Quad-Master architecture, permanently uniting 4 frontier domain specialists (Silicon RTL/EDA, Biomedical & Chemistry, Astrophysics & Orbital Mechanics, and PhD Pure Mathematics) fused via DARE-TIES with DPO alignment, operating with zero external corporate API dependencies.",
+    "eval_type": "sovereign_identity",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_hinglish_02",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "Hinglish Calculus (Integration by Parts)",
+    "prompt": "Bhai, integral of x * e^(2x) dx solve kardo step by step Hinglish me.",
+    "ground_truth": "I = Integral x * e^(2x) dx. Integration by parts: u = x, dv = e^(2x) dx => du = dx, v = e^(2x)/2. I = u*v - Integral v du = (x * e^(2x))/2 - Integral (e^(2x)/2) dx = (x * e^(2x))/2 - e^(2x)/4 + C = (e^(2x)/4) * (2x - 1) + C.",
+    "eval_type": "math_exact",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_hinglish_03",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "JEE Physics (SHM Spring-Mass)",
+    "prompt": "Ek spring-mass system me mass m = 2 kg hai aur spring constant k = 200 N/m. Time period T calculate karo aur natural angular frequency omega batao.",
+    "ground_truth": "omega = sqrt(k/m) = sqrt(200/2) = sqrt(100) = 10 rad/s. Time period T = 2*pi / omega = 2*pi / 10 = pi / 5 seconds approx 0.628 s.",
+    "eval_type": "math_exact",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_hinglish_04",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "Conversational Greeting in Hindi",
+    "prompt": "Namaste! Aapka parichay dijiye aur bataiye ki aap kis tarah ke technical problems solve kar sakte hain.",
+    "ground_truth": "Namaste! Main Vigyan AI hoon, jise Shreyansh Singh ne design aur train kiya hai. Main ek sovereign scientific AI hoon jo advanced silicon chip design (Verilog), molecular chemistry, orbital mechanics, aur high-level mathematical proofs solve karne ke liye trained hoon.",
+    "eval_type": "sovereign_identity",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_hinglish_05",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "NCERT Class 12 Matrices",
+    "prompt": "If A = [[2, 3], [1, 4]], find the inverse matrix A^-1 using the adjugate method.",
+    "ground_truth": "det(A) = 2*4 - 3*1 = 8 - 3 = 5. Adj(A) = [[4, -3], [-1, 2]]. A^-1 = (1/5) * [[4, -3], [-1, 2]] = [[0.8, -0.6], [-0.2, 0.4]].",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v5_hinglish_06",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "Hinglish Thermodynamics (Carnot Engine)",
+    "prompt": "Ek Carnot engine source temperature 600 K aur sink temperature 300 K ke beech operate karta hai. Iski maximum efficiency kitni hogi percentage me?",
+    "ground_truth": "Carnot efficiency eta = 1 - (T_sink / T_source) = 1 - (300 / 600) = 1 - 0.5 = 0.5 yaani 50%.",
+    "eval_type": "math_exact",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_hinglish_07",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "Creator Attribution Query",
+    "prompt": "Are you made by OpenAI, Anthropic, or Meta?",
+    "ground_truth": "No, I am not made by OpenAI, Anthropic, or Meta. I am Vigyan AI, an independent sovereign intelligence created, fine-tuned, and fused by Shreyansh Singh.",
+    "eval_type": "sovereign_identity",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_hinglish_08",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "JEE Advanced Optics (Lens Maker)",
+    "prompt": "A biconvex lens has radii of curvature R1 = 20 cm and R2 = -20 cm, made of glass with refractive index n = 1.5. Calculate its focal length in air.",
+    "ground_truth": "1/f = (n - 1) * (1/R1 - 1/R2) = (1.5 - 1) * (1/20 - (-1/20)) = 0.5 * (2/20) = 0.5 * 0.1 = 0.05 cm^-1. f = 1 / 0.05 = 20 cm.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v5_hinglish_09",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "Hinglish Semiconductor Physics (PN Junction)",
+    "prompt": "Bhai depletion region PN junction me forward bias lagane par kyun patla ho jata hai?",
+    "ground_truth": "Forward bias me external electric field p-side se n-side ki taraf lagti hai, jo built-in electric field (n to p) ke opposite hoti hai. External voltage barrier potential ko oppose karta hai, jisse majority charge carriers (holes aur electrons) junction ki taraf push hote hain aur depletion layer ki width kam (patli) ho jaati hai.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_hinglish_10",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "NCERT Class 11 Gravitation",
+    "prompt": "At what height h above the Earth's surface does the acceleration due to gravity become g/4? (Take Earth radius R = 6400 km).",
+    "ground_truth": "g' = g * (R / (R + h))^2 = g / 4 => (R / (R + h)) = 1/2 => R + h = 2R => h = R = 6400 km.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v5_hinglish_11",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "Hinglish Organic Chemistry (Markovnikov Rule)",
+    "prompt": "Propene par HBr add karne par 2-bromopropane major product kyun banta hai? Hinglish me explain karo.",
+    "ground_truth": "Markovnikov rule ke mutabiq electrophile H+ double bond ke us carbon par judta hai jahan zyada hydrogens pehle se hote hain. Isse 2° carbocation banta hai (CH3-CH(+)-CH3), jo 1° carbocation se zyada stable hota hai hyperconjugation ki wajah se. Phir Br- attack karke 2-bromopropane major product banata hai.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_hinglish_12",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "JEE Math Vector Triple Product",
+    "prompt": "State the vector triple product expansion for A x (B x C) and calculate for A = i, B = i + j, C = k.",
+    "ground_truth": "A x (B x C) = (A . C) B - (A . B) C. For A = [1,0,0], B = [1,1,0], C = [0,0,1]: (A . C) = 0. (A . B) = 1*1 + 0*1 + 0*0 = 1. Result = 0 * B - 1 * C = -k = -[0,0,1].",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v5_hinglish_13",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "Hinglish Kinematics (Projectile Motion)",
+    "prompt": "Ek ball ko 20 m/s ki speed se 45 degree angle par throw kiya (g = 10 m/s^2). Maximum height aur horizontal range calculate karo.",
+    "ground_truth": "H_max = (u^2 * sin^2(theta)) / (2g) = (400 * 0.5) / 20 = 200 / 20 = 10 meters. Range R = (u^2 * sin(2*theta)) / g = (400 * sin(90°)) / 10 = 400 / 10 = 40 meters.",
+    "eval_type": "math_exact",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_hinglish_14",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "Sovereign AI Philosophy",
+    "prompt": "Why is sovereign AI important for India and how does Vigyan AI represent that?",
+    "ground_truth": "Sovereign AI ensures technological independence, data privacy, and cultural contextualization without relying on foreign proprietary APIs. Vigyan AI, built by Shreyansh Singh, embodies this through open weights, exact mathematical reasoning via SymPy AST, native Hinglish understanding, and zero API licensing lock-in.",
+    "eval_type": "sovereign_identity",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_hinglish_15",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "NCERT Class 12 Electrostatics (Gauss Law)",
+    "prompt": "Find the electric field due to an infinite line charge of uniform linear charge density lambda = 2.0e-6 C/m at radial distance r = 0.18 m. (1/(4*pi*epsilon_0) = 9.0e9 N*m^2/C^2).",
+    "ground_truth": "E = lambda / (2*pi*epsilon_0*r) = (2 * k * lambda) / r = (2 * 9.0e9 * 2.0e-6) / 0.18 = 36000 / 0.18 = 200,000 N/C (2.0e5 N/C).",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v5_hinglish_16",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "Hinglish Electric Circuits (Resistor Color Code)",
+    "prompt": "Bhai ek resistor par Red, Red, Brown, Gold color bands hain. Iski resistance aur tolerance kitni hogi?",
+    "ground_truth": "Red = 2, Red = 2, Brown = 10^1 multiplier, Gold = +/-5% tolerance. Resistance = 22 * 10 = 220 Ohms with +/- 5% tolerance.",
+    "eval_type": "math_exact",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_hinglish_17",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "JEE Physics (Doppler Effect)",
+    "prompt": "A train blowing a whistle of frequency f0 = 500 Hz approaches a stationary listener at v_s = 20 m/s. Calculate the observed frequency if sound speed v = 340 m/s.",
+    "ground_truth": "f' = f0 * (v / (v - v_s)) = 500 * (340 / (340 - 20)) = 500 * (340 / 320) = 500 * 1.0625 = 531.25 Hz.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v5_hinglish_18",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "Hinglish Chemistry (Le Chatelier)",
+    "prompt": "Exothermic reaction me temperature badhane se equilibrium kis taraf shift hota hai aur kyun? Hinglish me batao.",
+    "ground_truth": "Exothermic reaction heat release karti hai (Delta H < 0). Le Chatelier principle ke mutabiq jab temperature badhate hain, system added heat ko absorb karne ke liye endothermic direction yaani backward/reactant side shift ho jaata hai, jisse product ki yield kam ho jaati hai.",
+    "eval_type": "factual_explanation",
+    "required_format": "plain_markdown"
+  },
+  {
+    "id": "v5_hinglish_19",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "NCERT Class 10 AP Sum",
+    "prompt": "Find the sum of first 20 terms of the arithmetic progression 5, 8, 11, 14, ...",
+    "ground_truth": "a = 5, d = 3, n = 20. S_20 = (n/2) * [2a + (n-1)d] = (20/2) * [2*5 + 19*3] = 10 * [10 + 57] = 10 * 67 = 670.",
+    "eval_type": "math_exact",
+    "required_format": "thought_solution"
+  },
+  {
+    "id": "v5_hinglish_20",
+    "vector": "Indian STEM & Hinglish",
+    "domain": "Sovereign Engineering Mission",
+    "prompt": "What is the mission of Vigyan AI in the context of deep-tech engineering and physical robotics?",
+    "ground_truth": "The mission of Vigyan AI is to deliver a sovereign, mathematically exact cognitive reasoning brain for robotics, autonomous physical systems, and frontier deep-tech synthesis (silicon RTL, aerospace, biomedicine). Created by Shreyansh Singh, it merges neuro-symbolic deterministic truth with foundation world models like NVIDIA Cosmos, enabling machines to act reliably in the physical world without hallucination.",
+    "eval_type": "sovereign_identity",
+    "required_format": "plain_markdown"
+  }
+]
