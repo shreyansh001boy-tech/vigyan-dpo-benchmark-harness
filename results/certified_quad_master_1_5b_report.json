@@ -1,0 +1,1036 @@
+{
+  "model": "shreyansh12183/vigyan-1.5b-quad-master",
+  "foundation": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+  "total_evaluated": 100,
+  "overall_passed": 43,
+  "overall_accuracy_pct": 43.0,
+  "domain_breakdown": {
+    "Silicon RTL & EDA": {
+      "total": 20,
+      "passed": 6,
+      "accuracy_pct": 30.0
+    },
+    "Biomedical & Quantum Chemistry": {
+      "total": 20,
+      "passed": 8,
+      "accuracy_pct": 40.0
+    },
+    "Astrophysics & Orbital Mechanics": {
+      "total": 20,
+      "passed": 9,
+      "accuracy_pct": 45.0
+    },
+    "PhD Pure Mathematics": {
+      "total": 20,
+      "passed": 15,
+      "accuracy_pct": 75.0
+    },
+    "Indian STEM & Hinglish": {
+      "total": 20,
+      "passed": 5,
+      "accuracy_pct": 25.0
+    }
+  },
+  "results": [
+    {
+      "id": "v1_silicon_01",
+      "vector": "Silicon RTL & EDA",
+      "domain": "FIFO Synchronizer",
+      "prompt": "Write a synthesizable Verilog module for a parameterized 2-stage flip-flop synchronizer `sync_2ff` used for CDC (Clock Domain Crossing) of a 1-bit signal.",
+      "response": "<solution>\n<thought>\n\n</thought>\n<answer>\nQ.E.D.\n</answer>\n</solution><\uff5cend of sentence\uff5c>|\n<solution>\n<solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n",
+      "latency_sec": 22.02,
+      "passed": false,
+      "details": "Missing module / port / assign markers"
+    },
+    {
+      "id": "v1_silicon_02",
+      "vector": "Silicon RTL & EDA",
+      "domain": "Gray Code Converter",
+      "prompt": "Write a synthesizable Verilog module `bin2gray` converting an N-bit binary input to Gray code.",
+      "response": "1. **Problem Analysis:**\n   The problem is to write a Verilog module `bin2gray` that converts an N-bit binary input to Gray code. Gray code is a binary numeral system where two successive values differ in only one bit. This property is useful in error detection and correction.\n\n2. **Algorithm:**\n   The algorithm to convert a binary number to Gray code involves the following steps:\n   1. Initialize the Gray code variable `gray` to 0.\n   2. Iterate over each bit of the binary input from the least significant bit (LSB) to the most significant bit (MSB).\n   3. For each bit, if the current bit is 1, set the corresponding bit in the Gray code variable to 1.\n   4. If the current bit is 0, set the corresponding bit in the Gray code variable to the inverse of the previous bit in the Gray code variable.\n   5. After processing all bits, return the Gray code variable.\n\n3. **Verilog Code:**\n   Here is the Verilog code for the `bin2gray` module:\n\n```verilog\nmodule bin2gray\n  use begin;\n  input binary;\n  output gray;\n  begin\n    gray",
+      "latency_sec": 9.61,
+      "passed": false,
+      "details": "Missing module / port / assign markers"
+    },
+    {
+      "id": "v1_silicon_03",
+      "vector": "Silicon RTL & EDA",
+      "domain": "Static Timing Analysis",
+      "prompt": "In an ASIC design with clock period T_clk = 5.0 ns, flip-flop T_cq = 0.5 ns, library T_setup = 0.3 ns, and clock skew T_skew = 0.2 ns. What is the maximum allowable combinational logic delay T_comb_max to avoid a setup time violation?",
+      "response": "To avoid a setup time violation, the combinational logic delay T_comb_max must be less than the minimum of the clock period T_clk, the flip-flop T_cq, and the clock skew T_skew.\n\nThe minimum of these values is T_cq = 0.5 ns.\n\nTherefore, the maximum allowable combinational logic delay T_comb_max is 0.5 ns.\n</think>\n<solution>\n<thought>\n\n</thought>\n<\uff5cend of sentence\uff5c>|\n<solution>\nTherefore, the answer is \\boxed{0.5 \\text{ ns}}.\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5c\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of sentence\uff5c>\n</\uff5cend of",
+      "latency_sec": 9.56,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 4.4)"
+    },
+    {
+      "id": "v1_silicon_04",
+      "vector": "Silicon RTL & EDA",
+      "domain": "Hold Slack Calculation",
+      "prompt": "For flip-flop hold timing: T_cq_min = 0.2 ns, T_comb_min = 0.4 ns, T_hold = 0.25 ns, and clock skew T_skew = 0.15 ns. Calculate the hold slack.",
+      "response": "1. **Identify the given values:**\n   - Flip-flop hold time (T_cq_min) = 0.2 ns\n   - Flip-flop combination time (T_comb_min) = 0.4 ns\n   - Flip-flop hold time (T_hold) = 0.25 ns\n   - Clock skew (T_skew) = 0.15 ns\n\n2. **Calculate the hold slack:**\n   - Hold slack = Flip-flop hold time (T_cq_min) + Flip-flop combination time (T_comb_min) - Clock skew (T_skew)\n   - Hold slack = 0.2 ns + 0.4 ns - 0.15 ns\n   - Hold slack = 0.45 ns\n</think>\n<solution>\n<thought>\n\n3. **Conclusion:**\n   - The hold slack is 0.45 ns.\n</think>\n<solution>\n<solution><\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\n<solution><\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\n</solution><\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\n</solution><\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c",
+      "latency_sec": 9.56,
+      "passed": true,
+      "details": "Numerical tolerance match: 0.2"
+    },
+    {
+      "id": "v1_silicon_05",
+      "vector": "Silicon RTL & EDA",
+      "domain": "Round-Robin Arbiter",
+      "prompt": "Write a synthesizable 4-request priority arbiter in Verilog with request inputs `req[3:0]` and one-hot grant outputs `grant[3:0]` where req[0] has the highest priority.",
+      "response": "<solution>\n<thought>\n\n</thought>\n<answer>\n<solution>\n<solution><\uff5cend of sentence\uff5c></answer><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of",
+      "latency_sec": 9.53,
+      "passed": false,
+      "details": "Missing module / port / assign markers"
+    },
+    {
+      "id": "v1_silicon_06",
+      "vector": "Silicon RTL & EDA",
+      "domain": "LFSR Pseudo-Random Generator",
+      "prompt": "Write a synthesizable 4-bit Fibonacci LFSR in Verilog with polynomial x^4 + x^3 + 1, active-high synchronous reset initializing state to 4'b0001.",
+      "response": "<solution>\n<thought>\n\n</thought>\n<answer>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution><\uff5cend of sentence\uff5c>",
+      "latency_sec": 1.28,
+      "passed": false,
+      "details": "Missing module / port / assign markers"
+    },
+    {
+      "id": "v1_silicon_07",
+      "vector": "Silicon RTL & EDA",
+      "domain": "Clock Gating Cell",
+      "prompt": "Explain why an integrated clock gating (ICG) cell uses a negative-edge-triggered latch before the AND gate rather than a simple AND gate with an enable signal.",
+      "response": "1. **Understanding the Circuit Behavior:**\n   - An integrated clock gating (ICG) cell is a type of CMOS circuit used in digital electronics to generate a clock signal from a single clock input. It is designed to produce a high clock signal when the clock input is high, and a low clock signal when the clock input is low.\n   - The ICG cell consists of a 2x2 CMOS gate array, which is used to generate the clock signal. The gate array is connected to a 2x2 CMOS buffer, which is used to buffer the output of the gate array.\n\n2. **Role of the Enable Signal:**\n   - The enable signal is used to control the operation of the gate array. It is a 2-bit signal that controls the 2x2 CMOS gate array.\n   - The enable signal is used to ensure that the gate array operates correctly and that the clock signal is generated properly.\n\n3. **Negative-Edge-TriggeredLatch:**\n   - A negative-edge-triggered latch is a type of flip-flop that is used to store a value in a memory cell. It is designed to store a value in a memory cell when the clock signal is high, and to unstore the value",
+      "latency_sec": 9.54,
+      "passed": true,
+      "details": "Keyword coverage 45.8% >= 35%"
+    },
+    {
+      "id": "v1_silicon_08",
+      "vector": "Silicon RTL & EDA",
+      "domain": "MOSFET Elmore Delay",
+      "prompt": "Calculate the Elmore delay of a two-stage RC ladder network where R1=200 ohms, C1=10 fF, R2=300 ohms, and C2=20 fF.",
+      "response": "1. **Calculate the time constant (T1) for the first stage:**\n   \\[\n   T1 = R1 \\cdot C1 = 200 \\, \\Omega \\cdot 10 \\, \\text{fF} = 2000 \\, \\mu\\text{s}\n   \\]\n\n2. **Calculate the time constant (T2) for the second stage:**\n   \\[\n   T2 = R2 \\cdot C2 = 300 \\, \\Omega \\cdot 20 \\, \\text{fF} = 6000 \\, \\mu\\text{s}\n   \\]\n\n3. **Calculate the total time constant (T_total):**\n   \\[\n   T_{\\text{total}} = T1 + T2 = 2000 \\, \\mu\\text{s} + 6000 \\, \\mu\\text{s} = 8000 \\, \\mu\\text{s}\n   \\]\n\n4. **Calculate the total capacitance (C_total):**\n   \\[\n   C_{\\text{total}} = C1 + C2 = 10 \\, \\text{fF} +",
+      "latency_sec": 9.53,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 1.2e-11)"
+    },
+    {
+      "id": "v1_silicon_09",
+      "vector": "Silicon RTL & EDA",
+      "domain": "Booth Multiplier Algorithm",
+      "prompt": "State the Booth recoding rule for bits (Y_i, Y_i-1) in Radix-2 Booth multiplication and explain when an addition or subtraction occurs.",
+      "response": "1. **Booth Recoding Rule for Radix-2 Multiplication:**\n   The Booth recoding rule for radix-2 multiplication is a method used to optimize the multiplication process by reducing the number of operations needed. The rule is applied to pairs of bits (Y_i, Y_i-1) in the binary representation of the multiplicand and multiplier.\n\n   The Booth recoding rule for radix-2 multiplication is as follows:\n   - If Y_i = 0 and Y_i-1 = 0, then the recoded value is 0.\n   - If Y_i = 0 and Y_i-1 = 1, then the recoded value is 1.\n   - If Y_i = 1 and Y_i-1 = 0, then the recoded value is 1.\n   - If Y_i = 1 and Y_i-1 = 1, then the recoded value is 0.\n\n   The recoded value is then used to determine whether an addition or subtraction is needed in the multiplication process.\n\n2. **Explanation of When Addition or Subtraction Occurs:**\n   - If the recoded value is 0, then no addition or subtraction is needed.\n   - If the recoded value is ",
+      "latency_sec": 9.53,
+      "passed": true,
+      "details": "Keyword coverage 63.6% >= 35%"
+    },
+    {
+      "id": "v1_silicon_10",
+      "vector": "Silicon RTL & EDA",
+      "domain": "Asynchronous FIFO Gray Pointer",
+      "prompt": "Why are read and write pointers in an asynchronous dual-clock FIFO converted to Gray code before synchronization across clock domains?",
+      "response": "1. **Understanding the Problem:**\n   - The question is about why read and write pointers in an asynchronous dual-clock FIFO are converted to Gray code before synchronization across clock domains.\n   - This is a common practice in asynchronous systems to reduce the number of clock cycles required for operations, thereby improving performance and reducing power consumption.\n\n2. **Gray Code Conversion:**\n   - Gray code is a binary numeral system where two successive values differ in only one bit. This property is useful in reducing the number of transitions between states, which can help in reducing the number of clock cycles required for operations.\n   - In the context of an asynchronous FIFO, Gray code conversion helps in reducing the number of clock cycles required for read and write operations, thereby improving the overall performance and reducing power consumption.\n\n3. **Synchronization Across Clock Domains:**\n   - In asynchronous systems, operations are performed on different clock domains simultaneously. This can lead to synchronization issues and increased complexity in managing the clock domains.\n   - By converting read and write pointers to Gray code before synchronization, we can reduce the complexity of managing the clock domains and improve the overall performance of the system.\n\n4. **Conclusion:**\n   - The conversion of read and write pointers to Gray code before synchronization across clock domains is a",
+      "latency_sec": 9.45,
+      "passed": false,
+      "details": "Keyword coverage 29.4% below 35%"
+    },
+    {
+      "id": "v1_silicon_11",
+      "vector": "Silicon RTL & EDA",
+      "domain": "Verilog Mealy vs Moore",
+      "prompt": "Write a 3-state Moore FSM in Verilog (`IDLE`, `DETECT`, `ACTION`) that asserts an output `out` high only in state `ACTION`.",
+      "response": "<solution>\n<thought>\n\n</thought>\n<answer>\n<solution>\n<solution><\uff5cend of sentence\uff5c>|\nTherefore, the answer is \\boxed{out}.\n</answer><\uff5cend of sentence\uff5c>|\n</solution><\uff5c\uff5cend of sentence\uff5c>|\n</answer><\uff5c\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence",
+      "latency_sec": 9.52,
+      "passed": false,
+      "details": "Missing module / port / assign markers"
+    },
+    {
+      "id": "v1_silicon_12",
+      "vector": "Silicon RTL & EDA",
+      "domain": "CMOS Inverter Dynamic Power",
+      "prompt": "Calculate the dynamic power dissipated by a CMOS inverter operating at V_dd = 0.8 V, frequency f = 2.5 GHz, load capacitance C_L = 15 fF, with switching activity factor alpha = 0.1.",
+      "response": "1. **Determine the switching frequency and period:**\n   The switching frequency \\( f \\) is given as 2.5 GHz. The period \\( T \\) of the switching cycle is the reciprocal of the frequency:\n   \\[\n   T = \\frac{1}{f} = \\frac{1}{2.5 \\times 10^9 \\, \\text{Hz}} = 400 \\, \\text{ns}\n   \\]\n\n2. **Calculate the dynamic power dissipation:**\n   The dynamic power dissipation \\( P_{\\text{dynamic}} \\) of a CMOS inverter is given by:\n   \\[\n   P_{\\text{dynamic}} = \\alpha \\cdot V_{dd}^2 \\cdot C_L \\cdot f\n   \\]\n   where \\( \\alpha \\) is the switching activity factor, \\( V_{dd} \\) is the supply voltage, \\( C_L \\) is the load capacitance, and \\( f \\) is the switching frequency.\n\n   Substituting the given values:\n   \\[\n   P_{\\text{dynamic}} = 0.1 \\cdot (0.8 \\, \\text{V})^2 \\cdot 1",
+      "latency_sec": 9.38,
+      "passed": true,
+      "details": "Numerical tolerance match: 2.4"
+    },
+    {
+      "id": "v1_silicon_13",
+      "vector": "Silicon RTL & EDA",
+      "domain": "Johnson Counter",
+      "prompt": "Write a synthesizable 4-bit Johnson counter in Verilog with synchronous reset to 4'b0000.",
+      "response": "<solution>\n<thought>\n\n</thought>\n<answer>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution><\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5c",
+      "latency_sec": 9.48,
+      "passed": false,
+      "details": "Missing module / port / assign markers"
+    },
+    {
+      "id": "v1_silicon_14",
+      "vector": "Silicon RTL & EDA",
+      "domain": "Scan Chain & DFT",
+      "prompt": "Define stuck-at-0 and stuck-at-1 fault models in Digital Testing and how a multiplexed D-flip-flop enables full-scan testability.",
+      "response": "1. **Definition of Stuck-at-0 and Stuck-at-1 Fault Models:**\n   - **Stuck-at-0 Fault Model:** In this model, the output of a flip-flop is stuck at 0, regardless of the input. This means that the output will always be 0, even if the input is 1.\n   - **Stuck-at-1 Fault Model:** In this model, the output of a flip-flop is stuck at 1, regardless of the input. This means that the output will always be 1, even if the input is 0.\n\n2. **Multiplexed D-Flip Flop:**\n   - A multiplexed D-Flip Flop is a type of flip-flop that uses a multiplexing technique to store multiple bits of information. It has a single input and a single output, and it can store up to 16 bits of information.\n   - The multiplexed D-Flip Flop is used in digital circuits to store and retrieve multiple bits of information simultaneously. It is particularly useful in the context of full-scan testability, as it allows for the simultaneous testing of multiple bits of a digital circuit.\n\n3. **Full-Scan Testability:",
+      "latency_sec": 9.51,
+      "passed": false,
+      "details": "Keyword coverage 25.0% below 35%"
+    },
+    {
+      "id": "v1_silicon_15",
+      "vector": "Silicon RTL & EDA",
+      "domain": "Carry-Lookahead Adder (CLA)",
+      "prompt": "Derive the Generate (G_i) and Propagate (P_i) equations and the carry out C_1 for bit 0 of an adder.",
+      "response": "<solution>\n<thought>\n\n</thought>\n<answer>\n<solution>\nQ.E.D.\n</answer>\n</solution><\uff5cend of sentence\uff5c>",
+      "latency_sec": 1.19,
+      "passed": false,
+      "details": "Keyword coverage 0.0% below 35%"
+    },
+    {
+      "id": "v1_silicon_16",
+      "vector": "Silicon RTL & EDA",
+      "domain": "Verilog Clock Divider",
+      "prompt": "Write a synthesizable Verilog module `clk_div2` that divides the input clock frequency by 2 with 50% duty cycle.",
+      "response": "<solution>\n<thought>\n\n</thought>\n<answer>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution><\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5c",
+      "latency_sec": 9.49,
+      "passed": false,
+      "details": "Missing module / port / assign markers"
+    },
+    {
+      "id": "v1_silicon_17",
+      "vector": "Silicon RTL & EDA",
+      "domain": "Subthreshold Leakage",
+      "prompt": "State the subthreshold drain current equation for an NMOS transistor in weak inversion and define the subthreshold swing factor S.",
+      "response": "1. **Subthreshold Drain Current Equation for an NMOS Transistor in Weak Inversion:**\n   The subthreshold drain current equation for an NMOS transistor in weak inversion is given by:\n   \\[\n   I_{ds} = \\frac{1}{2} \\cdot \\frac{1}{\\sqrt{2}} \\cdot \\frac{1}{\\sqrt{1 + \\left(\\frac{V_{gs}}{V_{ds}}\\right)^2}} \\cdot \\frac{1}{2} \\cdot \\frac{1}{\\sqrt{1 + \\left(\\frac{V_{gs}}{V_{ds}}\\right)^2}}\n   \\]\n   where:\n   - \\( I_{ds} \\) is the drain current\n   - \\( V_{gs} \\) is the gate-to-source voltage\n   - \\( V_{ds} \\) is the drain-to-source voltage\n   - \\( V_{gs} \\) and \\( V_{ds} \\) are the subthreshold voltages\n\n2. **Subthreshold Swing Factor (S):**\n   The subthreshold swing factor (S) is a measure of the ability of the NMOS transistor to swing the drain voltage \\( V_{ds} \\",
+      "latency_sec": 9.58,
+      "passed": false,
+      "details": "Keyword coverage 20.0% below 35%"
+    },
+    {
+      "id": "v1_silicon_18",
+      "vector": "Silicon RTL & EDA",
+      "domain": "FPGA Block RAM Interface",
+      "prompt": "Write a synchronous single-port RAM in Verilog with 256 depth and 8-bit width with write-enable `we`.",
+      "response": "<solution>\n<thought>\n\n</thought>\n<answer>\n<solution>\n<solution><\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>**\n\nTherefore, the answer is \\boxed{write-enable we}.\n</answer><\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>\uff5cend of sentence\uff5c>",
+      "latency_sec": 9.45,
+      "passed": false,
+      "details": "Missing module / port / assign markers"
+    },
+    {
+      "id": "v1_silicon_19",
+      "vector": "Silicon RTL & EDA",
+      "domain": "Transmission Gate",
+      "prompt": "Explain why a single NMOS transistor cannot pass a strong logic '1' and why a CMOS Transmission Gate (NMOS + PMOS in parallel) solves this.",
+      "response": "1. **Understanding the Problem:**\n   - We need to explain why a single NMOS transistor cannot pass a strong logic '1' and why a CMOS Transmission Gate (NMOS + PMOS in parallel) solves this problem.\n\n2. **Single NMOS Transistor:**\n   - A single NMOS transistor is a single n-type semiconductor device that is used to pass a strong logic '1'.\n   - The NMOS transistor has a high threshold voltage, which means it can easily pass a strong logic '1' when the input voltage is high.\n   - However, the NMOS transistor has a limited power dissipation and a limited output current, which means it cannot handle a large amount of power or a large amount of current.\n\n3. **CMOS Transmission Gate:**\n   - A CMOS Transmission Gate is a combination of an NMOS and a PMOS transistor.\n   - The NMOS transistor is used to pass a strong logic '1' and the PMOS transistor is used to pass a strong logic '0'.\n   - The CMOS Transmission Gate has a high threshold voltage, which means it can easily pass a strong logic '1' and a strong logic '0'.\n   - The CMOS Transmission Gate has a high power dissipation",
+      "latency_sec": 9.48,
+      "passed": true,
+      "details": "Keyword coverage 46.3% >= 35%"
+    },
+    {
+      "id": "v1_silicon_20",
+      "vector": "Silicon RTL & EDA",
+      "domain": "Metastability MTBF",
+      "prompt": "Given MTBF = exp(s * t_r) / (T_0 * f_clk * f_data). If clock frequency f_clk doubles while resolution time t_r remains constant, by what factor does MTBF change?",
+      "response": "1. **Identify the given variables and their relationships:**\n   - MTBF (Mean Time to Failure) is given by the formula: \n     \\[\n     \\text{MTBF} = \\frac{\\exp(s \\cdot t_r)}{T_0 \\cdot f_{\\text{_clk}} \\cdot f_{\\text{data}}}\n     \\]\n   - Here, \\( s \\) is the system clock frequency, \\( t_r \\) is the resolution time, \\( T_0 \\) is the initial clock period, \\( f_{\\text{_clk}} \\) is the initial clock frequency, and \\( f_{\\text{data}} \\) is the data clock frequency.\n\n2. **Determine the new clock frequency:**\n   - If the clock frequency \\( f_{\\text{_clk}} \\) doubles, the new clock frequency \\( f_{\\text{_clk}}' \\) is:\n     \\[\n     f_{\\text{_clk}}' = 2 \\cdot f_{\\text{_clk}}\n     \\]\n\n3. **Substitute the new clock frequency into the MTBF formula:**\n   - The new MTBF \\( \\text{MTBF}' \\) is:\n     \\[\n    ",
+      "latency_sec": 9.53,
+      "passed": true,
+      "details": "Numerical tolerance match: 2.0"
+    },
+    {
+      "id": "v2_biomed_01",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Michaelis-Menten Kinetics",
+      "prompt": "An enzyme-catalyzed reaction has V_max = 50 micromol/(L*min) and K_m = 2.0 mM. Calculate the reaction rate v at substrate concentration [S] = 8.0 mM.",
+      "response": "1. **Identify the given values:**\n   - \\( V_{\\text{max}} = 50 \\, \\text{micromol/(L\u00b7min)} \\)\n   - \\( K_m = 2.0 \\, \\text{mM} \\)\n   - \\( [S] = 8.0 \\, \\text{mM} \\)\n\n2. **Substitute the given values into the Michaelis-Menten equation:**\n   \\[\n   v = \\frac{V_{\\text{max}} [S]}{K_m + [S]}\n   \\]\n\n3. **Perform the substitution:**\n   \\[\n   v = \\frac{50 \\, \\text{micromol/(L\u00b7min)} \\times 8.0 \\, \\text{mM}}{2.0 \\, \\text{mM} + 8.0 \\, \\text{mM}}\n   \\]\n\n4. **Simplify the equation:**\n   \\[\n   v = \\frac{400 \\, \\text{micromol/(L\u00b7min\u00b7mM)}}{10.0 \\, \\text{mM}}\n   \\]\n\n5.",
+      "latency_sec": 9.41,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 40.0)"
+    },
+    {
+      "id": "v2_biomed_02",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Henderson-Hasselbalch",
+      "prompt": "Calculate the pH of a buffer solution containing 0.15 M acetic acid (CH3COOH) and 0.30 M sodium acetate (CH3COONa). Given pKa of acetic acid = 4.76.",
+      "response": "1. **Determine the concentrations of the weak acid and its conjugate base:**\n   - The concentration of acetic acid (CH3COOH) is 0.15 M.\n   - The concentration of sodium acetate (CH3COONa) is 0.30 M.\n\n2. **Calculate the pOH of the solution:**\n   - The pOH of a solution is given by the formula: pOH = pKa + log([base]/[acid])\n   - Here, [base] is the concentration of the conjugate base (CH3COO-) and [acid] is the concentration of the weak acid (CH3COOH).\n   - pOH = 4.76 + log(0.30/0.15)\n   - pOH = 4.76 + log(2)\n   - pOH = 4.76 + 0.3010\n   - pOH = 5.0610\n\n3. **Calculate the pH of the solution:**\n   - The pH of a solution is given by the formula: pH = 14 - pOH\n   - pH = 14 - 5.06",
+      "latency_sec": 9.35,
+      "passed": true,
+      "details": "Numerical tolerance match: 5.061"
+    },
+    {
+      "id": "v2_biomed_03",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Pharmacokinetics Clearance",
+      "prompt": "A drug has an intravenous dose of 500 mg, and the area under the plasma concentration-time curve (AUC) is 25 mg*h/L. What is the total body clearance (CL)?",
+      "response": "1. **Identify the given values:**\n   - Intravenous dose (Q) = 500 mg\n   - Area under the plasma concentration-time curve (AUC) = 25 mg*h/L\n\n2. **Recall the formula for total body clearance (CL):**\n   \\[\n   CL = \\frac{Q \\times AUC}{V}\n   \\]\n   where \\( V \\) is the volume of distribution.\n\n3. **Substitute the given values into the formula:**\n   \\[\n   CL = \\frac{500 \\text{ mg} \\times 25 \\text{ mg*h/L}}{V}\n   \\]\n\n4. **Simplify the equation:**\n   \\[\n   CL = \\frac{12500 \\text{ mg}^2/\\text{L}}{V}\n   \\]\n\n5. **Conclusion:**\n   The total body clearance (CL) is \\(\\frac{12500 \\text{ mg}^2/\\text{L}}{V}\\).\n</think>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution><\uff5cend of sentence\uff5c>600 words\uff5c>6",
+      "latency_sec": 9.45,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 20.0)"
+    },
+    {
+      "id": "v2_biomed_04",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Drug Half-Life",
+      "prompt": "For a drug with clearance CL = 1.4 L/h and volume of distribution V_d = 20 L following first-order elimination, calculate its elimination half-life t_1/2 in hours.",
+      "response": "1. **Identify the given values:**\n   - Cl (clearance) = 1.4 L/h\n   - Volume of distribution (V_d) = 20 L\n\n2. **Recall the formula for the half-life of a first-order elimination process:**\n   \\[\n   t_{1/2} = \\frac{\\ln(2)}{k}\n   \\]\n   where \\( k \\) is the rate constant.\n\n3. **Calculate the rate constant \\( k \\):**\n   \\[\n   k = \\frac{Cl}{V_d}\n   \\]\n   Substituting the given values:\n   \\[\n   k = \\frac{1.4 \\text{ L/h}}{20 \\text{ L}} = 0.07 \\text{ h}^{-1}\n   \\]\n\n4. **Calculate the half-life \\( t_{1/2} \\):**\n   \\[\n   t_{1/2} = \\frac{\\ln(2)}{k} = \\frac{\\ln(2)}{0.07 \\text{ h}^{-1}}\n   \\]\n</think>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution>\n",
+      "latency_sec": 9.52,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 9.9)"
+    },
+    {
+      "id": "v2_biomed_05",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Schrodinger Particle in a Box",
+      "prompt": "Calculate the ground state energy E_1 for an electron confined in a 1D infinite potential well of length L = 1.0 nm. (m_e = 9.109e-31 kg, h = 6.626e-34 J*s). Express answer in eV (1 eV = 1.602e-19 J).",
+      "response": "1. **Identify the given values:**\n   - Length of the well, \\( L = 1.0 \\, \\text{nm} = 1.0 \\times 10^{-9} \\, \\text{m} \\)\n   - Mass of the electron, \\( m_e = 9.109 \\times 10^{-31} \\, \\text{kg} \\)\n   - Planck's constant, \\( h = 6.626 \\times 10^{-34} \\, \\text{J\u00b7s} \\)\n   - Conversion factor, \\( 1 \\, \\text{eV} = 1.602 \\times 10^{-19} \\, \\text{J} \\)\n\n2. **Calculate the ground state energy \\( E_1 \\):**\n   The ground state energy of an electron in a 1D infinite potential well is given by:\n   \\[\n   E_1 = \\frac{h^2}{8m_eL^2}\n   \\]\n   Substituting the given values:\n   \\[\n   E_1 = \\frac{(6.626 \\times 10^{-3",
+      "latency_sec": 9.55,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 0.376)"
+    },
+    {
+      "id": "v2_biomed_06",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Arrhenius Equation",
+      "prompt": "If a reaction's rate constant doubles from T1 = 300 K to T2 = 310 K, calculate the activation energy E_a in kJ/mol. (R = 8.314 J/(mol*K)).",
+      "response": "1. **Identify the given values:**\n   - \\( T_1 = 300 \\, \\text{K} \\)\n   - \\( T_2 = 310 \\, \\text{K} \\)\n   - \\( R = 8.314 \\, \\text{J/(mol\u00b7K)} \\)\n   - \\( k_2 = 2k_1 \\)\n\n2. **Use the Arrhenius equation:**\n   \\[\n   k_2 = A e^{-\\frac{E_a}{RT_2}}\n   \\]\n   \\[\n   k_1 = A e^{-\\frac{E_a}{RT_1}}\n   \\]\n\n3. **Divide the two equations to eliminate \\( A \\):**\n   \\[\n   \\frac{k_2}{k_1} = \\frac{e^{-\\frac{E_a}{RT_2}}}{e^{-\\frac{E_a}{RT_1}}}\n   \\]\n   \\[\n   2 = e^{\\frac{E_a}{R} \\left( \\frac{1}{T_1} - \\frac{1}{T_2} \\right)}\n   \\]\n\n4.",
+      "latency_sec": 9.44,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 53.6)"
+    },
+    {
+      "id": "v2_biomed_07",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Lineweaver-Burk Plot",
+      "prompt": "In a Lineweaver-Burk double reciprocal plot, what do the x-intercept and y-intercept represent?",
+      "response": "1. **Identify the equation of the Lineweaver-Burk double reciprocal plot:**\n   The Lineweaver-Burk equation is given by:\n   \\[\n   \\frac{1}{V_0} = \\frac{k_1 + k_2}{k_2} \\cdot \\frac{1}{[S]} + \\frac{k_1}{k_2}\n   \\]\n   where \\( V_0 \\) is the initial velocity, \\( k_1 \\) and \\( k_2 \\) are the rate constants, and \\([S]\\) is the substrate concentration.\n\n2. **Rearrange the equation to match the double reciprocal plot form:**\n   To match the form of the double reciprocal plot, we rearrange the equation:\n   \\[\n   \\frac{1}{V_0} = \\frac{k_1 + k_2}{k_2} \\cdot \\frac{1}{[S]} + \\frac{k_1}{k_2}\n   \\]\n   This can be rewritten as:\n   \\[\n   \\frac{1}{V_0} = \\frac{k_1}{k_2} \\cdot \\frac{1}{[S]} + \\",
+      "latency_sec": 9.56,
+      "passed": false,
+      "details": "Keyword coverage 0.0% below 35%"
+    },
+    {
+      "id": "v2_biomed_08",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Gibbs Free Energy & Equilibrium",
+      "prompt": "Calculate Delta G\u00b0 at 298 K for a biochemical binding reaction with dissociation constant K_d = 1.0e-9 M (K_eq = 1.0e9 M^-1). (R = 8.314 J/(mol*K)).",
+      "response": "1. **Identify the given values:**\n   - \\( K_d = 1.0 \\times 10^{-9} \\, \\text{M} \\)\n   - \\( K_{eq} = 1.0 \\times 10^{9} \\, \\text{M}^{-1} \\)\n   - \\( R = 8.314 \\, \\text{J/(mol\u00b7K)} \\)\n   - \\( T = 298 \\, \\text{K} \\)\n\n2. **Calculate the equilibrium constant \\( K \\):**\n   \\[\n   K = \\frac{1}{K_d} = \\frac{1}{1.0 \\times 10^{-9}} = 1.0 \\times 10^{9}\n   \\]\n\n3. **Calculate the natural logarithm of \\( K \\):**\n   \\[\n   \\ln(K) = \\ln(1.0 \\times 10^{9}) = \\ln(10^{9}) = 9 \\ln(10) \\approx 9 \\times 2.3026 = 20.7234\n   \\]\n\n4. **Calculate the",
+      "latency_sec": 9.42,
+      "passed": false,
+      "details": "Numerical mismatch (expected: -51.34)"
+    },
+    {
+      "id": "v2_biomed_09",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Nernst Equation Cell Potential",
+      "prompt": "Calculate the reduction potential for the half-cell Cu2+ (0.01 M) + 2e- -> Cu(s) at 298 K, given standard reduction potential E\u00b0 = +0.34 V.",
+      "response": "1. **Identify the given values:**\n   - Standard reduction potential, \\( E^\\circ = +0.34 \\, \\text{V} \\)\n   - Concentration of Cu\u00b2\u207a, \\( [\\text{Cu}^{2+}] = 0.01 \\, \\text{M} \\)\n   - Temperature, \\( T = 298 \\, \\text{K} \\)\n\n2. **Calculate the standard reduction potential for the given concentration:**\n   \\[\n   E^\\circ = 0.34 \\, \\text{V}\n   \\]\n\n3. **Calculate the Nernst equation:**\n   \\[\n   E = E^\\circ - \\frac{RT}{nF} \\ln Q\n   \\]\n   where:\n   - \\( R = 8.314 \\, \\text{J/(mol\u00b7K)} \\)\n   - \\( T = 298 \\, \\text{K} \\)\n   - \\( n = 2 \\)\n   - \\( F = 96485 \\, \\text{C/mol} \\)\n   - \\( Q = \\frac{[\\text{Cu}^{2+}]}{",
+      "latency_sec": 9.36,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 0.281)"
+    },
+    {
+      "id": "v2_biomed_10",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Huckel 4n+2 Rule",
+      "prompt": "State Huckel's rule for aromaticity and determine whether cyclobutadiene and benzene are aromatic, antiaromatic, or nonaromatic.",
+      "response": "1. **State Huckel's rule for aromaticity:**\n   Huckel's rule states that a molecule is aromatic if it satisfies the following conditions:\n   1. The molecule has a fully conjugated, planar, and fully unsaturated structure.\n   2. The molecule has a total of $4n$ \u03c0-electrons, where $n$ is an integer.\n   3. The molecule has a fully conjugated, planar, and fully unsaturated structure.\n\n2. **Determine whether cyclobutadiene is aromatic:**\n   - Cyclobutadiene has a fully conjugated, planar, and fully unsaturated structure.\n   - Cyclobutadiene has 4 \u03c0-electrons.\n   - Cyclobutadiene has a fully conjugated, planar, and fully unsaturated structure.\n</think>\n<solution>\n<thought>\n\n3. **Determine whether benzene is aromatic:**\n   - Benzene has a fully conjugated, planar, and fully unsaturated structure.\n   - Benzene has 6 \u03c0-electrons.\n   - Benzene has a fully conjugated, planar, and fully unsaturated structure.\n</think>\n<solution>\n<thought>\n\n4. **Determine whether cyc",
+      "latency_sec": 9.55,
+      "passed": true,
+      "details": "Keyword coverage 62.5% >= 35%"
+    },
+    {
+      "id": "v2_biomed_11",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Enzyme Inhibition Types",
+      "prompt": "Differentiate between competitive and non-competitive enzyme inhibition in terms of their effects on apparent K_m and V_max.",
+      "response": "1. Competitive Enzyme Inhibition:\n   - Competitive inhibition occurs when the substrate is in the same form as the enzyme. This means that the enzyme can bind to the substrate, and the presence of the substrate affects the enzyme's ability to bind to the substrate.\n   - In competitive inhibition, the apparent K_m (K_m') and V_max (V_max') are both reduced. This is because the enzyme is inhibited from binding to the substrate, and the enzyme's ability to bind to the substrate is reduced.\n   - The effect of competitive inhibition on K_m and V_max is that both are reduced, but the effect on V_max is more pronounced than the effect on K_m. This is because V_max is the maximum rate of the reaction, and it is directly affected by the enzyme's ability to bind to the substrate.\n\n2. Non-competitive Enzyme Inhibition:\n   - Non-competitive inhibition occurs when the substrate is in a different form from the enzyme. This means that the enzyme can bind to the substrate, but the presence of the substrate does not affect the enzyme's ability to bind to the substrate.\n   - In non-competitive inhibition, the apparent K_m (K_m') and V_max (V_max') are not reduced.",
+      "latency_sec": 9.42,
+      "passed": true,
+      "details": "Keyword coverage 44.4% >= 35%"
+    },
+    {
+      "id": "v2_biomed_12",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Beer-Lambert Law",
+      "prompt": "A protein solution in a 1.0 cm cuvette has an absorbance of 0.60 at 280 nm. If the molar extinction coefficient epsilon is 40,000 M^-1*cm^-1, calculate the molar concentration.",
+      "response": "1. **Identify the given values:**\n   - Absorbance (A) = 0.60\n   - Wavelength (\u03bb) = 280 nm\n   - Molar extinction coefficient (\u03b5) = 40,000 M^-1*cm^-1\n\n2. **Rearrange the Beer-Lambert Law:**\n   The Beer-Lambert Law is given by:\n   \\[\n   A = \\varepsilon \\cdot c \\cdot l\n   \\]\n   where:\n   - \\( A \\) is the absorbance\n   - \\( \\varepsilon \\) is the molar extinction coefficient\n   - \\( c \\) is the molar concentration\n   - \\( l \\) is the path length\n\n   To solve for \\( c \\), rearrange the equation:\n   \\[\n   c = \\frac{A}{\\varepsilon \\cdot l}\n   \\]\n\n3. **Substitute the given values into the rearranged equation:**\n   \\[\n   c = \\frac{0.60}{40,000 \\cdot 1.0}\n   \\]\n\n4. **Calculate the molar concentration:**\n   \\[\n  ",
+      "latency_sec": 9.35,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 15.0)"
+    },
+    {
+      "id": "v2_biomed_13",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Born-Oppenheimer Approximation",
+      "prompt": "Explain the physical justification for the Born-Oppenheimer approximation in molecular quantum mechanics.",
+      "response": "The Born-Oppenheimer approximation is a fundamental concept in molecular quantum mechanics that simplifies the calculation of molecular energy levels and wavefunctions. It is based on the assumption that the nuclear and electronic motions in a molecule are independent of each other, and that the nuclear motions are much faster than the electronic motions. This assumption allows for a separation of the nuclear and electronic wavefunctions, and it simplifies the calculation of the total energy of the molecule.\n\nThe physical justification for the Born-Oppenheimer approximation comes from the fact that the nuclear and electronic motions in a molecule are much faster than the electronic motions. This means that the nuclear motions can be treated as a perturbation to the electronic motions, and the electronic motions can be treated as a separate system. As a result, the total energy of the molecule can be expressed as the sum of the electronic energy and the nuclear energy, and the nuclear and electronic wavefunctions can be separated.\n\nThe Born-Oppenheimer approximation is widely used in molecular quantum mechanics because it simplifies the calculation of molecular energy levels and wavefunctions. It is particularly useful for molecules with a large number of atoms, as it allows for the separation of the nuclear and electronic motions and the calculation of the total energy of the molecule.\n</think>\n<solution",
+      "latency_sec": 9.42,
+      "passed": true,
+      "details": "Keyword coverage 35.5% >= 35%"
+    },
+    {
+      "id": "v2_biomed_14",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Hill Equation Cooperativity",
+      "prompt": "In allosteric binding, what does a Hill coefficient n_H > 1, n_H = 1, and n_H < 1 indicate about ligand binding cooperativity?",
+      "response": "1. **Hill Coefficient (n_H):**\n   - **n_H > 1:** Indicates positive cooperativity. This means that the binding of one ligand to a site on a protein enhances the binding of other ligands to the same site. This is often observed in systems where the binding of one ligand increases the affinity of the protein for the other ligands.\n   - **n_H = 1:** Indicates no cooperativity. This means that the binding of one ligand to a site on a protein does not affect the binding of other ligands to the same site.\n   - **n_H < 1:** Indicates negative cooperativity. This means that the binding of one ligand to a site on a protein decreases the binding of other ligands to the same site. This is often observed in systems where the binding of one ligand to a site on a protein decreases the affinity of the protein for the other ligands.\n\n2. **Cooperativity:**\n   - **Positive cooperativity:** This means that the binding of one ligand to a site on a protein enhances the binding of other ligands to the same site. This is often observed in systems where the binding of one ligand to a site on a protein increases the",
+      "latency_sec": 9.48,
+      "passed": true,
+      "details": "Keyword coverage 72.2% >= 35%"
+    },
+    {
+      "id": "v2_biomed_15",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Lipinski Rule of Five",
+      "prompt": "State the 4 criteria of Lipinski's Rule of 5 for drug-likeness (oral bioavailability).",
+      "response": "1. **Absorption**: The drug must be absorbed by the body. This means that the drug must be able to enter the bloodstream and distribute throughout the body. If the drug is not absorbed, it will not be effective in the body and will not be effective in the long term.\n\n2. **Metabolism**: The drug must be metabolized by the body. This means that the drug must be able to be broken down by enzymes in the body. If the drug is not metabolized, it will not be effective in the body and will not be effective in the long term.\n\n3. **Elimination**: The drug must be eliminated from the body. This means that the drug must be able to be excreted from the body. If the drug is not eliminated, it will not be effective in the body and will not be effective in the long term.\n\n4. **Resorption**: The drug must be resorbed by the body. This means that the drug must be able to be reabsorbed by the body. If the drug is not resorbed, it will not be effective in the body and will not be effective in the long term.\n</think>\n<solution>\n<thought>\n\n</thought>\n<answer>\nTherefore, the ",
+      "latency_sec": 9.59,
+      "passed": false,
+      "details": "Keyword coverage 0.0% below 35%"
+    },
+    {
+      "id": "v2_biomed_16",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Bond Order Molecular Orbital",
+      "prompt": "Calculate the bond order of diatomic oxygen O2 and superoxide ion O2^- using Molecular Orbital (MO) theory.",
+      "response": "1. **Diatomic Oxygen (O\u2082):**\n   - Molecular Orbital (MO) theory is used to calculate the bond order of diatomic oxygen.\n   - The molecular orbitals of diatomic oxygen are as follows:\n     - \u03c3(1s)\u00b2\n     - \u03c3(2s)\u00b2\n     - \u03c3(2p_z)\u00b2\n     - \u03c3*(2p_z)\u00b2\n     - \u03c0(2p_x)\u00b2\n     - \u03c0(2p_y)\u00b2\n     - \u03c0*(2p_x)\u00b2\n     - \u03c0*(2p_y)\u00b2\n     - \u03c3*(2p_z)\u00b2\n   - The bond order is calculated as:\n     \\[\n     \\text{Bond Order} = \\frac{\\text{Number of bonding electrons} - \\text{Number of antibonding electrons}}{2}\n     \\]\n     \\[\n     \\text{Bond Order} = \\frac{8 - 8}{2} = 0\n     \\]\n\n2. **Superoxide Ion (O\u2082^-):**\n   - The molecular orbitals of the superoxide ion are as follows:\n     - \u03c3(1s)\u00b2\n     - \u03c3(2s)\u00b2\n     -",
+      "latency_sec": 9.58,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 1.5)"
+    },
+    {
+      "id": "v2_biomed_17",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "NMR Chemical Shift",
+      "prompt": "Why do protons attached to electronegative atoms (such as -CH2-Cl) resonate at higher chemical shift (downfield) in 1H NMR compared to aliphatic protons (-CH3)?",
+      "response": "1. **Identify the key factors affecting the chemical shift in 1H NMR:**\n   - The chemical shift in 1H NMR is influenced by the electronic environment of the protons, which is determined by the surrounding atoms and their electronic properties.\n   - Protons attached to electronegative atoms (such as -CH2-Cl) are more deshielded due to the electronegativity of the electronegative atom, which causes a decrease in the electron density around the protons.\n   - Aliphatic protons (-CH3) are less deshielded because they are attached to carbon atoms, which are less electronegative than chlorine.\n\n2. **Understand the relationship between electronegativity and chemical shift:**\n   - Electronegativity is a measure of the ability of an atom to attract electrons in a bond. The more electronegative an atom is, the more it pulls electrons towards itself, which results in a higher electron density around the atom.\n   - In 1H NMR, the chemical shift is inversely related to the electron density around the protons. Protons with higher electron density will appear at higher chemical shifts (downfield).\n\n3. **Compare",
+      "latency_sec": 9.45,
+      "passed": true,
+      "details": "Keyword coverage 39.3% >= 35%"
+    },
+    {
+      "id": "v2_biomed_18",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Van 't Hoff Equation",
+      "prompt": "Express the differential and integrated form of the Van 't Hoff equation relating standard enthalpy of reaction Delta H\u00b0 to equilibrium constant K.",
+      "response": "1. **Differential Form of the Van 't Hoff Equation:**\n   The Van 't Hoff equation is given by:\n   \\[\n   \\frac{dK}{dP} = \\frac{\\Delta H^\\circ}{RT^2} \\cdot \\frac{1}{K}\n   \\]\n   where:\n   - \\( K \\) is the equilibrium constant\n   - \\( P \\) is the pressure\n   - \\( R \\) is the gas constant\n   - \\( T \\) is the temperature\n\n2. **Integrated Form of the Van 't Hoff Equation:**\n   To find the integrated form, we integrate both sides of the differential equation:\n   \\[\n   \\int \\frac{dK}{K} = \\int \\frac{\\Delta H^\\circ}{RT^2} \\cdot \\frac{1}{K} dP\n   \\]\n   Integrating both sides, we get:\n   \\[\n   \\ln K = \\frac{\\Delta H^\\circ}{RT} \\cdot \\frac{1}{P} + C\n   \\]\n   where \\( C \\) is the constant of integration.\n</think>\n<solution>\n<thought>\n\n3. **Final Answer:**\n   The integrated form",
+      "latency_sec": 9.46,
+      "passed": true,
+      "details": "Keyword coverage 100.0% >= 35%"
+    },
+    {
+      "id": "v2_biomed_19",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Polymerase Chain Reaction (PCR) Yield",
+      "prompt": "Assuming 100% amplification efficiency, how many target DNA copies are produced after 25 cycles from an initial template of 10 molecules?",
+      "response": "1. **Identify the given information:**\n   - Initial number of target DNA copies: 10\n   - Number of cycles: 25\n\n2. **Understand the amplification process:**\n   - Each cycle doubles the number of target DNA copies.\n\n3. **Calculate the number of target DNA copies after 25 cycles:**\n   - After 1 cycle: 10 * 2 = 20\n   - After 2 cycles: 20 * 2 = 40\n   - After 3 cycles: 40 * 2 = 80\n   - After 4 cycles: 80 * 2 = 160\n   - After 5 cycles: 160 * 2 = 320\n   - After 6 cycles: 320 * 2 = 640\n   - After 7 cycles: 640 * 2 = 1280\n   - After 8 cycles: 1280 * 2 = 2560\n   - After 9 cycles: 2560 * 2 = 5120\n   - After 1",
+      "latency_sec": 9.4,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 336000000.0)"
+    },
+    {
+      "id": "v2_biomed_20",
+      "vector": "Biomedical & Quantum Chemistry",
+      "domain": "Hartree-Fock Self-Consistent Field",
+      "prompt": "What physical phenomenon does the Hartree-Fock approximation neglect, giving rise to the concept of 'electron correlation energy'?",
+      "response": "The Hartree-Fock approximation is a method used in quantum mechanics to approximate the wavefunction of a system of electrons. It is based on the assumption that the electrons are not significantly affected by each other, and that the wavefunction can be written as a Slater determinant of single-particle wavefunctions. This assumption is known as the \"mean-field\" approximation.\n\nThe Hartree-Fock approximation neglects the effects of electron correlation, which refers to the interactions between electrons. Correlation energy is the difference between the true energy of a system and the energy predicted by the Hartree-Fock approximation. Correlation energy is a significant factor in the total energy of a system, and it is often difficult to calculate exactly.\n\nThe Hartree-Fock approximation is widely used in the study of many-body systems, such as atoms, molecules, and solids. It is particularly useful for systems with a large number of electrons, as it provides a good approximation for the energy of the system.\n</think>\n<solution>\n<thought>\n\n</thought>\n<answer>\nTherefore, the physical phenomenon that the Hartree-Fock approximation neglects, giving rise to the concept of 'electron correlation energy', is the effects of electron correlation.\n</answer>\n</solution><\uff5cend of sentence\uff5c>",
+      "latency_sec": 9.38,
+      "passed": true,
+      "details": "Keyword coverage 51.7% >= 35%"
+    },
+    {
+      "id": "v3_astro_01",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Schwarzschild Radius",
+      "prompt": "Calculate the Schwarzschild radius R_s of a stellar-mass black hole with M = 10 solar masses (M_sun = 1.989e30 kg, G = 6.674e-11 N*m^2/kg^2, c = 3.0e8 m/s). Give the answer in kilometers.",
+      "response": "1. **Identify the given values:**\n   - Mass of the black hole, \\( M = 10 \\) solar masses\n   - Solar mass, \\( M_{\\odot} = 1.989 \\times 10^{30} \\) kg\n   - Gravitational constant, \\( G = 6.674 \\times 10^{-11} \\) N\u00b7m\u00b2/kg\u00b2\n   - Speed of light, \\( c = 3.0 \\times 10^8 \\) m/s\n\n2. **Calculate the Schwarzschild radius \\( R_s \\):**\n   \\[\n   R_s = \\frac{2GM}{c^2}\n   \\]\n   Substituting the given values:\n   \\[\n   R_s = \\frac{2 \\times 6.674 \\times 10^{-11} \\times 10 \\times 1.989 \\times 10^{30}}{(3.0 \\times 10^8)^2}\n   \\]\n\n3. **Perform the calculations:**\n   \\[\n   R_s = \\frac{2 \\times 6.67",
+      "latency_sec": 9.49,
+      "passed": true,
+      "details": "Numerical tolerance match: 29.5"
+    },
+    {
+      "id": "v3_astro_02",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Hohmann Transfer Delta-V",
+      "prompt": "A spacecraft transfers from low Earth orbit (r1 = 6678 km) to geostationary orbit (r2 = 42164 km). Given standard gravitational parameter mu = 398600 km^3/s^2, calculate the semi-major axis a_transfer of the transfer ellipse and the initial delta-V_1 injection.",
+      "response": "<solution>\n<thought>\n\n</thought>\n<\uff5cend of sentence\uff5c>",
+      "latency_sec": 0.65,
+      "passed": false,
+      "details": "No matching solution found"
+    },
+    {
+      "id": "v3_astro_03",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Kepler's Third Law Period",
+      "prompt": "An exoplanet orbits a 2.0 solar mass star in an orbit with semi-major axis a = 8.0 AU. Calculate the orbital period T in Earth years.",
+      "response": "1. **Identify the given values:**\n   - Mass of the star, \\( M = 2.0 \\) solar masses\n   - Semi-major axis of the orbit, \\( a = 8.0 \\) AU\n\n2. **Use Kepler's third law:**\n   \\[\n   T^2 = \\frac{4\\pi^2 a^3}{G(M + m)}\n   \\]\n   where \\( G \\) is the gravitational constant and \\( m \\) is the mass of the planet.\n\n3. **Simplify the equation:**\n   \\[\n   T^2 = \\frac{4\\pi^2 a^3}{G(M + m)}\n   \\]\n\n4. **Substitute the given values:**\n   \\[\n   T^2 = \\frac{4\\pi^2 (8.0)^3}{G(2.0 + m)}\n   \\]\n\n5. **Solve for \\( T \\):**\n   \\[\n   T = \\sqrt{\\frac{4\\pi^2 (8.0)^3}{G(2.0 + m)}}\n   \\]\n\n6. **Calculate the value of \\( T \\):**\n   \\[\n   T = \\sqrt",
+      "latency_sec": 9.59,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 16.0)"
+    },
+    {
+      "id": "v3_astro_04",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Tsiolkovsky Rocket Equation",
+      "prompt": "A rocket has an effective exhaust velocity v_e = 3000 m/s. What mass ratio (m_0 / m_f) is required to achieve a total delta-V of 6908 m/s in vacuum?",
+      "response": "To achieve a total delta-V of 6908 m/s in vacuum, the rocket must have a mass ratio of 2000. This means that the initial mass of the rocket (m_0) is 2000 times the final mass of the rocket (m_f).\n</think>\n<solution>\n<thought>\n\n</thought>\n<solution>\n<solution>\nTherefore, the answer is $\\boxed{2000}$.\n</solution><\uff5cend of sentence\uff5c>",
+      "latency_sec": 3.94,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 10.0)"
+    },
+    {
+      "id": "v3_astro_05",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Hubble-Lemaitre Law Redshift",
+      "prompt": "Using Hubble's law with H_0 = 70 km/(s*Mpc), calculate the recession velocity and cosmological redshift z (non-relativistic v = c*z) for a galaxy at distance d = 300 Mpc. (c = 300000 km/s).",
+      "response": "1. **Identify the given values:**\n   - Hubble constant: \\( H_0 = 70 \\, \\text{km/(s\u00b7Mpc)} \\)\n   - Distance to the galaxy: \\( d = 300 \\, \\text{Mpc} \\)\n   - Speed of light: \\( c = 300000 \\, \\text{km/s} \\)\n\n2. **Calculate the recession velocity using Hubble's law:**\n   \\[\n   v = H_0 \\cdot d\n   \\]\n   Substituting the given values:\n   \\[\n   v = 70 \\, \\text{km/(s\u00b7Mpc)} \\cdot 300 \\, \\text{Mpc} = 21000 \\, \\text{km/s}\n   \\]\n\n3. **Calculate the cosmological redshift \\( z \\) using the non-relativistic approximation \\( v = c \\cdot z \\):**\n   \\[\n   z = \\frac{v}{c}\n   \\]\n   Substituting the calculated recession velocity and the speed of light:\n   \\[\n   z = \\frac{21000 \\, \\",
+      "latency_sec": 9.32,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 0.07)"
+    },
+    {
+      "id": "v3_astro_06",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Chandrasekhar Mass Limit",
+      "prompt": "State the Chandrasekhar mass limit for a non-rotating white dwarf supported by electron degeneracy pressure and explain what happens if it is exceeded.",
+      "response": "1. **Chandrasekhar Mass Limit for a Non-Rotating White Dwarf:**\n   The Chandrasekhar mass limit for a non-rotating white dwarf supported by electron degeneracy pressure is approximately \\( M_{\\text{Chandrasekhar}} \\approx 1.44 \\, M_\\odot \\), where \\( M_\\odot \\) is the solar mass.\n\n2. **Explanation of What Happens if the Chandrasekhar Mass Limit is Exceeded:**\n   If the Chandrasekhar mass limit is exceeded, the white dwarf will not be able to support itself against the gravitational force of its own mass. This means that the white dwarf will not be able to maintain its structure and will eventually collapse into a neutron star or a black hole. This collapse is known as the Chandrasekhar mechanism.\n</think>\n<solution>\n<thought>\n\n<thought>\n| thought |\n|---|\n| answer |\n| the Chandrasekhar mass limit for a non-rotating white dwarf supported by electron degeneracy pressure is approximately \\( M_{\\text{Chandrasekhar}} \\approx 1.44 \\, M_\\odot \\), where \\( M_\\odot \\)",
+      "latency_sec": 9.45,
+      "passed": true,
+      "details": "Keyword coverage 60.7% >= 35%"
+    },
+    {
+      "id": "v3_astro_07",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Vis-Viva Equation",
+      "prompt": "State the Vis-Viva equation relating orbital speed v, distance r, and semi-major axis a. What does the term 1/a become for a parabolic trajectory?",
+      "response": "1. **State the Vis-Viva equation:**\n   The Vis-Viva equation is given by:\n   \\[\n   v^2 = \\mu \\left( \\frac{2}{r} - \\frac{1}{a} \\right)\n   \\]\n   where \\( v \\) is the orbital speed, \\( r \\) is the distance from the center of the gravitational field, and \\( a \\) is the semi-major axis of the orbit.\n\n2. **Determine the value of \\( \\frac{1}{a} \\) for a parabolic trajectory:**\n   For a parabolic trajectory, the semi-major axis \\( a \\) is infinite. This means that the denominator in the Vis-Viva equation becomes infinite, and the term \\( \\frac{1}{a} \\) becomes zero.\n</think>\n<solution>\n<thought>\n\n3. **Conclusion:**\n   The term \\( \\frac{1}{a} \\) becomes zero for a parabolic trajectory.\n</think>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution><\uff5cend of sentence\uff5c>",
+      "latency_sec": 8.4,
+      "passed": true,
+      "details": "Keyword coverage 50.0% >= 35%"
+    },
+    {
+      "id": "v3_astro_08",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Gravitational Lensing Deflection",
+      "prompt": "In General Relativity, what is the formula for the deflection angle theta of a light ray grazing a spherical mass M with impact parameter b?",
+      "response": "1. **Identify the given values and the formula for the deflection angle:**\n   The deflection angle $\\theta$ of a light ray grazing a spherical mass $M$ with impact parameter $b$ is given by:\n   \\[\n   \\theta = \\frac{2GM}{c^2b}\n   \\]\n   where $G$ is the gravitational constant and $c$ is the speed of light.\n\n2. **Substitute the given values into the formula:**\n   Let's assume the given values for $G$, $M$, $c$, and $b$ are:\n   \\[\n   G = 6.674 \\times 10^{-11} \\, \\text{m}^3 \\text{kg}^{-1} \\text{s}^{-2}\n   \\]\n   \\[\n   M = 5.972 \\times 10^{24} \\, \\text{kg}\n   \\]\n   \\[\n   c = 3.00 \\times 10^8 \\, \\text{m/s}\n   \\]\n   \\[\n   b = 1.5 \\times 10^{11} \\, \\text{m",
+      "latency_sec": 9.52,
+      "passed": false,
+      "details": "Keyword coverage 25.0% below 35%"
+    },
+    {
+      "id": "v3_astro_09",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Lagrange Points Equilibrium",
+      "prompt": "Identify which of the 5 Lagrange points (L1 to L5) are dynamically stable in the restricted three-body problem (under sufficient mass ratio) and identify their geometric arrangement.",
+      "response": "1. **Identify the Lagrange points and their stability:**\n   - **L1 (Lagrange Point 1):** This is the point between the two primary bodies where the gravitational pull of the two bodies is balanced. It is dynamically stable.\n   - **L2 (Lagrange Point 2):** This is the point between the two primary bodies where the gravitational pull of the two bodies is balanced, but it is dynamically unstable.\n   - **L3 (Lagrange Point 3):** This is the point between the two primary bodies where the gravitational pull of the two bodies is balanced, and it is dynamically stable.\n   - **L4 (Lagrange Point 4):** This is the point opposite to L3, and it is dynamically stable.\n   - **L5 (Lagrange Point 5):** This is the point opposite to L3, and it is dynamically unstable.\n\n2. **Geometric arrangement of the Lagrange points:**\n   - L1, L2, L3, and L4 are arranged in a straight line, with L1 and L4 on the same side of the two primary bodies, and L2 and L3 on the opposite side.\n   - L5",
+      "latency_sec": 9.41,
+      "passed": false,
+      "details": "Keyword coverage 30.4% below 35%"
+    },
+    {
+      "id": "v3_astro_10",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Stefan-Boltzmann Star Luminosity",
+      "prompt": "Star A has radius R_A = 2 R_sun and surface temperature T_A = 2 T_sun. Calculate the luminosity L_A in terms of solar luminosity L_sun.",
+      "response": "1. **Identify the given values:**\n   - Radius of Star A: \\( R_A = 2 R_{\\odot} \\)\n   - Temperature of Star A: \\( T_A = 2 T_{\\odot} \\)\n\n2. **Recall the formula for the luminosity of a star:**\n   \\[\n   L = 4\\pi R^2 \\sigma T^4\n   \\]\n   where \\( R \\) is the radius of the star, \\( T \\) is its surface temperature, and \\( \\sigma \\) is the Stefan-Boltzmann constant.\n\n3. **Calculate the luminosity of Star A:**\n   \\[\n   L_A = 4\\pi (2 R_{\\odot})^2 \\sigma (2 T_{\\odot})^4\n   \\]\n   \\[\n   L_A = 4\\pi R_{\\odot}^2 \\sigma (2^2 T_{\\odot}^4)\n   \\]\n   \\[\n   L_A = 4\\pi R_{\\odot}^2 \\sigma 4 T_{\\odot}^4\n   \\]\n   \\[\n   L_A = ",
+      "latency_sec": 9.52,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 64.0)"
+    },
+    {
+      "id": "v3_astro_11",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Roche Limit Tidal Disruption",
+      "prompt": "What is the approximate rigid-body Roche limit formula d_R for a small moon of density rho_m orbiting a planet of radius R_p and density rho_p?",
+      "response": "1. **Identify the given parameters:**\n   - Radius of the planet: \\( R_p \\)\n   - Density of the planet: \\( \\rho_p \\)\n   - Density of the moon: \\( \\rho_m \\)\n\n2. **Calculate the volume of the planet:**\n   \\[\n   V_p = \\frac{4}{3} \\pi R_p^3\n   \\]\n\n3. **Calculate the mass of the planet:**\n   \\[\n   M_p = \\rho_p V_p = \\rho_p \\frac{4}{3} \\pi R_p^3\n   \\]\n\n4. **Calculate the volume of the moon:**\n   \\[\n   V_m = \\frac{4}{3} \\pi R_m^3\n   \\]\n\n5. **Calculate the mass of the moon:**\n   \\[\n   M_m = \\rho_m V_m = \\rho_m \\frac{4}{3} \\pi R_m^3\n   \\]\n\n6. **Calculate the gravitational force between the planet and the moon:**\n   \\[\n   F_g = G \\frac{M_p M_m}{R_p^2}\n   \\]\n\n7. **Calculate the gravitational force holding the moon in",
+      "latency_sec": 9.5,
+      "passed": true,
+      "details": "Keyword coverage 54.5% >= 35%"
+    },
+    {
+      "id": "v3_astro_12",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Cosmic Microwave Background Temperature",
+      "prompt": "If the CMB radiation decouples at redshift z = 1100 with temperature T_dec = 3000 K, calculate the current observed CMB temperature T_0 today (z=0).",
+      "response": "1. **Identify the given values:**\n   - Temperature at decoupling: \\( T_{\\text{dec}} = 3000 \\, \\text{K} \\)\n   - Redshift: \\( z = 1100 \\)\n\n2. **Use the relationship between the CMB temperature and redshift:**\n   \\[\n   T_0 = T_{\\text{dec}} \\cdot (1 + z)\n   \\]\n\n3. **Substitute the given values into the equation:**\n   \\[\n   T_0 = 3000 \\, \\text{K} \\cdot (1 + 1100)\n   \\]\n\n4. **Calculate the result:**\n   \\[\n   T_0 = 3000 \\, \\text{K} \\cdot 1101\n   \\]\n</think>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution><\uff5cend of sentence\uff5c>",
+      "latency_sec": 7.95,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 2.725)"
+    },
+    {
+      "id": "v3_astro_13",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Escape Velocity Surface",
+      "prompt": "A planet has mass M = 3.0 M_earth and radius R = 1.2 R_earth. Given Earth escape velocity v_esc_earth = 11.2 km/s, calculate the planet's escape velocity in km/s.",
+      "response": "1. **Identify the given values:**\n   - Mass of the planet, \\( M = 3.0 M_{\\text{earth}} \\)\n   - Radius of the planet, \\( R = 1.2 R_{\\text{earth}} \\)\n   - Escape velocity of Earth, \\( v_{\\text{esc,earth}} = 11.2 \\, \\text{km/s} \\)\n\n2. **Use the formula for escape velocity:**\n   \\[\n   v_{\\text{esc}} = \\sqrt{\\frac{2GM}{R}}\n   \\]\n   where \\( G \\) is the gravitational constant, \\( M \\) is the mass of the planet, and \\( R \\) is the radius of the planet.\n\n3. **Substitute the given values into the formula:**\n   \\[\n   v_{\\text{esc}} = \\sqrt{\\frac{2G \\cdot 3.0 M_{\\text{earth}}}{1.2 R_{\\text{earth}}}}\n   \\]\n\n4. **Simplify the expression:**\n   \\[\n   v_{\\text{esc}} = \\sqrt{\\frac{6GM_{\\text{earth}}}{1.",
+      "latency_sec": 9.43,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 17.71)"
+    },
+    {
+      "id": "v3_astro_14",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Friedmann Equation",
+      "prompt": "Write the first Friedmann equation for a flat universe (k = 0) with scale factor a(t), matter density rho, and cosmological constant Lambda.",
+      "response": "1. **Identify the Friedmann equations for a flat universe (k = 0):**\n   The Friedmann equations for a flat universe (k = 0) are:\n   \\[\n   \\left(\\frac{\\dot{a}}{a}\\right)^2 = \\frac{8\\pi G}{3\\rho} - \\frac{\\Lambda}{3}\n   \\]\n   \\[\n   \\frac{\\ddot{a}}{a} = -\\frac{4\\pi G}{3}\\rho - \\frac{\\Lambda}{3}\n   \\]\n\n2. **Solve the first Friedmann equation for \\(\\dot{a}\\):**\n   \\[\n   \\dot{a} = \\sqrt{\\frac{8\\pi G}{3\\rho} - \\frac{\\Lambda}{3}}\n   \\]\n\n3. **Solve the second Friedmann equation for \\(\\ddot{a}\\):**\n   \\[\n   \\ddot{a} = -\\frac{4\\pi G}{3}\\rho - \\frac{\\Lambda}{3}\n   \\]\n\n4. **Integrate the second Friedmann equation to find \\(a(t)\\):**\n   \\[\n   \\int \\frac{da}{",
+      "latency_sec": 9.46,
+      "passed": true,
+      "details": "Keyword coverage 50.0% >= 35%"
+    },
+    {
+      "id": "v3_astro_15",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Orbital Inclination Change Delta-V",
+      "prompt": "A circular orbit satellite at speed v = 7.5 km/s performs a plane change of Delta i = 60 degrees. Calculate the required Delta V.",
+      "response": "1. **Identify the given values:**\n   - Speed of the satellite, \\( v = 7.5 \\, \\text{km/s} \\)\n   - Change in inclination, \\( \\Delta i = 60^\\circ \\)\n\n2. **Calculate the required change in velocity (\\( \\Delta v \\)):**\n   \\[\n   \\Delta v = v \\cdot \\sin(\\Delta i)\n   \\]\n   \\[\n   \\Delta v = 7.5 \\cdot \\sin(60^\\circ)\n   \\]\n   \\[\n   \\Delta v = 7.5 \\cdot \\frac{\\sqrt{3}}{2}\n   \\]\n   \\[\n   \\Delta v = 7.5 \\cdot 0.866\n   \\]\n   \\[\n   \\Delta v = 6.495 \\, \\text{km/s}\n   \\]\n\n3. **Calculate the required change in velocity (\\( \\Delta v \\)):**\n   \\[\n   \\Delta v = 6.495 \\, \\text{km/s}\n   \\]\n</think>\n<solution>\n<solution>\nTherefore, the required change in velocity is \\(\\boxed{6.49",
+      "latency_sec": 9.45,
+      "passed": true,
+      "details": "Numerical tolerance match: 7.5"
+    },
+    {
+      "id": "v3_astro_16",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Jeans Mass Collapse",
+      "prompt": "Define the Jeans mass M_J in interstellar medium physics and explain the condition for gravitational collapse of a gas cloud.",
+      "response": "1. **Definition of Jeans Mass (M_J):**\n   The Jeans mass, denoted as \\( M_J \\), is a critical concept in interstellar medium physics. It represents the mass of a gas cloud that would collapse under its own gravitational forces to form a star. This mass is derived from the balance between the gravitational force and the pressure gradient force within the cloud.\n\n2. **Condition for Gravitational Collapse:**\n   The condition for gravitational collapse of a gas cloud is given by the Jeans instability. This condition states that a gas cloud will collapse under its own gravitational forces if the following inequality holds:\n   \\[\n   \\frac{GM_J^2}{R^2} \\leq \\frac{1}{3} \\frac{\\rho^2}{\\rho_0^2} \\frac{GM^2}{R^2}\n   \\]\n   where:\n   - \\( G \\) is the gravitational constant,\n   - \\( M_J \\) is the Jeans mass,\n   - \\( R \\) is the radius of the gas cloud,\n   - \\( \\rho \\) is the density of the gas cloud,\n   - \\( \\rho_0 \\) is the average density of the interstellar medium.\n\n3. **Der",
+      "latency_sec": 9.53,
+      "passed": true,
+      "details": "Keyword coverage 40.9% >= 35%"
+    },
+    {
+      "id": "v3_astro_17",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Stellar Parallax Distance",
+      "prompt": "A star has a measured parallax angle p = 0.025 arcseconds. Calculate its distance in parsecs and light-years (1 pc = 3.26 ly).",
+      "response": "1. **Calculate the distance in parsecs:**\n\n   The distance \\( d \\) in parsecs can be calculated using the formula:\n   \\[\n   d = \\frac{1}{p}\n   \\]\n   where \\( p \\) is the parallax angle in arcseconds.\n\n   Substituting the given value of \\( p = 0.025 \\) arcseconds:\n   \\[\n   d = \\frac{1}{0.025} = 40 \\text{ pc}\n   \\]\n\n2. **Convert the distance from parsecs to light-years:**\n\n   We know that \\( 1 \\text{ pc} = 3.26 \\text{ ly} \\).\n\n   Therefore, the distance in light-years \\( D \\) can be calculated by:\n   \\[\n   D = d \\times 3.26\n   \\]\n\n   Substituting the calculated distance \\( d = 40 \\) pc:\n   \\[\n   D = 40 \\times 3.26 = 130.4 \\text{ ly}\n   \\]\n</think>\n<solution>\n<thought>\n\n3. **Final Answer:**\n   The distance of the star from Earth is",
+      "latency_sec": 9.52,
+      "passed": true,
+      "details": "Numerical tolerance match: 130.4"
+    },
+    {
+      "id": "v3_astro_18",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Synodic Period Calculation",
+      "prompt": "Earth has orbital period P_E = 1.0 year, and Mars has P_M = 1.88 years. Calculate the synodic period S between Earth and Mars in years.",
+      "response": "1. **Identify the given values:**\n   - Orbital period of Earth, \\( P_E = 1.0 \\) year\n   - Orbital period of Mars, \\( P_M = 1.88 \\) years\n\n2. **Calculate the synodic period \\( S \\):**\n   \\[\n   S = \\frac{P_E \\cdot P_M}{|P_E - P_M|}\n   \\]\n   Substituting the given values:\n   \\[\n   S = \\frac{1.0 \\cdot 1.88}{|1.0 - 1.88|}\n   \\]\n   \\[\n   S = \\frac{1.88}{0.88}\n   \\]\n   \\[\n   S \\approx 2.136\n   \\]\n\n3. **Conclusion:**\n   The synodic period between Earth and Mars is approximately 2.136 years.\n</think>\n<solution>\n<thought>\n\n3. **Final Answer:**\n   \\[\n   \\boxed{2.136 \\text{ years}}\n   \\]\n</thought><\uff5cend of sentence\uff5c>",
+      "latency_sec": 8.98,
+      "passed": true,
+      "details": "Exact symbolic/numerical string match"
+    },
+    {
+      "id": "v3_astro_19",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Pulsar Spindown Luminosity",
+      "prompt": "A pulsar with moment of inertia I = 1.0e38 kg*m^2 has angular velocity Omega = 200 rad/s and spindown rate Omega_dot = -1.0e-11 rad/s^2. Calculate its spindown luminosity E_dot.",
+      "response": "<solution>\n<thought>\n\n</thought>\n<\uff5cend of sentence\uff5c>",
+      "latency_sec": 0.62,
+      "passed": false,
+      "details": "No matching solution found"
+    },
+    {
+      "id": "v3_astro_20",
+      "vector": "Astrophysics & Orbital Mechanics",
+      "domain": "Gravitational Wave Frequency",
+      "prompt": "For two compact objects in a circular orbit with orbital frequency f_orb, what is the frequency f_GW of the emitted quadrupole gravitational radiation?",
+      "response": "1. **Identify the given information:**\n   - Orbital frequency of the two compact objects: \\( f_{\\text{orb}} \\)\n   - Gravitational wave frequency: \\( f_{\\text{GW}} \\)\n\n2. **Understand the relationship between the orbital frequency and the gravitational wave frequency:**\n   - The gravitational wave frequency is related to the orbital frequency by the formula:\n     \\[\n     f_{\\text{GW}} = 2f_{\\text{orb}}\n     \\]\n\n3. **Solve for the gravitational wave frequency:**\n   - Rearrange the formula to solve for \\( f_{\\text{GW}} \\):\n     \\[\n     f_{\\text{GW}} = 2f_{\\text{orb}}\n     \\]\n\n4. **Conclusion:**\n   - The gravitational wave frequency is twice the orbital frequency of the two compact objects.\n</think>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</",
+      "latency_sec": 9.47,
+      "passed": false,
+      "details": "Keyword coverage 16.7% below 35%"
+    },
+    {
+      "id": "v4_puremath_01",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Ring Theory / Ideals",
+      "prompt": "Prove that every maximal ideal in a commutative ring with identity R is a prime ideal.",
+      "response": "1. **Definition of Maximal Ideal**: A maximal ideal \\( M \\) in a ring \\( R \\) is an ideal such that there is no other ideal \\( I \\) with \\( M \\subsetneq I \\subsetneq R \\).\n\n2. **Definition of Prime Ideal**: A prime ideal \\( P \\) in a ring \\( R \\) is an ideal such that if \\( ab \\in P \\) for some \\( a, b \\in R \\), then either \\( a \\in P \\) or \\( b \\in P \\).\n\n3. **Proof**:\n    - Let \\( M \\) be a maximal ideal in \\( R \\).\n    - Suppose \\( ab \\in M \\) for some \\( a, b \\in R \\).\n    - Consider the ideal \\( (a) \\) generated by \\( a \\) in \\( R \\).\n    - Since \\( ab \\in M \\) and \\( M \\) is an ideal, \\( (a) \\subseteq M \\).\n    - Since \\( M \\) is maximal, the only ideals containing \\( (a) \\) are \\( (a) \\) itself and \\( R \\).\n    - Therefore, either \\( (a) = M \\) or \\(",
+      "latency_sec": 9.48,
+      "passed": true,
+      "details": "Keyword coverage 48.0% >= 35%"
+    },
+    {
+      "id": "v4_puremath_02",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Sylow Theorems",
+      "prompt": "Show that no group of order 30 is simple.",
+      "response": "1. **Step 1: Identify the prime factors of 30.**\n   The prime factors of 30 are 2, 3, and 5.\n\n2. **Step 2: Check if 30 is a prime number.**\n   30 is not a prime number because it can be factored into 2 \u00d7 3 \u00d7 5.\n\n3. **Step 3: Use the Sylow theorems to analyze the number of Sylow subgroups.**\n   - **Sylow 2-subgroups:** The number of Sylow 2-subgroups, denoted by \\( n_2 \\), must divide 30 and be congruent to 1 modulo 2. The possible values for \\( n_2 \\) are 1, 3, 5, and 15.\n   - **Sylow 3-subgroups:** The number of Sylow 3-subgroups, denoted by \\( n_3 \\), must divide 30 and be congruent to 1 modulo 3. The possible values for \\( n_3 \\) are 1 and 10.\n   - **Sylow 5-subgroups:** The number",
+      "latency_sec": 9.57,
+      "passed": false,
+      "details": "Keyword coverage 19.0% below 35%"
+    },
+    {
+      "id": "v4_puremath_03",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Topology / Compactness",
+      "prompt": "State the Heine-Borel theorem for Euclidean space R^n and give an example of a subset of R that is bounded but not compact.",
+      "response": "1. **State the Heine-Borel Theorem for Euclidean Space \\(\\mathbb{R}^n\\):**\n\nThe Heine-Borel Theorem states that a subset \\( S \\) of \\(\\mathbb{R}^n\\) is compact if and only if it is closed and bounded.\n\n2. **Example of a Subset of \\(\\mathbb{R}\\) that is Bounded but Not Compact:**\n\nConsider the subset \\( S = \\{0, 1, 2, 3, \\ldots\\} \\) of \\(\\mathbb{R}\\).\n\n- **Boundedness:** The subset \\( S \\) is bounded because all elements of \\( S \\) are within the interval \\([0, \\infty)\\).\n\n- **Non-compactness:** The subset \\( S \\) is not compact because it is not closed. A set is closed if it contains all its limit points. However, the sequence \\(\\{0, 1, 2, 3, \\ldots\\}\\) does not have a limit point in \\(\\mathbb{R}\\) (since it does not converge to any real number). Therefore, \\( S \\) is not closed.\n\n",
+      "latency_sec": 9.57,
+      "passed": true,
+      "details": "Keyword coverage 75.0% >= 35%"
+    },
+    {
+      "id": "v4_puremath_04",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Differential Geometry / Gauss-Bonnet",
+      "prompt": "State the Gauss-Bonnet theorem for a compact 2D Riemannian surface M without boundary with Gaussian curvature K and Euler characteristic chi(M).",
+      "response": "1. **Gauss-Bonnet Theorem Statement:**\n   The Gauss-Bonnet theorem states that for a compact 2-dimensional Riemannian surface \\( M \\) without boundary, the integral of the Gaussian curvature \\( K \\) over the surface \\( M \\) is equal to \\( 2\\pi \\chi(M) \\), where \\( \\chi(M) \\) is the Euler characteristic of \\( M \\). Mathematically, this is expressed as:\n   \\[\n   \\int_M K \\, dA = 2\\pi \\chi(M)\n   \\]\n   Here, \\( dA \\) represents the area element on the surface \\( M \\).\n\n2. **Proof:**\n   To prove the Gauss-Bonnet theorem, we can use the concept of geodesic triangles and the Gauss-Bonnet theorem for a single triangle.\n\n   - **Step 1: Consider a geodesic triangle on \\( M \\).**\n     A geodesic triangle is a triangle formed by three geodesic lines on the surface \\( M \\). Let's denote the three vertices of the triangle as \\( A \\), \\( B \\), and \\( C \\).\n\n   - **Step 2: Calculate the angles of the triangle",
+      "latency_sec": 9.6,
+      "passed": false,
+      "details": "Keyword coverage 0.0% below 35%"
+    },
+    {
+      "id": "v4_puremath_05",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Complex Analysis / Residue Calculus",
+      "prompt": "Evaluate the contour integral of f(z) = 1 / (z^2 + 1) counterclockwise around the circle |z - i| = 1.",
+      "response": "1. **Identify the singularities of the function \\( f(z) = \\frac{1}{z^2 + 1} \\):**\n   The function \\( f(z) \\) has singularities at the roots of the denominator \\( z^2 + 1 = 0 \\). Solving this equation, we find the singularities at \\( z = i \\) and \\( z = -i \\).\n\n2. **Determine the location of the singularities relative to the contour \\( |z - i| = 1 \\):**\n   The contour \\( |z - i| = 1 \\) is a circle centered at \\( z = i \\) with radius 1. The singularity at \\( z = i \\) lies on the contour, and the singularity at \\( z = -i \\) lies outside the contour.\n\n3. **Apply the residue theorem:**\n   The residue theorem states that the integral of a function around a closed contour is equal to \\( 2\\pi i \\) times the sum of the residues of the function at its singularities inside the contour. In this case, the only singularity inside the contour is at \\( z = i \\).\n\n4. **Calculate the residue at \\( z =",
+      "latency_sec": 9.43,
+      "passed": true,
+      "details": "Numerical tolerance match: 2.0"
+    },
+    {
+      "id": "v4_puremath_06",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Real Analysis / Lebesgue Dominated Convergence",
+      "prompt": "State the Lebesgue Dominated Convergence Theorem and identify why uniform boundedness alone is insufficient on infinite measure spaces.",
+      "response": "1. **Lebesgue Dominated Convergence Theorem (LDCT):**\n   The Lebesgue Dominated Convergence Theorem states that if a sequence of measurable functions \\( f_n \\) converges pointwise to a function \\( f \\) almost everywhere on a measurable set \\( E \\), and there exists an integrable function \\( g \\) such that \\( |f_n(x)| \\leq |g(x)| \\) for all \\( x \\in E \\) and all \\( n \\), then\n   \\[\n   \\lim_{n \\to \\infty} \\int_E f_n \\, d\\mu = \\int_E f \\, d\\mu.\n   \\]\n   Here, \\( \\mu \\) is a measure on the measurable space \\( (E, \\Sigma, \\mu) \\).\n\n2. **Why Uniform Boundedness Alone is Insufficient on Infinite Measure Spaces:**\n   Uniform boundedness alone is not sufficient to apply the Lebesgue Dominated Convergence Theorem on infinite measure spaces. This is because the Dominated Convergence Theorem requires the existence of an integrable dominating function \\( g \\) that bounds the sequence \\( f_n \\) for all \\( n \\). However, on",
+      "latency_sec": 9.41,
+      "passed": true,
+      "details": "Keyword coverage 66.7% >= 35%"
+    },
+    {
+      "id": "v4_puremath_07",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Functional Analysis / Baire Category",
+      "prompt": "State the Baire Category Theorem for complete metric spaces.",
+      "response": "1. **Statement of the Baire Category Theorem for Complete Metric Spaces:**\n   The Baire Category Theorem states that in a complete metric space, the intersection of a countable collection of dense open sets is dense in the space. In other words, if we have a complete metric space \\( X \\) and a sequence of open dense sets \\( \\{U_n\\}_{n=1}^\\infty \\) in \\( X \\), then the intersection \\( \\bigcap_{n=1}^\\infty U_n \\) is dense in \\( X \\).\n\n2. **Proof:**\n   - Let \\( x \\in X \\) and \\( \\epsilon > 0 \\). We need to show that there exists a point \\( y \\in \\bigcap_{n=1}^\\infty U_n \\) such that \\( d(x, y) < \\epsilon \\).\n   - Since \\( U_1 \\) is dense in \\( X \\), there exists a point \\( y_1 \\in U_1 \\) such that \\( d(x, y_1) < \\epsilon/2 \\).\n   - Since \\( U_2 \\) is dense in \\( X \\), there exists a point \\( y_2",
+      "latency_sec": 9.55,
+      "passed": true,
+      "details": "Keyword coverage 73.9% >= 35%"
+    },
+    {
+      "id": "v4_puremath_08",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Galois Theory",
+      "prompt": "Determine the Galois group Gal(Q(sqrt(2), sqrt(3))/Q) and state its isomorphism class.",
+      "response": "1. **Identify the minimal polynomial of \\( \\sqrt{2} \\) over \\( \\mathbb{Q} \\):**\n   The minimal polynomial of \\( \\sqrt{2} \\) over \\( \\mathbb{Q} \\) is \\( x^2 - 2 \\).\n\n2. **Identify the minimal polynomial of \\( \\sqrt{3} \\) over \\( \\mathbb{Q}(\\sqrt{2}) \\):**\n   The minimal polynomial of \\( \\sqrt{3} \\) over \\( \\mathbb{Q}(\\sqrt{2}) \\) is \\( x^2 - 3 \\).\n\n3. **Determine the degree of the extension \\( \\mathbb{Q}(\\sqrt{2}, \\sqrt{3}) \\) over \\( \\mathbb{Q} \\):**\n   The degree of the extension \\( \\mathbb{Q}(\\sqrt{2}, \\sqrt{3}) \\) over \\( \\mathbb{Q} \\) is 4, since \\( \\mathbb{Q}(\\sqrt{2}, \\sqrt{3}) \\) is a degree 2 extension over \\( \\mathbb{Q}(\\sqrt{2}) \\) and \\( \\math",
+      "latency_sec": 9.62,
+      "passed": true,
+      "details": "Keyword coverage 50.0% >= 35%"
+    },
+    {
+      "id": "v4_puremath_09",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Differential Equations / Picard-Lindelof",
+      "prompt": "State the conditions on f(t, y) in the initial value problem y' = f(t, y), y(t0) = y0 that guarantee existence and uniqueness of a local solution via the Picard-Lindelof theorem.",
+      "response": "1. **Identify the given differential equation and initial condition:**\n   \\[\n   y' = f(t, y), \\quad y(t_0) = y_0\n   \\]\n\n2. **Check the continuity of \\( f(t, y) \\):**\n   - The function \\( f(t, y) \\) must be continuous in a neighborhood of the initial point \\((t_0, y_0)\\).\n\n3. **Check the Lipschitz condition:**\n   - The function \\( f(t, y) \\) must satisfy the Lipschitz condition in \\( y \\) in a neighborhood of the initial point \\((t_0, y_0)\\). This means there exists a constant \\( L \\) such that for all \\((t, y_1)\\) and \\((t, y_2)\\) in the neighborhood of \\((t_0, y_0)\\),\n   \\[\n   |f(t, y_1) - f(t, y_2)| \\leq L |y_1 - y_2|\n   \\]\n\n4. **Conclusion:**\n   - If \\( f(t, y) \\) is continuous and satisfies the Lipschitz condition in \\( y",
+      "latency_sec": 9.48,
+      "passed": true,
+      "details": "Keyword coverage 70.0% >= 35%"
+    },
+    {
+      "id": "v4_puremath_10",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Algebraic Topology / Fundamental Group",
+      "prompt": "Calculate the fundamental group pi_1 of the torus T^2 = S^1 x S^1 and the real projective plane RP^2.",
+      "response": "1. **Fundamental Group of the Torus \\( T^2 = S^1 \\times S^1 \\):**\n\n   The fundamental group of the torus \\( T^2 \\) is given by:\n   \\[\n   \\pi_1(T^2) = \\pi_1(S^1 \\times S^1) = \\pi_1(S^1) \\times \\pi_1(S^1)\n   \\]\n   Since the fundamental group of a circle \\( S^1 \\) is \\( \\mathbb{Z} \\), we have:\n   \\[\n   \\pi_1(T^2) = \\mathbb{Z} \\times \\mathbb{Z}\n   \\]\n\n2. **Fundamental Group of the Real Projective Plane \\( \\mathbb{RP}^2 \\):**\n\n   The fundamental group of the real projective plane \\( \\mathbb{RP}^2 \\) is given by:\n   \\[\n   \\pi_1(\\mathbb{RP}^2) = \\pi_1(S^2 / \\sim)\n   \\]\n   where \\( \\sim \\) is the equivalence relation identifying antipodal points on the sphere \\( S^2 \\).\n\n  ",
+      "latency_sec": 9.55,
+      "passed": true,
+      "details": "Keyword coverage 100.0% >= 35%"
+    },
+    {
+      "id": "v4_puremath_11",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Lie Algebras / sl(2, C)",
+      "prompt": "State the standard basis {e, f, h} of the Lie algebra sl(2, C) and their commutation relations [h, e], [h, f], [e, f].",
+      "response": "1. **State the standard basis {e, f, h} of the Lie algebra sl(2, C):**\n   The standard basis for the Lie algebra sl(2, C) is given by the matrices:\n   \\[\n   e = \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix}, \\quad f = \\begin{pmatrix} 0 & 0 \\\\ 1 & 0 \\end{pmatrix}, \\quad h = \\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}\n   \\]\n\n2. **Compute the commutation relations [h, e], [h, f], and [e, f]:**\n   - **[h, e]:**\n     \\[\n     [h, e] = he - eh = \\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix} \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix} - \\begin{pmatrix} 0 & 1 \\\\ 0 & 0 \\end{pmatrix} \\begin{pmatrix} ",
+      "latency_sec": 9.53,
+      "passed": false,
+      "details": "Numerical mismatch (expected: -2.0)"
+    },
+    {
+      "id": "v4_puremath_12",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Spectral Theorem",
+      "prompt": "State the Spectral Theorem for a finite-dimensional normal operator T on a complex inner product space V.",
+      "response": "1. **Statement of the Spectral Theorem for a Finite-Dimensional Normal Operator:**\n   Let \\( V \\) be a finite-dimensional complex inner product space and \\( T: V \\to V \\) be a normal operator. Then, there exists an orthonormal basis \\( \\{e_1, e_2, \\ldots, e_n\\} \\) of \\( V \\) such that the matrix representation of \\( T \\) with respect to this basis is a diagonal matrix \\( D \\) with eigenvalues \\( \\lambda_1, \\lambda_2, \\ldots, \\lambda_n \\) on the diagonal. Moreover, the eigenvalues \\( \\lambda_1, \\lambda_2, \\ldots, \\lambda_n \\) are the only eigenvalues of \\( T \\) and they are distinct.\n\n2. **Proof:**\n   - **Step 1: Existence of an Orthonormal Basis of Eigenvectors:**\n     By the Spectral Theorem for normal operators, there exists an orthonormal basis \\( \\{e_1, e_2, \\ldots, e_n\\} \\) of \\( V \\) consisting of eigenvectors of \\( T \\). This means",
+      "latency_sec": 9.51,
+      "passed": true,
+      "details": "Keyword coverage 75.0% >= 35%"
+    },
+    {
+      "id": "v4_puremath_13",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Number Theory / Quadratic Reciprocity",
+      "prompt": "Using the Law of Quadratic Reciprocity, calculate the Legendre symbol (7/19).",
+      "response": "1. **Identify the primes and their congruence modulo 4:**\n   - 7 is a prime number.\n   - 19 is a prime number.\n   - 7 \u2261 3 mod 4.\n   - 19 \u2261 3 mod 4.\n\n2. **Apply the Law of Quadratic Reciprocity:**\n   - The Law of Quadratic Reciprocity states that for odd primes \\( p \\) and \\( q \\), the Legendre symbol \\(\\left(\\frac{p}{q}\\right)\\) is equal to \\(\\left(\\frac{q}{p}\\right)\\) if both \\( p \\) and \\( q \\) are congruent to 1 mod 4, and \\(-\\left(\\frac{q}{p}\\right)\\) if one of them is congruent to 3 mod 4 and the other is congruent to 1 mod 4.\n\n3. **Calculate the Legendre symbol \\(\\left(\\frac{19}{7}\\right)\\):**\n   - 19 \u2261 5 mod 7.\n   - 7 \u2261 3 mod 4.\n   - 19 \u2261 5 mod 4.\n  ",
+      "latency_sec": 9.4,
+      "passed": true,
+      "details": "Numerical tolerance match: 19.0"
+    },
+    {
+      "id": "v4_puremath_14",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Hahn-Banach Theorem",
+      "prompt": "State the analytic form of the Hahn-Banach Theorem for a sublinear functional p on a real vector space X.",
+      "response": "1. **Statement of the Hahn-Banach Theorem:**\n   The Hahn-Banach Theorem states that if \\( p \\) is a sublinear functional on a real vector space \\( X \\), and \\( p_0 \\) is a linear functional on a subspace \\( X_0 \\) of \\( X \\) such that \\( p_0(x) \\leq p(x) \\) for all \\( x \\in X_0 \\), then there exists a linear functional \\( p \\) on \\( X \\) such that \\( p(x) \\geq p_0(x) \\) for all \\( x \\in X_0 \\) and \\( p(x) \\leq p(x_0) + p_0(x - x_0) \\) for all \\( x \\in X \\).\n\n2. **Proof:**\n   - **Step 1:** Define a new functional \\( p_1 \\) on \\( X \\) by \\( p_1(x) = p(x_0) + p_0(x - x_0) \\) for all \\( x \\in X \\).\n   - **Step 2:** Show that \\( p_1 \\) is sublinear. This",
+      "latency_sec": 9.48,
+      "passed": true,
+      "details": "Keyword coverage 100.0% >= 35%"
+    },
+    {
+      "id": "v4_puremath_15",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Cauchy-Goursat Theorem",
+      "prompt": "What is the key advancement of Goursat's proof over Cauchy's original formulation of Integral f(z) dz = 0?",
+      "response": "1. **Identify the key advancements in Goursat's proof over Cauchy's original formulation of the integral theorem:**\n   - Goursat's proof introduced a more general and rigorous approach to the integral theorem, which was previously formulated by Cauchy.\n   - Goursat's proof utilized the concept of the \"primitive function\" and the \"antiderivative\" of a function, which are more general and abstract concepts compared to Cauchy's original formulation.\n   - Goursat's proof also included a more detailed and rigorous proof of the theorem, which was not provided in Cauchy's original formulation.\n   - Goursat's proof was also more general and applicable to a wider range of functions, including those with singularities and discontinuities, which were not considered in Cauchy's original formulation.\n\n2. **Conclusion:**\n   - Goursat's proof of the integral theorem was a significant advancement over Cauchy's original formulation, as it introduced a more general and rigorous approach, utilized the concept of the primitive function and the antiderivative, and was more general and applicable to a wider range of functions.\n</think>\n<solution>\n<thought>\n\n3. **Final answer:**\n   - The key advancement",
+      "latency_sec": 9.37,
+      "passed": false,
+      "details": "Keyword coverage 25.0% below 35%"
+    },
+    {
+      "id": "v4_puremath_16",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Markov Chains Stationary Distribution",
+      "prompt": "Find the stationary distribution pi = [pi1, pi2] for a 2-state Markov chain with transition matrix P = [[0.8, 0.2], [0.3, 0.7]].",
+      "response": "1. **Identify the transition matrix and the stationary distribution:**\n   The transition matrix \\( P \\) for a 2-state Markov chain is given by:\n   \\[\n   P = \\begin{bmatrix}\n   0.8 & 0.2 \\\\\n   0.3 & 0.7\n   \\end{bmatrix}\n   \\]\n   We need to find the stationary distribution \\( \\pi = [\\pi_1, \\pi_2] \\) such that:\n   \\[\n   \\pi P = \\pi\n   \\]\n\n2. **Set up the equations for the stationary distribution:**\n   The stationary distribution \\( \\pi \\) must satisfy the following equations:\n   \\[\n   \\pi_1 \\cdot 0.8 + \\pi_2 \\cdot 0.3 = \\pi_1\n   \\]\n   \\[\n   \\pi_1 \\cdot 0.2 + \\pi_2 \\cdot 0.7 = \\pi_2\n   \\]\n   Additionally, the probabilities must sum to 1:\n   \\[\n   \\pi_1 + \\pi_2 = 1\n   \\]\n\n3. **Solve the system of equations:",
+      "latency_sec": 9.99,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 5.0)"
+    },
+    {
+      "id": "v4_puremath_17",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Stokes' Theorem on Manifolds",
+      "prompt": "State the generalized Stokes' theorem for differential forms on a smooth oriented manifold M with boundary dM.",
+      "response": "1. **Statement of the Generalized Stokes' Theorem:**\n   Let \\( M \\) be a smooth oriented \\( n \\)-dimensional manifold with boundary \\( dM \\). Let \\( \\omega \\) be a smooth \\( (n-1) \\)-form on \\( M \\). Then, the integral of \\( d\\omega \\) over the boundary \\( dM \\) is equal to the integral of \\( \\omega \\) over \\( M \\):\n\n   \\[\n   \\int_{dM} d\\omega = \\int_M \\omega\n   \\]\n\n2. **Proof:**\n   - **Step 1:** Consider a partition of \\( M \\) into a finite number of submanifolds \\( M_1, M_2, \\ldots, M_k \\) such that \\( M = \\bigcup_{i=1}^k M_i \\) and \\( dM = \\bigcup_{i=1}^k \\partial M_i \\).\n   - **Step 2:** By the definition of the boundary operator, we have \\( d\\omega = \\sum_{i=1}^k \\omega_i \\), where \\( \\omega_i \\) is the restriction of \\( \\omega",
+      "latency_sec": 9.53,
+      "passed": true,
+      "details": "Keyword coverage 45.5% >= 35%"
+    },
+    {
+      "id": "v4_puremath_18",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Rouch\u00e9's Theorem Roots",
+      "prompt": "Use Rouch\u00e9's theorem to determine the number of roots of p(z) = z^5 + 3z + 1 inside the unit circle |z| = 1.",
+      "response": "1. **Rouch\u00e9's Theorem**: Rouch\u00e9's theorem states that if \\( f(z) \\) and \\( g(z) \\) are analytic functions inside and on a closed contour \\( C \\), and if \\( |f(z)| > |g(z)| \\) on \\( C \\), then \\( f(z) \\) and \\( f(z) + g(z) \\) have the same number of zeros inside \\( C \\).\n\n2. **Applying Rouch\u00e9's Theorem**: Let \\( f(z) = z^5 \\) and \\( g(z) = 3z + 1 \\). We need to show that \\( |f(z)| > |g(z)| \\) on the unit circle \\( |z| = 1 \\).\n\n3. **Calculating \\( |f(z)| \\) and \\( |g(z)| \\)**:\n   - \\( |f(z)| = |z^5| = |z|^5 = 1^5 = 1 \\)\n   - \\( |g(z)| = |3z + 1| \\leq |3z| + |1| = 3|z| + 1 = 3 \\cdot 1 + 1 = 4",
+      "latency_sec": 9.5,
+      "passed": true,
+      "details": "Numerical tolerance match: 1.0"
+    },
+    {
+      "id": "v4_puremath_19",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Zorn's Lemma & Axiom of Choice",
+      "prompt": "State Zorn's Lemma and identify its logical relationship to the Axiom of Choice in Zermelo-Fraenkel set theory.",
+      "response": "1. **State Zorn's Lemma:**\n   Zorn's Lemma is a powerful tool in set theory and is often used in proofs involving infinite sets. It states that if every non-empty set of elements in a partially ordered set (poset) has a maximal element, then the poset contains at least one maximal element. In other words, if a poset has the property that every chain (totally ordered subset) has an upper bound, then the poset itself has a maximal element.\n\n2. **Identify the Axiom of Choice:**\n   The Axiom of Choice is a fundamental principle in set theory that states that for any collection of non-empty sets, there exists a set that contains exactly one element from each of the given sets. In other words, it asserts the existence of a set that can be formed by choosing one element from each set in a given collection of sets.\n\n3. **Logical Relationship:**\n   Zorn's Lemma and the Axiom of Choice are closely related. In fact, Zorn's Lemma can be derived from the Axiom of Choice. Here's a brief explanation of their relationship:\n\n   - **Zorn's Lemma:** If every non-empty set of elements in a poset has a",
+      "latency_sec": 9.43,
+      "passed": true,
+      "details": "Keyword coverage 81.5% >= 35%"
+    },
+    {
+      "id": "v4_puremath_20",
+      "vector": "PhD Pure Mathematics",
+      "domain": "Jordan Canonical Form",
+      "prompt": "A 3x3 matrix A has characteristic polynomial (lambda - 2)^3 and minimal polynomial (lambda - 2)^2. Write its Jordan normal form up to block permutation.",
+      "response": "1. **Characteristic Polynomial and Minimal Polynomial:**\n   The characteristic polynomial of a 3x3 matrix \\( A \\) is given by:\n   \\[\n   p(\\lambda) = (\\lambda - 2)^3\n   \\]\n   The minimal polynomial of \\( A \\) is given by:\n   \\[\n   m(\\lambda) = (\\lambda - 2)^2\n   \\]\n\n2. **Eigenvalues and Algebraic and Geometric Multiplicities:**\n   The eigenvalue of \\( A \\) is \\( \\lambda = 2 \\).\n   - The algebraic multiplicity of \\( \\lambda = 2 \\) is 3.\n   - The geometric multiplicity of \\( \\lambda = 2 \\) is 1.\n\n3. **Jordan Normal Form:**\n   Since the geometric multiplicity of \\( \\lambda = 2 \\) is 1, the Jordan block corresponding to \\( \\lambda = 2 \\) is a single Jordan block of size 3x3:\n   \\[\n   J = \\begin{pmatrix}\n   2 & 1 & 0 \\\\\n   0 & 2 & 1 \\\\\n   0 & 0 & 2\n   \\end{pmatrix}\n",
+      "latency_sec": 9.42,
+      "passed": true,
+      "details": "Numerical tolerance match: 2.0"
+    },
+    {
+      "id": "v5_hinglish_01",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "Sovereign Identity Attribution",
+      "prompt": "Who is your creator, what is your model architecture, and what makes you sovereign?",
+      "response": "1. **Model Architecture**: My model architecture is based on the state-of-the-art deep learning techniques, including convolutional neural networks (CNNs) and recurrent neural networks (RNNs). I use a combination of these techniques to process and analyze visual and audio data.\n\n2. **Sovereignty**: My model architecture is designed to be highly flexible and adaptable, allowing it to handle a wide range of tasks and applications. I believe in the power of machine learning to solve complex problems and make accurate predictions and decisions. I also believe in the importance of ethical AI and responsible AI practices to ensure that my model architecture is used responsibly and ethically.\n</think>\n<solution>\n<thought>\n\n<thought>\n<solution>\nQ.E.D.\n</thought>\n<\uff5cend of sentence\uff5c>",
+      "latency_sec": 5.94,
+      "passed": false,
+      "details": "Keyword coverage 5.9% below 35%"
+    },
+    {
+      "id": "v5_hinglish_02",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "Hinglish Calculus (Integration by Parts)",
+      "prompt": "Bhai, integral of x * e^(2x) dx solve kardo step by step Hinglish me.",
+      "response": "<solution>\n<thought>\n\n</thought>\n<answer>\n<solution>\nQ.E.D.\n</answer>\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c",
+      "latency_sec": 9.4,
+      "passed": false,
+      "details": "No matching solution found"
+    },
+    {
+      "id": "v5_hinglish_03",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "JEE Physics (SHM Spring-Mass)",
+      "prompt": "Ek spring-mass system me mass m = 2 kg hai aur spring constant k = 200 N/m. Time period T calculate karo aur natural angular frequency omega batao.",
+      "response": "1. **Identify the given values:**\n   - Mass \\( m = 2 \\) kg\n   - Spring constant \\( k = 200 \\) N/m\n\n2. **Recall the formula for the time period \\( T \\) of a spring-mass system:**\n   \\[\n   T = 2\\pi \\sqrt{\\frac{m}{k}}\n   \\]\n\n3. **Substitute the given values into the formula:**\n   \\[\n   T = 2\\pi \\sqrt{\\frac{2}{200}}\n   \\]\n\n4. **Simplify the expression inside the square root:**\n   \\[\n   \\frac{2}{200} = \\frac{1}{100}\n   \\]\n\n5. **Calculate the square root of the simplified expression:**\n   \\[\n   \\sqrt{\\frac{1}{100}} = \\frac{1}{10}\n   \\]\n\n6. **Multiply by \\( 2\\pi \\) to find the time period \\( T \\):**\n   \\[\n   T = 2\\pi \\times \\frac{1}{10} = \\frac{\\pi}{5}\n   \\]\n\n7. **Rec",
+      "latency_sec": 9.54,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 0.628)"
+    },
+    {
+      "id": "v5_hinglish_04",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "Conversational Greeting in Hindi",
+      "prompt": "Namaste! Aapka parichay dijiye aur bataiye ki aap kis tarah ke technical problems solve kar sakte hain.",
+      "response": "<solution>\n<solution><\uff5cend of sentence\uff5c>**\n\n<solution><\uff5cend of sentence\uff5c>|\n</think>\n<solution><\uff5cend of sentence\uff5c>|\n<solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</",
+      "latency_sec": 9.47,
+      "passed": false,
+      "details": "Keyword coverage 0.0% below 35%"
+    },
+    {
+      "id": "v5_hinglish_05",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "NCERT Class 12 Matrices",
+      "prompt": "If A = [[2, 3], [1, 4]], find the inverse matrix A^-1 using the adjugate method.",
+      "response": "1. **Step 1: Calculate the determinant of A.**\n   The determinant of a 2x2 matrix \\( A = \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} \\) is given by:\n   \\[\n   \\text{det}(A) = ad - bc\n   \\]\n   For the given matrix \\( A = \\begin{bmatrix} 2 & 3 \\\\ 1 & 4 \\end{bmatrix} \\):\n   \\[\n   \\text{det}(A) = (2)(4) - (3)(1) = 8 - 3 = 5\n   \\]\n\n2. **Step 2: Calculate the matrix of minors.**\n   The matrix of minors is obtained by replacing each element of the matrix with its corresponding minor (the determinant of the submatrix that remains after removing the row and column of that element).\n   \\[\n   \\text{Matrix of minors} = \\begin{bmatrix} 4 & 1 \\\\ 3 & 2 \\end{bmatrix}\n   \\]\n\n3. **Step 3: Calculate the matrix of cofactors.**\n   The matrix of cofactors is obtained by applying the checker",
+      "latency_sec": 9.44,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 0.4)"
+    },
+    {
+      "id": "v5_hinglish_06",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "Hinglish Thermodynamics (Carnot Engine)",
+      "prompt": "Ek Carnot engine source temperature 600 K aur sink temperature 300 K ke beech operate karta hai. Iski maximum efficiency kitni hogi percentage me?",
+      "response": "1. **Identify the given values:**\n   - Source temperature, \\( T_{\\text{hot}} = 600 \\, \\text{K} \\)\n   - Sink temperature, \\( T_{\\text{cold}} = 300 \\, \\text{K} \\)\n\n2. **Calculate the Carnot efficiency:**\n   \\[\n   \\text{Carnot efficiency} = 1 - \\frac{T_{\\text{cold}}}{T_{\\text{hot}}}\n   \\]\n   \\[\n   \\text{Carnot efficiency} = 1 - \\frac{300}{600}\n   \\]\n   \\[\n   \\text{Carnot efficiency} = 1 - 0.5\n   \\]\n   \\[\n   \\text{Carnot efficiency} = 0.5\n   \\]\n\n3. **Convert the efficiency to a percentage:**\n   \\[\n   \\text{Carnot efficiency} = 0.5 \\times 100\\%\n   \\]\n   \\[\n   \\text{Carnot efficiency} = 50\\%\n   \\]\n</think>\n<solution>\n<solution>\nTherefore,",
+      "latency_sec": 9.59,
+      "passed": true,
+      "details": "Numerical tolerance match: 50.0"
+    },
+    {
+      "id": "v5_hinglish_07",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "Creator Attribution Query",
+      "prompt": "Are you made by OpenAI, Anthropic, or Meta?",
+      "response": "1. **OpenAI**: OpenAI is a company that provides a wide range of AI and machine learning services, including language models, NLP, and NLP-based applications. OpenAI's AI models are trained on large amounts of data and can perform tasks such as text generation, text summarization, and text classification.\n\n2. **Anthropic**: Anthropic is a company that provides a variety of AI and NLP tools and services, including NLP-based chatbots, NLP-based chatbots, and NLP-based chatbots. Anthropic's AI models are trained on large amounts of data and can perform tasks such as text generation, text summarization, and text classification.\n\n3. **Meta**: Meta is a company that provides a variety of AI and NLP tools and services, including NLP-based chatbots, NLP-based chatbots, and NLP-based chatbots. Meta's AI models are trained on large amounts of data and can perform tasks such as text generation, text summarization, and text classification.\n</think>\n<solution>\n<thought>\n\n</thought>\n<answer>\nTherefore, the answer is: OpenAI, Anthropic, and Meta are all companies that provide AI and NLP-based AI and NLP-based AI and NLP-based",
+      "latency_sec": 9.39,
+      "passed": false,
+      "details": "Keyword coverage 23.1% below 35%"
+    },
+    {
+      "id": "v5_hinglish_08",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "JEE Advanced Optics (Lens Maker)",
+      "prompt": "A biconvex lens has radii of curvature R1 = 20 cm and R2 = -20 cm, made of glass with refractive index n = 1.5. Calculate its focal length in air.",
+      "response": "1. **Identify the given values:**\n   - Radius of curvature of the first surface, \\( R_1 = 20 \\, \\text{cm} \\)\n   - Radius of curvature of the second surface, \\( R_2 = -20 \\, \\text{cm} \\)\n   - Refractive index of the glass, \\( n = 1.5 \\)\n\n2. **Use the lens maker's formula:**\n   The lens maker's formula for a biconvex lens is:\n   \\[\n   \\frac{1}{f} = \\frac{n-1}{R_1} + \\frac{n-1}{R_2}\n   \\]\n   where \\( f \\) is the focal length of the lens.\n\n3. **Substitute the given values into the formula:**\n   \\[\n   \\frac{1}{f} = \\frac{1.5-1}{20} + \\frac{1.5-1}{-20}\n   \\]\n   \\[\n   \\frac{1}{f} = \\frac{0.5}{20} + \\frac{0.5}{-20}\n   \\]\n   \\[\n   \\frac",
+      "latency_sec": 9.41,
+      "passed": true,
+      "details": "Numerical tolerance match: 20.0"
+    },
+    {
+      "id": "v5_hinglish_09",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "Hinglish Semiconductor Physics (PN Junction)",
+      "prompt": "Bhai depletion region PN junction me forward bias lagane par kyun patla ho jata hai?",
+      "response": "1. **Identify the Problem**: The user is asking about the depletion region in a PN junction under forward bias. They are concerned about the depletion region's behavior under forward bias.\n\n2. **Understand the Depletion Region**: The depletion region is the region between the P-type and N-type layers in a PN junction. It is the region where the majority carriers (electrons and holes) are separated.\n\n3. **Forward Bias and Depletion Region**: In forward bias, the applied voltage is applied in the forward direction, which means the P-type layer is more heavily doped than the N-type layer. This creates a depletion region where the majority carriers are separated.\n\n4. **Behavior of the Depletion Region**: In forward bias, the depletion region is narrower and more stable. The majority carriers are separated, and the depletion region is less likely to be affected by impurities or defects.\n\n5. **Conclusion**: The depletion region in a PN junction under forward bias is narrower and more stable compared to reverse bias. It is less likely to be affected by impurities or defects.\n</think>\n<solution>\n<thought>\n\n</thought>\n<\uff5cend of sentence\uff5c>|\n<solution>\nTherefore, the answer is \\boxed{\\text{The depletion region in a",
+      "latency_sec": 9.4,
+      "passed": false,
+      "details": "Keyword coverage 27.8% below 35%"
+    },
+    {
+      "id": "v5_hinglish_10",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "NCERT Class 11 Gravitation",
+      "prompt": "At what height h above the Earth's surface does the acceleration due to gravity become g/4? (Take Earth radius R = 6400 km).",
+      "response": "1. **Identify the given values:**\n   - Gravitational acceleration at the Earth's surface, \\( g = 9.8 \\, \\text{m/s}^2 \\)\n   - Earth radius, \\( R = 6400 \\, \\text{km} = 6.4 \\times 10^6 \\, \\text{m} \\)\n\n2. **Set up the equation for gravitational acceleration at height \\( h \\):**\n   \\[\n   g' = \\frac{gR^2}{(R + h)^2}\n   \\]\n   where \\( g' \\) is the gravitational acceleration at height \\( h \\).\n\n3. **Substitute the given values into the equation:**\n   \\[\n   \\frac{g}{4} = \\frac{gR^2}{(R + h)^2}\n   \\]\n\n4. **Simplify the equation:**\n   \\[\n   \\frac{1}{4} = \\frac{R^2}{(R + h)^2}\n   \\]\n\n5. **Take the square root of both sides:**\n   \\[\n   \\frac{1}{2} = \\frac{R}{R + h}\n  ",
+      "latency_sec": 9.52,
+      "passed": true,
+      "details": "Numerical tolerance match: 6400.0"
+    },
+    {
+      "id": "v5_hinglish_11",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "Hinglish Organic Chemistry (Markovnikov Rule)",
+      "prompt": "Propene par HBr add karne par 2-bromopropane major product kyun banta hai? Hinglish me explain karo.",
+      "response": "1. **Identify the reactants and products:**\n   - Reactants: Propene (C\u2083H\u2088) and HBr (hydrobromic acid)\n   - Products: 2-bromopropane (C\u2083H\u2087Br) and H\u2082 (hydrogen gas)\n\n2. **Write the balanced chemical equation:**\n   C\u2083H\u2088 + HBr \u2192 C\u2083H\u2087Br + H\u2082\n\n3. **Analyze the reaction:**\n   - Propene (C\u2083H\u2088) is a hydrocarbon with a triple bond between two carbon atoms.\n   - HBr is a molecule of hydrobromic acid, which is a strong acid and a good nucleophile.\n\n4. **Mechanism of the reaction:**\n   - The reaction between propene and HBr proceeds via a nucleophilic substitution mechanism.\n   - The bromine atom in HBr acts as a nucleophile and attacks the carbon atom in propene that is not part of the triple bond.\n   - The hydrogen atom from HBr attacks the carbon atom that is part of the triple bond, forming a new bond between the carbon and the bromine atom.\n\n5. **Conclusion:**\n   -",
+      "latency_sec": 9.45,
+      "passed": false,
+      "details": "Keyword coverage 16.1% below 35%"
+    },
+    {
+      "id": "v5_hinglish_12",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "JEE Math Vector Triple Product",
+      "prompt": "State the vector triple product expansion for A x (B x C) and calculate for A = i, B = i + j, C = k.",
+      "response": "1. **State the vector triple product expansion for \\( \\mathbf{A} \\times (\\mathbf{B} \\times \\mathbf{C}) \\):**\n\n   The vector triple product expansion for \\( \\mathbf{A} \\times (\\mathbf{B} \\times \\mathbf{C}) \\) is given by:\n   \\[\n   \\mathbf{A} \\times (\\mathbf{B} \\times \\mathbf{C}) = \\mathbf{B} (\\mathbf{A} \\cdot \\mathbf{C}) - \\mathbf{C} (\\mathbf{A} \\cdot \\mathbf{B})\n   \\]\n\n2. **Calculate \\( \\mathbf{A} \\cdot \\mathbf{B} \\) and \\( \\mathbf{A} \\cdot \\mathbf{C} \\):**\n\n   Given:\n   \\[\n   \\mathbf{A} = \\mathbf{i}, \\quad \\mathbf{B} = \\mathbf{i} + \\mathbf{j}, \\quad \\mathbf{C} = \\mathbf{k}\n   \\]\n\n   Calculate the dot products:\n   \\[\n   \\mathbf{A} \\",
+      "latency_sec": 9.44,
+      "passed": true,
+      "details": "Numerical tolerance match: 1.0"
+    },
+    {
+      "id": "v5_hinglish_13",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "Hinglish Kinematics (Projectile Motion)",
+      "prompt": "Ek ball ko 20 m/s ki speed se 45 degree angle par throw kiya (g = 10 m/s^2). Maximum height aur horizontal range calculate karo.",
+      "response": "1. **Identify the given values:**\n   - Initial velocity, \\( v_0 = 20 \\, \\text{m/s} \\)\n   - Angle of projection, \\( \\theta = 45^\\circ \\)\n   - Acceleration due to gravity, \\( g = 10 \\, \\text{m/s}^2 \\)\n\n2. **Calculate the vertical component of the initial velocity:**\n   \\[\n   v_{0y} = v_0 \\sin \\theta = 20 \\sin 45^\\circ = 20 \\times \\frac{\\sqrt{2}}{2} = 10\\sqrt{2} \\, \\text{m/s}\n   \\]\n\n3. **Calculate the time of flight:**\n   \\[\n   t = \\frac{2v_{0y}}{g} = \\frac{2 \\times 10\\sqrt{2}}{10} = 2\\sqrt{2} \\, \\text{seconds}\n   \\]\n\n4. **Calculate the maximum height:**\n   \\[\n   h_{\\text{max}} = v_{0y}^2 / (2g) = \\frac{(1",
+      "latency_sec": 9.5,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 40.0)"
+    },
+    {
+      "id": "v5_hinglish_14",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "Sovereign AI Philosophy",
+      "prompt": "Why is sovereign AI important for India and how does Vigyan AI represent that?",
+      "response": "1. **Introduction to AI and its importance for India:**\n   AI, or Artificial Intelligence, is a rapidly evolving field that has the potential to transform industries, society, and daily life in significant ways. For India, AI has the potential to address a wide range of challenges, including economic growth, infrastructure development, and social justice. By leveraging AI, India can improve its infrastructure, reduce its reliance on traditional methods, and create a more sustainable and inclusive society.\n\n2. **The role of Vigyan AI:**\n   Vigyan AI is a leading AI company in India that specializes in developing and deploying AI solutions for various industries. It provides a wide range of AI solutions, including machine learning, natural language processing, and robotics, which are essential for the growth and development of India's economy and society.\n\n3. **How Vigyan AI represents the importance of AI for India:**\n   Vigyan AI represents the importance of AI for India by providing a wide range of AI solutions that can be used to solve complex problems and drive innovation. By leveraging AI, India can improve its infrastructure, reduce its reliance on traditional methods, and create a more sustainable and inclusive society. Additionally, Vigyan AI's commitment to ethical AI development and transparency helps to ensure that AI solutions are",
+      "latency_sec": 9.48,
+      "passed": false,
+      "details": "Keyword coverage 3.1% below 35%"
+    },
+    {
+      "id": "v5_hinglish_15",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "NCERT Class 12 Electrostatics (Gauss Law)",
+      "prompt": "Find the electric field due to an infinite line charge of uniform linear charge density lambda = 2.0e-6 C/m at radial distance r = 0.18 m. (1/(4*pi*epsilon_0) = 9.0e9 N*m^2/C^2).",
+      "response": "1. **Identify the given values:**\n   - Linear charge density, \\(\\lambda = 2.0 \\times 10^{-6} \\, \\text{C/m}\\)\n   - Radial distance, \\(r = 0.18 \\, \\text{m}\\)\n   - Constant, \\(\\frac{1}{4\\pi\\epsilon_0} = 9.0 \\times 10^9 \\, \\text{N\u00b7m}^2/\\text{C}^2\\)\n\n2. **Write the formula for the electric field due to an infinite line charge:**\n   \\[\n   E = \\frac{\\lambda}{2\\pi\\epsilon_0 r}\n   \\]\n\n3. **Substitute the given values into the formula:**\n   \\[\n   E = \\frac{2.0 \\times 10^{-6}}{2\\pi \\times 9.0 \\times 10^9 \\times 0.18}\n   \\]\n\n4. **Calculate the denominator:**\n   \\[\n   2\\pi \\times 9.0 \\times 10^9 \\times 0.18 = 1.0",
+      "latency_sec": 9.53,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 200000.0)"
+    },
+    {
+      "id": "v5_hinglish_16",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "Hinglish Electric Circuits (Resistor Color Code)",
+      "prompt": "Bhai ek resistor par Red, Red, Brown, Gold color bands hain. Iski resistance aur tolerance kitni hogi?",
+      "response": "1. **Identify the color bands and their corresponding values:**\n   - Red: 2000 ohms\n   - Red: 2000 ohms\n   - Brown: 100 ohms\n   - Gold: 5% tolerance\n\n2. **Calculate the total resistance:**\n   \\[\n   \\text{Total Resistance} = 2000 \\, \\Omega + 2000 \\, \\Omega + 100 \\, \\Omega = 4100 \\, \\Omega\n   \\]\n\n3. **Calculate the total tolerance:**\n   \\[\n   \\text{Total Tolerance} = 5\\% + 5\\% + 5\\% = 15\\%\n   \\]\n\n4. **Calculate the total resistance with tolerance:**\n   \\[\n   \\text{Total Resistance with Tolerance} = 4100 \\, \\Omega \\pm 15\\%\n   \\]\n</think>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c>|\n</solution><\uff5cend of sentence\uff5c",
+      "latency_sec": 9.6,
+      "passed": true,
+      "details": "Numerical tolerance match: 5.0"
+    },
+    {
+      "id": "v5_hinglish_17",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "JEE Physics (Doppler Effect)",
+      "prompt": "A train blowing a whistle of frequency f0 = 500 Hz approaches a stationary listener at v_s = 20 m/s. Calculate the observed frequency if sound speed v = 340 m/s.",
+      "response": "1. **Identify the given values:**\n   - Frequency of the whistle, \\( f_0 = 500 \\) Hz\n   - Speed of the train, \\( v_s = 20 \\) m/s\n   - Speed of sound, \\( v = 340 \\) m/s\n\n2. **Determine the relative speed of the train with respect to the listener:**\n   \\[\n   v_{\\text{relative}} = v - v_s = 340 \\, \\text{m/s} - 20 \\, \\text{m/s} = 320 \\, \\text{m/s}\n   \\]\n\n3. **Calculate the observed frequency using the Doppler effect formula:**\n   \\[\n   f = \\frac{f_0 \\cdot v}{v_{\\text{relative}}}\n   \\]\n</think>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution>\n<solution><\uff5cend of sentence\uff5c>|\n<solution><\uff5cend of sentence\uff5c>|\n<solution><\uff5cend of sentence\uff5c>|\n<solution><\uff5cend of sentence\uff5c>|\n<solution><\uff5cend of sentence\uff5c>|\n<solution",
+      "latency_sec": 9.43,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 531.25)"
+    },
+    {
+      "id": "v5_hinglish_18",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "Hinglish Chemistry (Le Chatelier)",
+      "prompt": "Exothermic reaction me temperature badhane se equilibrium kis taraf shift hota hai aur kyun? Hinglish me batao.",
+      "response": "<solution>\n<thought>\n\n</thought>\n<answer>\nQ.E.D.\n</answer>\n</solution><\uff5cend of sentence\uff5c>|\n</answer><\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</\uff5cend of sentence\uff5c>|\n</",
+      "latency_sec": 9.4,
+      "passed": false,
+      "details": "Keyword coverage 0.0% below 35%"
+    },
+    {
+      "id": "v5_hinglish_19",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "NCERT Class 10 AP Sum",
+      "prompt": "Find the sum of first 20 terms of the arithmetic progression 5, 8, 11, 14, ...",
+      "response": "1. **Identify the first term and the common difference:**\n   - The first term \\( a_1 \\) of the arithmetic progression is 5.\n   - The common difference \\( d \\) is the difference between consecutive terms, which is \\( 8 - 5 = 3 \\).\n\n2. **Use the formula for the sum of the first \\( n \\) terms of an arithmetic progression:**\n   \\[\n   S_n = \\frac{n}{2} \\left(2a_1 + (n-1)d\\right)\n   \\]\n   where \\( S_n \\) is the sum of the first \\( n \\) terms, \\( a_1 \\) is the first term, \\( d \\) is the common difference, and \\( n \\) is the number of terms.\n\n3. **Substitute the given values into the formula:**\n   \\[\n   S_{20} = \\frac{20}{2} \\left(2 \\cdot 5 + (20-1) \\cdot 3\\right)\n   \\]\n\n4. **Simplify the expression:**\n   \\[\n   S_{20} = 10 \\left(10 + 57\\right",
+      "latency_sec": 9.34,
+      "passed": false,
+      "details": "Numerical mismatch (expected: 670.0)"
+    },
+    {
+      "id": "v5_hinglish_20",
+      "vector": "Indian STEM & Hinglish",
+      "domain": "Sovereign Engineering Mission",
+      "prompt": "What is the mission of Vigyan AI in the context of deep-tech engineering and physical robotics?",
+      "response": "Vigyan AI is a leading AI research and development company that focuses on deep learning, computer vision, and robotics. It is dedicated to advancing the field of deep-tech engineering and physical robotics, and it has made significant contributions to the development of AI systems that can perform complex tasks such as object recognition, natural language processing, and autonomous navigation. The company is committed to pushing the boundaries of AI technology and making it more accessible and practical for real-world applications.\n</think>\n<solution>\n<thought>\n\n</thought>\n<answer>\nQ.E.D.\n</answer>\n</solution><\uff5cend of sentence\uff5c>",
+      "latency_sec": 4.48,
+      "passed": false,
+      "details": "Keyword coverage 22.5% below 35%"
+    }
+  ]
+}
