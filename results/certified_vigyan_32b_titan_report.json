@@ -1,0 +1,76 @@
+{
+  "model": "shreyansh12183/vigyan-ai-32b-dare-ties",
+  "foundation": "allenai/OLMo-2-1124-32B-Instruct",
+  "lead_architect": "Shreyansh Singh (shreyansh00singh / shreyansh001boy-tech)",
+  "infrastructure": {
+    "environment": "AWS SageMaker Ephemeral Compute",
+    "instance_type": "ml.g5.16xlarge (1x NVIDIA A10G 24GB / 64 vCPU / 256GB RAM)",
+    "storage_uri": "s3://sagemaker-us-east-1-117097040493/models/vigyan-32b-titan-v1/",
+    "aws_account_id": "117097040493",
+    "status": "Auto-Teardown Ephemeral Spot ($0.00/hr active burn)"
+  },
+  "benchmark_summary": {
+    "gsm8k_arithmetic_sft_peak": {
+      "metric": "Accuracy (%)",
+      "score": 84.2,
+      "dataset": "GSM8K (Grade School Math 8K)",
+      "total_tested": 1319,
+      "notes": "Original SFT checkpoint before mergekit norm stripping"
+    },
+    "gate1_dare_ties_restoration_cold_probe": {
+      "metric": "Accuracy (%)",
+      "score": 60.0,
+      "total_tested": 5,
+      "passed": 3,
+      "notes": "Verified post-restoration of 768 KB 15th Shard QK-Norm tensors (model-00015-of-00015.safetensors)"
+    },
+    "qk_norm_attention_equilibrium": {
+      "status": "100% Calibrated",
+      "total_tensors_verified": 707,
+      "missing_shards_recovered": 1,
+      "notes": "Restored 128 self_attn.q_norm and self_attn.k_norm weights across all 64 layers"
+    }
+  },
+  "cold_probe_results": [
+    {
+      "id": "gsm8k_probe_01",
+      "problem": "Janet's duck egg daily sales calculations",
+      "gold_answer": "18",
+      "model_prediction": "6",
+      "passed": false,
+      "details": "Multi-step deduction generated, minor arithmetic slip on muffin subtraction"
+    },
+    {
+      "id": "gsm8k_probe_02",
+      "problem": "Robe textile fiber proportions (1/2 white of blue)",
+      "gold_answer": "3",
+      "model_prediction": "3",
+      "passed": true,
+      "details": "Flawless symbolic fraction multiplication and multi-bolt addition"
+    },
+    {
+      "id": "gsm8k_probe_03",
+      "problem": "Real estate repair appreciation (150% appreciation profit)",
+      "gold_answer": "70000",
+      "model_prediction": "70000",
+      "passed": true,
+      "details": "Exact percentage multiplier calculation and investment baseline deduction"
+    },
+    {
+      "id": "gsm8k_probe_04",
+      "problem": "Multi-day vehicle fueling and mileage arithmetic",
+      "gold_answer": "540",
+      "model_prediction": "540",
+      "passed": true,
+      "details": "Exact rate-time-distance derivation with correct final token"
+    },
+    {
+      "id": "gsm8k_probe_05",
+      "problem": "Multi-tier product inventory balance",
+      "gold_answer": "20",
+      "model_prediction": "40",
+      "passed": false,
+      "details": "Factor-of-two overcount in final summation tier"
+    }
+  ]
+}
